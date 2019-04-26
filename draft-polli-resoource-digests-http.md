@@ -44,21 +44,11 @@ informative:
 
 --- abstract
 
-RFC 3230 defined the Digest and Want-Digest header fields for HTTP that allows the client
- and server to negotiate an integrity checksum of the exchanged data.
-That specification fixed some known limitations of Content-MD5 introducing
-the concept of "instance".
-
-As of today, RFC7231 defines a new semantic for http
-and standardize the concepts of `representation` and `selected representation`, further
-obsoleting Content-MD5 and making "instance" outdated .
-
-This document updates the Digest and Want-Digest header field definitions to align with RFC 7231 
-concepts. Changes are semantically compatible with existing implementations and
-better cover both the request and response cases.
+This document defines the Digest and Want-Digest header fields for HTTP
+to allow client and server to negotiate an integrity checksum of the exchanged data
+in a way that is compatible with the new HTTP semantics RFC 7231.
 
 This document obsoletes RFC 3230.
-
 
 --- note_Note_to_Readers
 
@@ -77,7 +67,20 @@ The source code and issues list for this draft can be found at
 # Introduction
 
 Although HTTP is typically layered over a reliable transport
-protocol, such as TCP, this does not guarantee reliable transport of
+protocol, such as TCP
+
+That specification fixed some known limitations of Content-MD5 introducing
+the concept of "instance".
+
+As of today, RFC7231 defines a new semantic for http
+and standardize the concepts of `representation` and `selected representation`, further
+obsoleting Content-MD5 and making "instance" outdated .
+
+This document updates the Digest and Want-Digest header field definitions to align with RFC 7231 
+concepts. Changes are semantically compatible with existing implementations and
+better cover both the request and response cases.
+
+, this does not guarantee reliable transport of
 information from sender to recipient.  Various problems, including
 undetected transmission errors, programming errors, corruption of
 stored data, and malicious intervention can cause errors in the
