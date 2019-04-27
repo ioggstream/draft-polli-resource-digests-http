@@ -67,38 +67,42 @@ The source code and issues list for this draft can be found at
 
 # Introduction
 
-Although HTTP is typically layered over a reliable transport
-protocol, such as TCP, this does not guarantee reliable transport of
-information from sender to recipient.  Various problems, including
-undetected transmission errors, programming errors, corruption of
-stored data, and malicious intervention can cause errors in the
-transmitted information.
+Integrity protection for HTTP content is typically achieved via TCP or HTTPS [RFC2818].
+However, additional integrity protection might be desirable for some use cases. 
+This might be for additional protection against failures or attack (see [SRI]), 
+programming errors, corruption of stored data or because content needs 
+to remain unmodified throughout multiple HTTPS-protected exchanges.
 
-A common approach to the problem of data integrity in a network
-protocol or distributed system, such as HTTP, is the use of digests,
-checksums, or hash values.  The sender computes a digest and sends it
-with the data; the recipient computes a digest of the received data,
-and then verifies the integrity of this data by comparing the
-digests.
+## Brief history of integrity headers 
 
- The Content-MD5 header field was originally introduced to provide integrity, 
- but [HTTP/1.1](https://tools.ietf.org/html/rfc7231#appendix-B) obsoleted it:
+The Content-MD5 header field was originally introduced to provide integrity, but HTTP/1.1 in https://tools.ietf.org/html/rfc7231#appendix-B obsoleted it:
 
   > The Content-MD5 header field has been removed because it was
   >  inconsistently implemented with respect to partial responses.
 
-The proposed solution uses the checksum of the selected representation of a resource. 
-This approach is more flexible and can be easily adapted to use-cases where the transferred 
-data does require some sort of manipulation to be considered a representation (eg. Range Requests RFC 7233). 
+RFC 3230 provided a more flexible solution introducing the concept of "instance",
+and the headers Digest and Want-Digest.
 
-This information can be:
+## This proposal
 
-  - sent in response to a HEAD request with the same value of the corresponding GET request;
-  - sent alongside a 206 (Partial Content) response in Range Requests or similar mechanisms. 
-    Its value can be validated once all representation data has been collected;
+The concept of `selected representation` defined in RFC 7231 made RFC 3230 definitions
+inconsistent with the current standard. A refresh was then required.
 
-Being calculated on the selected representation this value is tied to the representation-data and 
-the Content-Coding. A given resource has thus multiple possible digests dependending on the applied Content-Codings.
+This document updates the Digest and Want-Digest header field definitions to align with RFC 7231 concepts.
+
+This approach can be easily adapted to use-cases where the transferred data 
+does require some sort of manipulation to be considered a representation 
+or conveys a partial representation of a resource (eg. Range Requests RFC 7233). 
+
+Changes are semantically compatible with existing implementations 
+and better cover both the request and response cases.
+
+Being calculated on the selected representation, the
+Digest is tied to the representation-data and the Content-Coding. 
+
+A given resource has thus multiple possible digests values.
+To allow both parties to exchange a Digest of a representation 
+with only the Identity content-coding applied, two more algorithms are added (id-sha-256 and id-sha-512).
 
 ## Goals
 
