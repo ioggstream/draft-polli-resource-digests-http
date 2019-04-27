@@ -92,7 +92,7 @@ This document updates the Digest and Want-Digest header field definitions to ali
 
 This approach can be easily adapted to use-cases where the transferred data 
 does require some sort of manipulation to be considered a representation 
-or conveys a partial representation of a resource (eg. Range Requests RFC 7233). 
+or conveys a partial representation of a resource (eg. Range Requests). 
 
 Changes are semantically compatible with existing implementations 
 and better cover both the request and response cases.
@@ -108,30 +108,31 @@ with only the Identity content-coding applied, two more algorithms are added (id
 
 The goals of this proposal are:
 
-  1. Digest coverage for representation data communicated via HTTP.
+   1. Digest coverage for `representation data` communicated via HTTP.
 
-  2. Support for multiple digest algorithms.
+   2. Support for multiple digest algorithms.
 
-  3. Negotiation of the use of digests.
+   3. Negotiation of the use of digests.
 
 The goals do not include:
 
-  -  header integrity
-     The digest mechanisms described here cover only representation data, and do not protect the integrity of associated
-     representation metadata headers or other message headers.
+   -  header integrity
+      The digest mechanisms described here cover only representation data,
+      and do not protect the integrity of associated
+      representation metadata headers or other message headers.
 
-  -  authentication
-     The digest mechanisms described here are not meant to support
-     authentication of the source of a digest or of a message or
-     anything else.  These mechanisms, therefore, are not sufficient
-     defense against many kinds of malicious attacks.
+   -  authentication
+      The digest mechanisms described here are not meant to support
+      authentication of the source of a digest or of a message or
+      anything else.  These mechanisms, therefore, are not a sufficient
+      defense against many kinds of malicious attacks.
 
-  -  privacy
-     Digest mechanisms do not provide message privacy.
+   -  privacy
+      Digest mechanisms do not provide message privacy.
 
-  -  authorization
-     The digest mechanisms described here are not meant to support
-     authorization or other kinds of access controls.
+   -  authorization
+      The digest mechanisms described here are not meant to support
+      authorization or other kinds of access controls.
 
 
 ## Notational Conventions
