@@ -98,7 +98,7 @@ Changes are semantically compatible with existing implementations
 and better cover both the request and response cases.
 
 Being calculated on the selected representation, the
-Digest is tied to the representation-data and the Content-Coding. 
+Digest is tied to the Content-Coding. 
 
 A given resource has thus multiple possible digests values.
 To allow both parties to exchange a Digest of a representation 
@@ -140,6 +140,18 @@ The goals do not include:
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
 interpreted as described in [RFC2119].
+
+# Resource representation and representation-data
+
+This document uses the definitions "representation", "selected representation", 
+"representation data", "representation metadata" and "payload body" defined in RFC 7231.
+
+The value of the digest is calculated against the selected representation of a 
+resource, that is:
+
+  representation-data := Content-Coding( Content-Type( bits ) )
+
+Remember that content-coding can be an ordered list.
 
 
 # Digest Algorithm values {#algorithms}
@@ -193,6 +205,14 @@ interpreted as described in [RFC2119].
                      ASCII digit string representing the 32-bit CRC,
                      which is the first word of the output of the UNIX
                      "cksum" command.
+
+To allow sender and recipient to provide a checksum which is independent from the Content-Coding,
+the following additional algorithms are defined:
+
+   - id-sha-512 	The sha-512 digest of the representation-data of the resource when only the Identity
+                       	Content-Coding is applied
+   - id-sha-256 	The sha-256 digest of the representation-data of the resource when only the Identity
+                       	Content-Coding is applied
 
    If other digest-algorithm values are defined, the associated encoding
    MUST either be represented as a quoted string, or MUST NOT include
