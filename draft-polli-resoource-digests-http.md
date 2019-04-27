@@ -44,20 +44,11 @@ informative:
 
 --- abstract
 
-RFC 3230 defined the Digest and Want-Digest header fields for HTTP that allows the client
- and server to negotiate an integrity checksum of the exchanged data.
-That specification fixed some known limitations of Content-MD5 introducing
-the concept of "instance".
+This document defines the Digest and Want-Digest header fields for HTTP, thus allowing client
+ and server to negotiate an integrity checksum of the exchanged resource representation.
 
-As of today, RFC7231 defines a new semantic for http
-and standardize the concepts of `representation` and `selected representation`, further
-obsoleting Content-MD5 and making "instance" outdated .
-
-This document updates the Digest and Want-Digest header field definitions to align with RFC 7231 
-concepts. Changes are semantically compatible with existing implementations and
-better cover both the request and response cases.
-
-This document obsoletes RFC 3230.
+This document obsoletes RFC 3230, which initially defined those headers. That definition
+is now inconsistent with the HTTP Semantic and Context specified in RFC 7231.   
 
 
 --- note_Note_to_Readers
