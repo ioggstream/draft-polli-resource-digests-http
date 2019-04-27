@@ -147,11 +147,17 @@ This document uses the definitions "representation", "selected representation",
 "representation data", "representation metadata" and "payload body" defined in RFC 7231.
 
 The value of the digest is calculated against the selected representation of a 
-resource, that is:
+resource, that is  defined in RFC 7231 as:
 
+~~~
   representation-data := Content-Coding( Content-Type( bits ) )
+~~~
 
-Remember that content-coding can be an ordered list.
+and is thus independent of Transfer-Coding and other transformation applied from Intermediaries
+or tied to Range Requests.
+
+Note that content-coding can be an ordered list.
+
 
 
 # Digest Algorithm values {#algorithms}
@@ -218,76 +224,225 @@ the following additional algorithms are defined:
    MUST either be represented as a quoted string, or MUST NOT include
    ";" or "," in the character sets used for the encoding.
 
-## Content Encoding Structure {#records}
+## Representation digest {#digest}
 
-In order to produce the final content encoding the content of the message is
-split into equal-sized records.  The final record can contain less than the
-defined record size.
+A representation  digest is the representation of the output of a digest
+algorithm, together with an indication of the algorithm used (and any
+parameters).
 
-For non-empty payloads, the record size is included in the first 8 octets of the
-message as an unsigned 64-bit integer.  This refers to the length of each data
-block.
+~~~
+    representation-data-digest = digest-algorithm "="
+                            <encoded digest output>
+~~~
 
-The final encoded stream comprises of the record size ("rs"), plus a sequence of
-records, each "rs" octets in length.  Each record, other than the last, is
-followed by a 32 octet proof for the record that follows.  This allows a
-receiver to validate and act upon each record after receiving the proof that
-precedes it.  The final record is not followed by a proof.
+The digest is computed on the entire representation data of the resource associated with the
+message, and is tied to the Content-Type and the Content-Encoding.
 
-Note:
+# Header Specifications
 
-: This content encoding increases the size of a message by 8 plus 32 octets
-  times the length of the message divided by the record size, rounded up, less
-  one.  That is, 8 + 32 * (ceil(length / rs) - 1).
+The following headers are defined
 
-Constructing a message with the "mi-sha256" content encoding requires processing
-of the records in reverse order, inserting the proof derived from each record
-before that record.
+## Want-Digest
 
-This structure permits the use of range requests [RFC7233]. However, to validate
-a given record, a contiguous sequence of records back to the start of the
-message is needed.
+The Want-Digest message header field indicates the sender's desire to
+receive a representation digest on messages associated with the Request-
+URI and representation metadata.
 
+    Want-Digest = "Want-Digest" ":"
+                     #(digest-algorithm [ ";" "q" "=" qvalue])
 
-## Validating Integrity Proofs {#validating}
+If a digest-algorithm is not accompanied by a qvalue, it is treated
+as if its associated qvalue were 1.0.
+
+The sender is willing to accept a digest-algorithm if and only if it
+is listed in a Want-Digest header field of a message, and its qvalue
+is non-zero.
+
+If multiple acceptable digest-algorithm values are given, the
+sender's preferred digest-algorithm is the one (or ones) with the
+highest qvalue.
+
+Examples:
+
+   Want-Digest: sha-256
+   Want-Digest: SHA-256;q=0.3, sha;q=1
+
+## Digest
+
+The Digest header field provides a digest of the representation data.
+
+      Digest = "Digest" ":" #(representation-data-digest)
+
+Representation data might be:
+
+- fully contained in the payload body, 
+- partially-contained in the payload body,
+- or not at all contained in the payload body.
+
+The resource  is specified by the
+Request-URI and any cache-validator contained in the message.
+
+In a response to a HEAD request, the digest is calculated using  the
+representation data that would have been enclosed in the payload body
+if the same request had been a GET.
+
+Digest can be used in requests too. 
+Returned value depends on the representation metadata headers.
+
+A Digest header field MAY contain multiple representation-data-digest values.
+This could be useful for responses expected to reside in caches
+shared by users with different browsers, for example.
+
+A recipient MAY ignore any or all of the representation-data-digests in a Digest
+header field.
+
+A sender MAY send a representation-data-digest using a digest-algorithm without
+knowing whether the recipient supports the digest-algorithm, or even
+knowing that the recipient will ignore it.
 
 ...
 
-# The "mi-sha256" Digest Algorithm {#digest-mi-sha256}
+# Deprecate Negotiation of Content-MD5
+This RFC deprecates the negotiation of Content-MD5 as 
+this header has been obsoleted by RFC7231
 
+This RFC DISCOURAGES the use of MD5 algorithm for security reasons.
 
 # Examples
 
-## Simple Example
 
-blabla
+## Unsolicited Digest response
+
+### Representation data is fully contained in the payload
 
 ~~~
-HTTP/1.1 200 OK
-Digest: mi-sha256=dcRDgR2GM35DluAV13PzgnG6+pvQwPywfFvAu1UeFrs=
-Content-Encoding: mi-sha256
-Content-Length: 49
+Request:
 
-<0x0000000000000029>When I grow up, I want to be a watermelon
+  GET /items/123
+
+Response:
+
+  HTTP/1.1 200 Ok
+  Content-Type: application/json
+  Content-Encoding: identity 
+  Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
+
+  {"hello": "world"}
 ~~~
 
+###  Representation data is not contained in the payload
 
-## Example with Multiple Records
-
- blabla
 ~~~
-PUT /test HTTP/1.1
-Host: example.com
-Digest: mi-sha256=IVa9shfs0nyKEhHqtB3WVNANJ2Njm5KjQLjRtnbkYJ4=
-Content-Encoding: mi-sha256
-Content-Length: 113
+Request:
 
-<0x0000000000000010>When I grow up,
-OElbplJlPK+Rv6JNK6p5/515IaoPoZo+2elWL7OQ60A=
-I want to be a w
-iPMpmgExHPrbEX3/RvwP4d16fWlK4l++p75PUu_KyN0=
-atermelon
+  HEAD /items/123
+
+Response:
+
+  HTTP/1.1 200 Ok
+  Content-Type: application/json
+  Content-Encoding: identity 
+  Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
+
 ~~~
+
+###  Representation data is partially contained in the payload (range request?)
+
+~~~
+
+Request:
+
+  GET /items/123
+...
+
+Response:
+
+  HTTP/1.1 200 Ok
+  Content-Type: application/json
+  Content-Encoding: identity 
+  Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
+
+~~~
+
+### Digest in both Request and Response. Returned value depends on representation metadata 
+
+Digest can be used in requests too. Returned value depends on the representation metadata headers.
+
+~~~
+Request:
+
+PUT /items/123
+Content-Type: application/json
+Content-Encoding: identity
+Accept-Encoding: br
+Digest: sha-256=4REjxQ4yrqUVicfSKYNO/cF9zNj5ANbzgDZt3/h3Qxo=
+
+{"hello": "world"}
+
+Response:
+
+Content-Type: application/json
+Content-Encoding: br
+Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
+
+b'\x8b\x08\x80{"hello": "world"}\x03'
+
+~~~
+
+## Want-Digest solicited digest responses
+
+### Client request data is fully contained in the payload
+
+The client requests a digest, preferring sha. The server is free to reply with sha-256 anyway.
+
+~~~
+Request:
+
+  GET /items/123
+  Want-Digest: sha-256;q=0.3, sha;q=1
+
+Response:
+
+  HTTP/1.1 200 Ok
+  Content-Type: application/json
+  Content-Encoding: identity 
+  Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
+
+  {"hello": "world"}
+~~~
+
+###  A client requests an unsupported Digest, the server MAY reply with an unsupported digest
+
+The client requests a sha digest only. The server is currently free to reply with a Digest containing an unsupported algorithm
+
+Request:
+
+  GET /items/123
+  Want-Digest: sha;q=1
+
+Response:
+
+  HTTP/1.1 200 Ok
+  Content-Type: application/json
+  Content-Encoding: identity 
+  Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
+
+  {"hello": "world"}
+
+Eg.  A client requests an unsupported Digest, the server MAY reply with a 400
+
+The client requests a sha Digest, the server advises for sha-256 and sha-512
+
+Request:
+
+  GET /items/123
+  Want-Digest: sha;q=1
+
+Response:
+
+  HTTP/1.1 400 Bad Request
+  Want-Digest: sha-256, sha-512
+
 
 ...
 
