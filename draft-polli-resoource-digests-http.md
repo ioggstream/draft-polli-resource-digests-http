@@ -142,6 +142,11 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
 interpreted as described in [RFC2119].
 
+The definitions "representation", "selected representation", "representation data", 
+"representation metadata" and "payload body" in this document are to be
+interpreted as described in [RFC7231].
+
+
 # Resource representation and representation-data
 
 This document uses the definitions "representation", "selected representation", 
