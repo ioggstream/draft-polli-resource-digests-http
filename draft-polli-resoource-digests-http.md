@@ -18,7 +18,8 @@ author:
     name: Roberto Polli
     organization: Team Digitale
     email: robipolli@gmail.com
--   
+author:
+ -   
     ins: L. Pardue
     name: Lucas Pardue
     
