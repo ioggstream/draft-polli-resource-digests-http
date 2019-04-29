@@ -223,9 +223,9 @@ To allow sender and recipient to provide a checksum which is independent from th
 the following additional algorithms are defined:
 
    - id-sha-512 	The sha-512 digest of the representation-data of the resource when only the Identity
-                       	Content-Coding is applied
+                       	content coding is applied (eg. `Content-Encoding: identity`)
    - id-sha-256 	The sha-256 digest of the representation-data of the resource when only the Identity
-                       	Content-Coding is applied
+                       	content coding is applied (eg. `Content-Encoding: identity`)
 
    If other digest-algorithm values are defined, the associated encoding
    MUST either be represented as a quoted string, or MUST NOT include
@@ -233,7 +233,7 @@ the following additional algorithms are defined:
 
 ## Representation digest {#digest}
 
-A representation  digest is the representation of the output of a digest
+A representation  digest is the value of the output of a digest
 algorithm, together with an indication of the algorithm used (and any
 parameters).
 
@@ -242,8 +242,24 @@ parameters).
                             <encoded digest output>
 ~~~
 
-The digest is computed on the entire representation data of the resource associated with the
-message, and is tied to the Content-Type and the Content-Encoding.
+The digest is computed on the entire `representation data` of the resource
+and is tied to the Content-Type and the Content-Encoding of the message.
+
+The encoded digest output uses the encoding format defined for the
+specific digest-algorithm.
+
+### digest-algorithm encoding examples
+The sha-256 digest-algorithm uses base64 encoding
+
+~~~
+sha-256=......
+~~~
+
+The "UNIXsum" digest-algorithm uses ASCII string of decimal digits.
+
+~~~
+UNIXsum=30637
+~~~
 
 # Header Specifications
 
@@ -276,20 +292,22 @@ Examples:
 
 ## Digest
 
-The Digest header field provides a digest of the representation data.
+The Digest header field provides a digest of the representation data
 
+~~~
       Digest = "Digest" ":" #(representation-data-digest)
+~~~
 
-Representation data might be:
+`Representation data` might be:
 
-- fully contained in the payload body, 
-- partially-contained in the payload body,
-- or not at all contained in the payload body.
+- fully contained in the message body, 
+- partially-contained in the message body,
+- or not at all contained in the message body.
 
-The resource  is specified by the
+The resource is specified by the effective
 Request-URI and any cache-validator contained in the message.
 
-In a response to a HEAD request, the digest is calculated using  the
+For example, in a response to a HEAD request, the digest is calculated using  the
 representation data that would have been enclosed in the payload body
 if the same request had been a GET.
 
@@ -519,3 +537,13 @@ feedback.
    Unnecessary again for correctly using and applying the spec. An
    example with Range Request is more than enough.
 
+3. How to use `Digest` with `PATCH` method?
+
+   The PATCH verb brings some complexities (eg. about representation metadata headers, patch document format, ...),
+   eg ```Note that entity-headers contained in the request apply only to the
+   contained patch document and MUST NOT be applied to the resource
+   being modified. ``` see [rfc5789#section-2]
+   Moreover a `200 OK` response to a PATCH request would contain the digest of the result of applying the patch
+   and relate to the etag of this new object, but this behavior is probably tighly coupled to the application logic
+   and the client has a low probability of guessing the actual outcome of the operation because there may have been other 
+   changes to the document (by the server, or other clients), making all this difficult to implement.
