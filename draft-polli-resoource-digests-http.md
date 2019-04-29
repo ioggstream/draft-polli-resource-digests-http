@@ -484,6 +484,16 @@ Separate protection for header fields might be provided by other means if the
 first record retrieved is the first record in the message, but range requests do
 not allow for this option.
 
+## Usage in signatures
+
+Digital signatures are widely used together with checksums to provide
+the certain identification of the origin of a message [NIST 800-32].
+
+It's important to note that, being the Digest header an hash of a resource representation,
+signing only the `Digest` header, without all the representation metatada (eg.
+the values of Content-Type and Content-Encoding) may expose the communication
+to tampering.
+
 
 ## Message Truncation
 
@@ -495,35 +505,65 @@ not allow for this option.
 
 # IANA Considerations
 
-## The "mi-sha256" HTTP Content Encoding
+## The "id-sha-256" Digest Algorithm {#iana-digest}
 
-This memo registers the "mi-sha256" HTTP content-coding in the HTTP Content Codings
-Registry, as detailed in {{encoding}}.
-
-* Name: mi-sha256
-* Description: A Merkle Hash Tree based content encoding that provides
-               progressive integrity.
-* Reference: this specification
-
-
-## The "mi-sha256" Digest Algorithm {#iana-digest}
-
-This memo registers the "mi-sha256" digest algorithm in the [HTTP Digest
+This memo registers the "id-sha-256" digest algorithm in the [HTTP Digest
 Algorithm
 Values](https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml)
 registry:
 
-* Digest Algorithm: mi-sha256
-* Description: As specified in {{digest-mi-sha256}}.
+* Digest Algorithm: id-sha-256
+* Description: As specified in {{digest-algorithm-values}}.
 
+## The "id-sha-512" Digest Algorithm {#iana-digest}
+
+This memo registers the "id-sha-256" digest algorithm in the [HTTP Digest
+Algorithm
+Values](https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml)
+registry:
+
+* Digest Algorithm: id-sha-512
+* Description: As specified in {{digest-algorithm-values}}.
+
+## Want-Digest Header Field Registration
+
+This section registers the `Want-Digest` header field in the "Permanent Message
+Header Field Names" registry ({{!RFC3864}}).
+
+Header field name:  `Want-Digest`
+
+Applicable protocol:  http
+
+Status:  standard
+
+Author/Change controller:  IETF
+
+Specification document(s):  {{want-digest-header}} of this document
+
+## Digest Header Field Registration
+
+This section registers the `Digest` header field in the "Permanent Message
+Header Field Names" registry ({{!RFC3864}}).
+
+Header field name:  `Digest`
+
+Applicable protocol:  http
+
+Status:  standard
+
+Author/Change controller:  IETF
+
+Specification document(s):  {{digest-header}} of this document
 
 --- back
 
 # Acknowledgements
 
-David Benjamin and Erik Nygren both separately suggested that something like
-this might be valuable.  James Manger and Eric Rescorla provided useful
-feedback.
+The vast majority of this document is inherited from RFC 3230, so thanks
+to J. Mogul and A. Van Hoff for their great work.
+The original idea of refreshing this document arose from an interesting
+discussion with M. Nottingham, J. Yasskin and M. Thomson when reviewing
+the MICE Content Encoding.
 
 
 # FAQ
