@@ -1,10 +1,10 @@
 ---
 title: Resource Digests for HTTP
 abbrev: RDHTTP
-docname: draft-polli-resource-digests-latest
+docname: draft-polli-resource-digests-http-latest
 category: std
 
-ipr: -
+ipr: trust200902
 area: General
 workgroup: 
 keyword: Internet-Draft
@@ -227,10 +227,10 @@ Note that [Content-Encoding](https://tools.ietf.org/html/rfc7231#section-3.1.2.2
 To allow sender and recipient to provide a checksum which is independent from the Content-Coding,
 the following additional algorithms are defined:
 
-   - id-sha-512 	The sha-512 digest of the representation-data of the resource when only the Identity
-                       	content coding is applied (eg. `Content-Encoding: identity`)
-   - id-sha-256 	The sha-256 digest of the representation-data of the resource when only the Identity
-                       	content coding is applied (eg. `Content-Encoding: identity`)
+   - id-sha-512 The sha-512 digest of the representation-data of the resource when only the Identity
+                       content coding is applied (eg. `Content-Encoding: identity`)
+   - id-sha-256 The sha-256 digest of the representation-data of the resource when only the Identity
+                      content coding is applied (eg. `Content-Encoding: identity`)
 
    If other digest-algorithm values are defined, the associated encoding
    MUST either be represented as a quoted string, or MUST NOT include
