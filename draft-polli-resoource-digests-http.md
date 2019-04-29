@@ -109,7 +109,8 @@ applied, two more algorithms are added (id-sha-256 and id-sha-512).
 
 The goals of this proposal are:
 
-   1. Digest coverage for `representation data` communicated via HTTP.
+   1. Digest coverage for either the resource's `representation data` or `selected representation data`
+      communicated via HTTP.
 
    2. Support for multiple digest algorithms.
 
