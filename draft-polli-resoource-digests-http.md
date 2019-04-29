@@ -47,8 +47,8 @@ informative:
 This document defines the Digest and Want-Digest header fields for HTTP, thus allowing client
  and server to negotiate an integrity checksum of the exchanged resource representation.
 
-This document obsoletes RFC 3230, which initially defined those headers. That definition
-is now inconsistent with the HTTP Semantic and Context specified in RFC 7231.   
+This document obsoletes RFC 3230. It replaces the term "instance" with "representation",
+which makes it consistent  with the HTTP Semantic and Context defined in RFC 7231.   
 
 
 --- note_Note_to_Readers
