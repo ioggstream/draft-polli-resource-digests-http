@@ -102,7 +102,8 @@ Digest is tied to the Content-Coding.
 
 A given resource has thus multiple possible digests values.
 To allow both parties to exchange a Digest of a representation 
-with only the Identity content-coding applied, two more algorithms are added (id-sha-256 and id-sha-512).
+with only the Identity [content coding](https://tools.ietf.org/html/rfc7231#section-3.1.2.1)
+applied, two more algorithms are added (id-sha-256 and id-sha-512).
 
 ## Goals
 
@@ -150,13 +151,13 @@ The value of the digest is calculated against the selected representation of a
 resource, that is  defined in RFC 7231 as:
 
 ~~~
-  representation-data := Content-Coding( Content-Type( bits ) )
+  representation-data := Content-Encoding( Content-Type( bits ) )
 ~~~
 
 and is thus independent of Transfer-Coding and other transformation applied from Intermediaries
 or tied to Range Requests.
 
-Note that content-coding can be an ordered list.
+Note that [Content-Encoding](https://tools.ietf.org/html/rfc7231#section-3.1.2.2) can be an ordered list.
 
 
 
