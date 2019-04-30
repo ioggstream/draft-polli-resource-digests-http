@@ -72,6 +72,7 @@ informative:
   RFC2818:
   RFC5788:
   RFC6962:
+  RFC7396:
   SRI:
     title: "Subresource Integrity"
     author:
@@ -478,6 +479,7 @@ Response:
 
 The client requests a sha digest only. The server is currently free to reply with a Digest containing an unsupported algorithm
 
+~~~
 Request:
 
   GET /items/123
@@ -491,11 +493,13 @@ Response:
   Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
   {"hello": "world"}
+~~~
 
-Eg.  A client requests an unsupported Digest, the server MAY reply with a 400
+### Eg.  A client requests an unsupported Digest, the server MAY reply with a 400
 
 The client requests a sha Digest, the server advises for sha-256 and sha-512
 
+~~~
 Request:
 
   GET /items/123
@@ -505,22 +509,12 @@ Response:
 
   HTTP/1.1 400 Bad Request
   Want-Digest: sha-256, sha-512
-
+~~~
 
 ...
 
 
 # Security Considerations
-
-The integrity of an entire message body depends on the means by which the
-integrity proof for the first record is protected.  If this value comes from the
-same place as the message, then this provides only limited protection against
-transport-level errors (something that TLS provides adequate protection
-against).
-
-Separate protection for header fields might be provided by other means if the
-first record retrieved is the first record in the message, but range requests do
-not allow for this option.
 
 ## Usage in signatures
 
@@ -618,10 +612,11 @@ the MICE Content Encoding.
 3. How to use `Digest` with `PATCH` method?
 
    The PATCH verb brings some complexities (eg. about representation metadata headers, patch document format, ...),
-   eg ```Note that entity-headers contained in the request apply only to the
-   contained patch document and MUST NOT be applied to the resource
-   being modified. ``` see [rfc5789], Section 2.
-   Moreover a `200 OK` response to a PATCH request would contain the digest of the result of applying the patch
-   and relate to the etag of this new object, but this behavior is probably tighly coupled to the application logic
-   and the client has a low probability of guessing the actual outcome of the operation because there may have been other 
-   changes to the document (by the server, or other clients), making all this difficult to implement.
+   
+   - PATCH entity-headers apply to the patch document and MUST NOT be applied to the target resource,
+     see [rfc5789], Section 2.
+   - servers shouldn't assume PATCH semantics for generic media types like "application/json" but should
+     instead use a proper content-type, eg [RFC7396]
+   - a `200 OK` response to a PATCH request would contain the digest of the patched item, and the etag of the new object.
+     This behavior - tighly coupled to the application logic - gives the client low probability of guessing the actual
+     outcome of this operation (eg. concurrent changes, ...)
