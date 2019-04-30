@@ -1,10 +1,10 @@
 ---
 title: Resource Digests for HTTP
 abbrev: RDHTTP
-docname: draft-polli-resource-digests-latest
+docname: draft-polli-resource-digests-http-latest
 category: std
 
-ipr: -
+ipr: trust200902
 area: General
 workgroup: 
 keyword: Internet-Draft
@@ -18,10 +18,10 @@ author:
     name: Roberto Polli
     organization: Team Digitale
     email: robipolli@gmail.com
-author:
  -   
     ins: L. Pardue
     name: Lucas Pardue
+    email: lucaspardue.24.7@gmail.com
     
 normative:
   RFC5843:
@@ -31,7 +31,21 @@ normative:
   RFC7231:
   RFC7233:
   RFC4648:
-  RFC1321:
+  RFC1321: 
+  FIPS180-1:
+    title: NIST FIPS 180-1, Secure Hash Standard
+    author:
+      name: NIST
+      ins: National Institute of Standards and Technology, U.S. Department of Commerce
+    date: 1995-04
+    target: http://csrc.nist.gov/fips/fip180-1.txt
+  FIPS180-3:
+    title: NIST FIPS 180-3, Secure Hash Standard
+    author:
+      name: NIST
+      ins: National Institute of Standards and Technology, U.S. Department of Commerce
+    date: 2008-10
+    target: https://csrc.nist.gov/csrc/media/publications/fips/180/3/archive/2008-10-31/documents/fips180-3_final.pdf
   FIPS180-4:
     title: NIST FIPS 180-4, Secure Hash Standard
     author:
@@ -39,13 +53,32 @@ normative:
       ins: National Institute of Standards and Technology, U.S. Department of Commerce
     date: 2012-03
     target: http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf
+  UNIX:
+    title: The Single UNIX Specification, Version 2 - 6 Vol Set for UNIX 98
+    author:
+      name: The Open Group
+      ins: The Open Group
+    date: 1997-02
+  NIST800-32:
+    title: Introduction to Public Key Technology and the Federal PKI Infrastructure    
+    author:
+      name: NIST
+      ins: National Institute of Standards and Technology, U.S. Department of Commerce
+    date: 2001-02
+    target: https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-32.pdf
  
  
 informative:
   RFC2818:
+  RFC5788:
   RFC6962:
-  RFC7233:
-  RFC3230:
+  SRI:
+    title: "Subresource Integrity"
+    author:
+      - ins: D. Akhawe
+      - ins: F. Braun
+      - ins: F. Marier
+      - ins: J. Weinberger
 
 --- abstract
 
@@ -192,34 +225,34 @@ Note that [Content-Encoding](https://tools.ietf.org/html/rfc7231#section-3.1.2.2
    
    **NB: This RFC updates RFC 5843 which is still delegated for all algorithms updates** 
 
-  - SHA-256: The SHA-256 algorithm [FIPS-180-3].  The output of
+  - SHA-256: The SHA-256 algorithm [FIPS180-3].  The output of
       this algorithm is encoded using the base64 encoding [RFC4648].
 
-      Reference: [FIPS-180-3], [RFC4648], this document.
+      Reference: [FIPS180-3], [RFC4648], this document.
 
-  - SHA-512: The SHA-512 algorithm [FIPS-180-3].  The output of
+  - SHA-512: The SHA-512 algorithm [FIPS180-3].  The output of
       this algorithm is encoded using the base64 encoding [RFC4648].
 
-      Reference: [FIPS-180-3], [RFC4648], this document.
+      Reference: [FIPS180-3], [RFC4648], this document.
 
 
   - MD5               The MD5 algorithm, as specified in [RFC1321].
                      The output of this algorithm is encoded using the
-                     base64 encoding  {{?RFC4648}}.
+                     base64 encoding  [RFC4648].
 
-  - SHA               The SHA-1 algorithm [12].  The output of this
-                     algorithm is encoded using the base64 encoding  {{?RFC4648}}.
+  - SHA               The SHA-1 algorithm [FIPS180-1].  The output of this
+                     algorithm is encoded using the base64 encoding  [RFC4648].
 
   - UNIXsum           The algorithm computed by the UNIX "sum" command,
                      as defined by the Single UNIX Specification,
-                     Version 2 [13].  The output of this algorithm is an
+                     Version 2 [UNIX].  The output of this algorithm is an
                      ASCII decimal-digit string representing the 16-bit
                      checksum, which is the first word of the output of
                      the UNIX "sum" command.
 
   - UNIXcksum         The algorithm computed by the UNIX "cksum" command,
                      as defined by the Single UNIX Specification,
-                     Version 2 [13].  The output of this algorithm is an
+                     Version 2 [UNIX].  The output of this algorithm is an
                      ASCII digit string representing the 32-bit CRC,
                      which is the first word of the output of the UNIX
                      "cksum" command.
@@ -227,16 +260,16 @@ Note that [Content-Encoding](https://tools.ietf.org/html/rfc7231#section-3.1.2.2
 To allow sender and recipient to provide a checksum which is independent from the Content-Coding,
 the following additional algorithms are defined:
 
-   - id-sha-512 	The sha-512 digest of the representation-data of the resource when only the Identity
-                       	content coding is applied (eg. `Content-Encoding: identity`)
-   - id-sha-256 	The sha-256 digest of the representation-data of the resource when only the Identity
-                       	content coding is applied (eg. `Content-Encoding: identity`)
+   - id-sha-512 The sha-512 digest of the representation-data of the resource when only the Identity
+                       content coding is applied (eg. `Content-Encoding: identity`)
+   - id-sha-256 The sha-256 digest of the representation-data of the resource when only the Identity
+                      content coding is applied (eg. `Content-Encoding: identity`)
 
    If other digest-algorithm values are defined, the associated encoding
    MUST either be represented as a quoted string, or MUST NOT include
    ";" or "," in the character sets used for the encoding.
 
-## Representation digest {#digest}
+## Representation digest {#representation-digest}
 
 A representation  digest is the value of the output of a digest
 algorithm, together with an indication of the algorithm used (and any
@@ -270,7 +303,7 @@ UNIXsum=30637
 
 The following headers are defined
 
-## Want-Digest
+## Want-Digest {#want-digest-header}
 
 The Want-Digest message header field indicates the sender's desire to
 receive a representation digest on messages associated with the Request-
@@ -295,7 +328,7 @@ Examples:
    Want-Digest: sha-256
    Want-Digest: SHA-256;q=0.3, sha;q=1
 
-## Digest
+## Digest {#digest-header}
 
 The Digest header field provides a digest of the representation data
 
@@ -492,7 +525,7 @@ not allow for this option.
 ## Usage in signatures
 
 Digital signatures are widely used together with checksums to provide
-the certain identification of the origin of a message [NIST 800-32].
+the certain identification of the origin of a message [NIST800-32].
 
 It's important to note that, being the Digest header an hash of a resource representation,
 signing only the `Digest` header, without all the representation metatada (eg.
@@ -510,7 +543,7 @@ to tampering.
 
 # IANA Considerations
 
-## The "id-sha-256" Digest Algorithm {#iana-digest}
+## The "id-sha-256" Digest Algorithm {#iana-id-sha-256}
 
 This memo registers the "id-sha-256" digest algorithm in the [HTTP Digest
 Algorithm
@@ -518,17 +551,17 @@ Values](https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml)
 registry:
 
 * Digest Algorithm: id-sha-256
-* Description: As specified in {{digest-algorithm-values}}.
+* Description: As specified in {{algorithms}}.
 
-## The "id-sha-512" Digest Algorithm {#iana-digest}
+## The "id-sha-512" Digest Algorithm {#iana-id-sha-512}
 
-This memo registers the "id-sha-256" digest algorithm in the [HTTP Digest
+This memo registers the "id-sha-512" digest algorithm in the [HTTP Digest
 Algorithm
 Values](https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml)
 registry:
 
 * Digest Algorithm: id-sha-512
-* Description: As specified in {{digest-algorithm-values}}.
+* Description: As specified in {{algorithms}}.
 
 ## Want-Digest Header Field Registration
 
@@ -587,7 +620,7 @@ the MICE Content Encoding.
    The PATCH verb brings some complexities (eg. about representation metadata headers, patch document format, ...),
    eg ```Note that entity-headers contained in the request apply only to the
    contained patch document and MUST NOT be applied to the resource
-   being modified. ``` see [rfc5789#section-2]
+   being modified. ``` see [rfc5789], Section 2.
    Moreover a `200 OK` response to a PATCH request would contain the digest of the result of applying the patch
    and relate to the etag of this new object, but this behavior is probably tighly coupled to the application logic
    and the client has a low probability of guessing the actual outcome of the operation because there may have been other 
