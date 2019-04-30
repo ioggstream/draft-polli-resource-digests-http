@@ -86,8 +86,8 @@ informative:
 This document defines the Digest and Want-Digest header fields for HTTP, thus allowing client
  and server to negotiate an integrity checksum of the exchanged resource representation.
 
-This document obsoletes RFC 3230. It replaces the term "instance" with "representation",
-which makes it consistent  with the HTTP Semantic and Context defined in RFC 7231.   
+This document obsoletes [RFC3230]. It replaces the term "instance" with "representation",
+which makes it consistent  with the HTTP Semantic and Context defined in [RFC7231].   
 
 
 --- note_Note_to_Readers
@@ -124,7 +124,7 @@ and the headers Digest and Want-Digest.
 
 ## This proposal
 
-The concept of `selected representation` defined in RFC 7231 made RFC 3230 definitions
+The concept of `selected representation` defined in [RFC7231] made [RFC3230] definitions
 inconsistent with the current standard. A refresh was then required.
 
 This document updates the Digest and Want-Digest header field definitions to align with RFC 7231 concepts.
@@ -190,10 +190,10 @@ interpreted as described in [RFC7231].
 # Resource representation and representation-data
 
 This document uses the definitions "representation", "selected representation", 
-"representation data", "representation metadata" and "payload body" defined in RFC 7231.
+"representation data", "representation metadata" and "payload body" defined in [RFC7231].
 
 The value of the digest is calculated against the selected representation of a 
-resource, that is  defined in RFC 7231 as:
+resource, that is  defined in [RFC7231] as:
 
 ~~~
   representation-data := Content-Encoding( Content-Type( bits ) )
@@ -216,7 +216,7 @@ Note that [Content-Encoding](https://tools.ietf.org/html/rfc7231#section-3.1.2.2
       digest-algorithm = token
 ~~~
 
-   The BNF for "parameter" is as is used in RFC 7230.  All digest-
+   The BNF for "parameter" is as is used in [RFC7230].  All digest-
    algorithm values are case-insensitive.
 
 
@@ -368,7 +368,7 @@ knowing that the recipient will ignore it.
 
 # Deprecate Negotiation of Content-MD5
 This RFC deprecates the negotiation of Content-MD5 as 
-this header has been obsoleted by RFC7231
+this header has been obsoleted by [RFC7231]
 
 This RFC DISCOURAGES the use of MD5 algorithm for security reasons.
 
@@ -523,7 +523,7 @@ the certain identification of the origin of a message [NIST800-32].
 
 It's important to note that, being the Digest header an hash of a resource representation,
 signing only the `Digest` header, without all the representation metatada (eg.
-the values of Content-Type and Content-Encoding) may expose the communication
+the values of `Content-Type` and `Content-Encoding`) may expose the communication
 to tampering.
 
 
@@ -591,7 +591,7 @@ Specification document(s):  {{digest-header}} of this document
 
 # Acknowledgements
 
-The vast majority of this document is inherited from RFC 3230, so thanks
+The vast majority of this document is inherited from [RFC3230], so thanks
 to J. Mogul and A. Van Hoff for their great work.
 The original idea of refreshing this document arose from an interesting
 discussion with M. Nottingham, J. Yasskin and M. Thomson when reviewing
