@@ -304,7 +304,6 @@ ul.toc li {
 <link href="#rfc.section.6.2" rel="Chapter" title="6.2 Want-Digest solicited digest responses">
 <link href="#rfc.section.6.2.1" rel="Chapter" title="6.2.1 Client request data is fully contained in the payload">
 <link href="#rfc.section.6.2.2" rel="Chapter" title="6.2.2 A client requests an unsupported Digest, the server MAY reply with an unsupported digest">
-<link href="#rfc.section.6.2.3" rel="Chapter" title="6.2.3 Eg.  A client requests an unsupported Digest, the server MAY reply with a 400">
 <link href="#rfc.section.7" rel="Chapter" title="7 Security Considerations">
 <link href="#rfc.section.7.1" rel="Chapter" title="7.1 Usage in signatures">
 <link href="#rfc.section.7.2" rel="Chapter" title="7.2 Message Truncation">
@@ -322,12 +321,12 @@ ul.toc li {
 <link href="#rfc.authors" rel="Chapter">
 
 
-  <meta name="generator" content="xml2rfc version 2.22.2 - https://tools.ietf.org/tools/xml2rfc" />
+  <meta name="generator" content="xml2rfc version 2.22.3 - https://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Polli, R. and L. Pardue" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-polli-resource-digests-http-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2019-04-30" />
+  <meta name="dct.issued" scheme="ISO8601" content="2019-04-29" />
   <meta name="dct.abstract" content="This document defines the Digest and Want-Digest header fields for HTTP, thus allowing client and server to negotiate an integrity checksum of the exchanged resource representation.This document obsoletes RFC 3230. It replaces the term &#8220;instance&#8221; with &#8220;representation&#8221;, which makes it consistent  with the HTTP Semantic and Context defined in RFC 7231." />
   <meta name="description" content="This document defines the Digest and Want-Digest header fields for HTTP, thus allowing client and server to negotiate an integrity checksum of the exchanged resource representation.This document obsoletes RFC 3230. It replaces the term &#8220;instance&#8221; with &#8220;representation&#8221;, which makes it consistent  with the HTTP Semantic and Context defined in RFC 7231." />
 
@@ -351,8 +350,8 @@ ul.toc li {
 <td class="right">L. Pardue</td>
 </tr>
 <tr>
-<td class="left">Expires: November 1, 2019</td>
-<td class="right">April 30, 2019</td>
+<td class="left">Expires: October 31, 2019</td>
+<td class="right">April 29, 2019</td>
 </tr>
 
     	
@@ -373,7 +372,7 @@ ul.toc li {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on November 1, 2019.</p>
+<p>This Internet-Draft will expire on October 31, 2019.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2019 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -426,8 +425,6 @@ ul.toc li {
 <ul><li>6.2.1.   <a href="#rfc.section.6.2.1">Client request data is fully contained in the payload</a>
 </li>
 <li>6.2.2.   <a href="#rfc.section.6.2.2">A client requests an unsupported Digest, the server MAY reply with an unsupported digest</a>
-</li>
-<li>6.2.3.   <a href="#rfc.section.6.2.3">Eg.  A client requests an unsupported Digest, the server MAY reply with a 400</a>
 </li>
 </ul></ul><li>7.   <a href="#rfc.section.7">Security Considerations</a>
 </li>
@@ -630,7 +627,7 @@ Response:
 
   HTTP/1.1 200 Ok
   Content-Type: application/json
-  Content-Encoding: identity 
+  Content-Encoding: identity
   Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
   {"hello": "world"}
@@ -647,7 +644,7 @@ Response:
 
   HTTP/1.1 200 Ok
   Content-Type: application/json
-  Content-Encoding: identity 
+  Content-Encoding: identity
   Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
 </pre>
@@ -664,7 +661,7 @@ Response:
 
   HTTP/1.1 200 Ok
   Content-Type: application/json
-  Content-Encoding: identity 
+  Content-Encoding: identity
   Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
 </pre>
@@ -709,7 +706,7 @@ Response:
 
   HTTP/1.1 200 Ok
   Content-Type: application/json
-  Content-Encoding: identity 
+  Content-Encoding: identity
   Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
   {"hello": "world"}
@@ -718,40 +715,23 @@ Response:
 <a href="#rfc.section.6.2.2">6.2.2.</a> <a href="#a-client-requests-an-unsupported-digest-the-server-may-reply-with-an-unsupported-digest" id="a-client-requests-an-unsupported-digest-the-server-may-reply-with-an-unsupported-digest">A client requests an unsupported Digest, the server MAY reply with an unsupported digest</a>
 </h3>
 <p id="rfc.section.6.2.2.p.1">The client requests a sha digest only. The server is currently free to reply with a Digest containing an unsupported algorithm</p>
-<pre>
-Request:
-
-  GET /items/123
-  Want-Digest: sha;q=1
-
-Response:
-
-  HTTP/1.1 200 Ok
-  Content-Type: application/json
-  Content-Encoding: identity 
-  Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
-
-  {"hello": "world"}
-</pre>
-<h3 id="rfc.section.6.2.3">
-<a href="#rfc.section.6.2.3">6.2.3.</a> <a href="#eg-a-client-requests-an-unsupported-digest-the-server-may-reply-with-a-400" id="eg-a-client-requests-an-unsupported-digest-the-server-may-reply-with-a-400">Eg.  A client requests an unsupported Digest, the server MAY reply with a 400</a>
-</h3>
-<p id="rfc.section.6.2.3.p.1">The client requests a sha Digest, the server advises for sha-256 and sha-512</p>
-<pre>
-Request:
-
-  GET /items/123
-  Want-Digest: sha;q=1
-
-Response:
-
-  HTTP/1.1 400 Bad Request
-  Want-Digest: sha-256, sha-512
-</pre>
-<p id="rfc.section.6.2.3.p.2">&#8230;</p>
+<p id="rfc.section.6.2.2.p.2">Request:</p>
+<p id="rfc.section.6.2.2.p.3">GET /items/123 Want-Digest: sha;q=1</p>
+<p id="rfc.section.6.2.2.p.4">Response:</p>
+<p id="rfc.section.6.2.2.p.5">HTTP/1.1 200 Ok Content-Type: application/json Content-Encoding: identity Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=</p>
+<p id="rfc.section.6.2.2.p.6">{&#8220;hello&#8221;: &#8220;world&#8221;}</p>
+<p id="rfc.section.6.2.2.p.7">Eg.  A client requests an unsupported Digest, the server MAY reply with a 400</p>
+<p id="rfc.section.6.2.2.p.8">The client requests a sha Digest, the server advises for sha-256 and sha-512</p>
+<p id="rfc.section.6.2.2.p.9">Request:</p>
+<p id="rfc.section.6.2.2.p.10">GET /items/123 Want-Digest: sha;q=1</p>
+<p id="rfc.section.6.2.2.p.11">Response:</p>
+<p id="rfc.section.6.2.2.p.12">HTTP/1.1 400 Bad Request Want-Digest: sha-256, sha-512</p>
+<p id="rfc.section.6.2.2.p.13">&#8230;</p>
 <h1 id="rfc.section.7">
 <a href="#rfc.section.7">7.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
 </h1>
+<p id="rfc.section.7.p.1">The integrity of an entire message body depends on the means by which the integrity proof for the first record is protected.  If this value comes from the same place as the message, then this provides only limited protection against transport-level errors (something that TLS provides adequate protection against).</p>
+<p id="rfc.section.7.p.2">Separate protection for header fields might be provided by other means if the first record retrieved is the first record in the message, but range requests do not allow for this option.</p>
 <h2 id="rfc.section.7.1">
 <a href="#rfc.section.7.1">7.1.</a> <a href="#usage-in-signatures" id="usage-in-signatures">Usage in signatures</a>
 </h2>
@@ -891,19 +871,14 @@ Response:
 <a>Rescorla, E.</a>, "<a href="https://tools.ietf.org/html/rfc2818">HTTP Over TLS</a>", RFC 2818, DOI 10.17487/RFC2818, May 2000.</td>
 </tr>
 <tr>
-<td class="reference"><b id="RFC5788">[RFC5788]</b></td>
+<td class="reference"><b id="RFC5789">[RFC5789]</b></td>
 <td class="top">
-<a>Melnikov, A.</a> and <a>D. Cridland</a>, "<a href="https://tools.ietf.org/html/rfc5788">IMAP4 Keyword Registry</a>", RFC 5788, DOI 10.17487/RFC5788, March 2010.</td>
+<a>Dusseault, L.</a> and <a>J. Snell</a>, "<a href="https://tools.ietf.org/html/rfc5789">PATCH Method for HTTP</a>", RFC 5789, DOI 10.17487/RFC5789, March 2010.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC6962">[RFC6962]</b></td>
 <td class="top">
 <a>Laurie, B.</a>, <a>Langley, A.</a> and <a>E. Kasper</a>, "<a href="https://tools.ietf.org/html/rfc6962">Certificate Transparency</a>", RFC 6962, DOI 10.17487/RFC6962, June 2013.</td>
-</tr>
-<tr>
-<td class="reference"><b id="RFC7396">[RFC7396]</b></td>
-<td class="top">
-<a>Hoffman, P.</a> and <a>J. Snell</a>, "<a href="https://tools.ietf.org/html/rfc7396">JSON Merge Patch</a>", RFC 7396, DOI 10.17487/RFC7396, October 2014.</td>
 </tr>
 <tr>
 <td class="reference"><b id="SRI">[SRI]</b></td>
@@ -923,13 +898,7 @@ Response:
 <ol>
 <li>Why remove all references to content-md5?  <br><br> Those were unnecessary to understanding and using this spec.</li>
 <li>Why remove references to instance manipulation?  <br><br> Unnecessary again for correctly using and applying the spec. An example with Range Request is more than enough.</li>
-<li>How to use <samp>Digest</samp> with <samp>PATCH</samp> method?  <br><br> The PATCH verb brings some complexities (eg. about representation metadata headers, patch document format, &#8230;),  <ul>
-<li>PATCH entity-headers apply to the patch document and MUST NOT be applied to the target resource, see [rfc5789], Section 2.</li>
-<li>servers shouldn&#8217;t assume PATCH semantics for generic media types like &#8220;application/json&#8221; but should instead use a proper content-type, eg <a href="#RFC7396" class="xref">[RFC7396]</a>
-</li>
-<li>a <samp>200 OK</samp> response to a PATCH request would contain the digest of the patched item, and the etag of the new object.  This behavior - tighly coupled to the application logic - gives the client low probability of guessing the actual outcome of this operation (eg. concurrent changes, &#8230;)</li>
-</ul>
-</li>
+<li>How to use <samp>Digest</samp> with <samp>PATCH</samp> method?  <br><br> The PATCH verb brings some complexities (eg. about representation metadata headers, patch document format, &#8230;), eg <samp>Note that entity-headers contained in the request apply only to the contained patch document and MUST NOT be applied to the resource being modified.</samp> see <a href="#RFC5789" class="xref">[RFC5789]</a>, Section 2.  Moreover a <samp>200 OK</samp> response to a PATCH request would contain the digest of the result of applying the patch and relate to the etag of this new object, but this behavior is probably tighly coupled to the application logic and the client has a low probability of guessing the actual outcome of the operation because there may have been other changes to the document (by the server, or other clients), making all this difficult to implement.</li>
 </ol>
 <h1 id="rfc.authors"><a href="#rfc.authors">Authors' Addresses</a></h1>
 <div class="avoidbreak">
