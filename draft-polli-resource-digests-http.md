@@ -26,6 +26,7 @@ author:
 normative:
   RFC5843:
   RFC2119:
+  RFC8174:
   RFC3230:
   RFC7230:
   RFC7231:
@@ -177,10 +178,10 @@ The goals do not include:
 
 
 ## Notational Conventions
-
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
-"SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
-interpreted as described in [RFC2119].
+"SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this
+document are to be interpreted as described in BCP 14 [RFC2119] [RFC8174]
+when, and only when, they appear in all capitals, as shown here.
 
 The definitions "representation", "selected representation", "representation data", 
 "representation metadata" and "payload body" in this document are to be
