@@ -24,15 +24,15 @@ author:
     email: lucaspardue.24.7@gmail.com
     
 normative:
-  RFC5843:
-  RFC2119:
-  RFC8174:
+  RFC1321:
   RFC3230:
+  RFC2119:
+  RFC5843:
+  RFC4648:
   RFC7230:
   RFC7231:
   RFC7233:
-  RFC4648:
-  RFC1321: 
+  RFC8174: 
   FIPS180-1:
     title: NIST FIPS 180-1, Secure Hash Standard
     author:
@@ -67,7 +67,13 @@ normative:
       ins: National Institute of Standards and Technology, U.S. Department of Commerce
     date: 2001-02
     target: https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-32.pdf
- 
+  CMU-836068:
+    title: MD5 Vulnerable to collision attacks
+    author:
+      name: CMU
+      ins: Carnagie Mellon University, Software Engineering Institute
+    date: 2008-12-31
+    target: https://www.kb.cert.org/vuls/id/836068/
  
 informative:
   RFC2818:
@@ -120,7 +126,7 @@ The Content-MD5 header field was originally introduced to provide integrity, but
   > The Content-MD5 header field has been removed because it was
   >  inconsistently implemented with respect to partial responses.
 
-RFC 3230 provided a more flexible solution introducing the concept of "instance",
+[RFC3230] provided a more flexible solution introducing the concept of "instance",
 and the headers Digest and Want-Digest.
 
 ## This proposal
@@ -128,7 +134,7 @@ and the headers Digest and Want-Digest.
 The concept of `selected representation` defined in [RFC7231] made [RFC3230] definitions
 inconsistent with the current standard. A refresh was then required.
 
-This document updates the Digest and Want-Digest header field definitions to align with RFC 7231 concepts.
+This document updates the `Digest` and `Want-Digest` header field definitions to align with [RFC7231] concepts.
 
 This approach can be easily adapted to use-cases where the transferred data 
 does require some sort of manipulation to be considered a representation 
@@ -138,12 +144,12 @@ Changes are semantically compatible with existing implementations
 and better cover both the request and response cases.
 
 Being calculated on the selected representation, the
-Digest is tied to the Content-Coding. 
+Digest is tied to the Content-Encoding. 
 
 A given resource has thus multiple possible digests values.
 To allow both parties to exchange a Digest of a representation 
-with only the Identity [content coding](https://tools.ietf.org/html/rfc7231#section-3.1.2.1)
-applied, two more algorithms are added (id-sha-256 and id-sha-512).
+with [no content codings](https://tools.ietf.org/html/rfc7231#section-3.1.2.1)
+two more algorithms are added (id-sha-256 and id-sha-512).
 
 ## Goals
 
@@ -159,7 +165,7 @@ The goals of this proposal are:
 The goals do not include:
 
    -  header integrity
-      The digest mechanisms described here cover only representation data,
+      The digest mechanisms described here cover only representation and selected representation data,
       and do not protect the integrity of associated
       representation metadata headers or other message headers.
 
@@ -185,13 +191,10 @@ when, and only when, they appear in all capitals, as shown here.
 
 The definitions "representation", "selected representation", "representation data", 
 "representation metadata" and "payload body" in this document are to be
-interpreted as described in [RFC7231].
+interpreted as described in [RFC7230] and [RFC7231].
 
 
 # Resource representation and representation-data
-
-This document uses the definitions "representation", "selected representation", 
-"representation data", "representation metadata" and "payload body" defined in [RFC7231].
 
 The value of the digest is calculated against the selected representation of a 
 resource, that is  defined in [RFC7231] as:
@@ -200,7 +203,7 @@ resource, that is  defined in [RFC7231] as:
   representation-data := Content-Encoding( Content-Type( bits ) )
 ~~~
 
-and is thus independent of Transfer-Coding and other transformation applied from Intermediaries
+and is thus independent from Transfer-Encoding and other transformation applied from Intermediaries
 or tied to Range Requests.
 
 Note that [Content-Encoding](https://tools.ietf.org/html/rfc7231#section-3.1.2.2) can be an ordered list.
@@ -225,7 +228,7 @@ Note that [Content-Encoding](https://tools.ietf.org/html/rfc7231#section-3.1.2.2
    digest-algorithm values.  The registry contains the
    following tokens.
    
-   **NB: This RFC updates RFC 5843 which is still delegated for all algorithms updates** 
+   **NB: This RFC updates [RFC5843] which is still delegated for all algorithms updates** 
 
   - SHA-256: The SHA-256 algorithm [FIPS180-3].  The output of
       this algorithm is encoded using the base64 encoding [RFC4648].
@@ -262,9 +265,9 @@ Note that [Content-Encoding](https://tools.ietf.org/html/rfc7231#section-3.1.2.2
 To allow sender and recipient to provide a checksum which is independent from the Content-Coding,
 the following additional algorithms are defined:
 
-   - id-sha-512 The sha-512 digest of the representation-data of the resource when only the Identity
-                       content coding is applied (eg. `Content-Encoding: identity`)
-   - id-sha-256 The sha-256 digest of the representation-data of the resource when only the Identity
+   - id-sha-512 The sha-512 digest of the representation-data of the resource when no
+                      content coding is applied (eg. `Content-Encoding: identity`)
+   - id-sha-256 The sha-256 digest of the representation-data of the resource when no
                       content coding is applied (eg. `Content-Encoding: identity`)
 
    If other digest-algorithm values are defined, the associated encoding
@@ -371,7 +374,8 @@ knowing that the recipient will ignore it.
 This RFC deprecates the negotiation of Content-MD5 as 
 this header has been obsoleted by [RFC7231]
 
-This RFC DISCOURAGES the use of MD5 algorithm for security reasons.
+The MD5 algorithm is NOT RECOMMENDED as it's now vulnerable
+to collision attacks [CMU-836068]
 
 # Examples
 
