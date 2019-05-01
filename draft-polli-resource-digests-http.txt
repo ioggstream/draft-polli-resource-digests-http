@@ -5,7 +5,7 @@
 Network Working Group                                           R. Polli
 Internet-Draft                                             Team Digitale
 Intended status: Standards Track                               L. Pardue
-Expires: October 31, 2019                                 April 29, 2019
+Expires: November 2, 2019                                   May 01, 2019
 
 
                        Resource Digests for HTTP
@@ -17,9 +17,9 @@ Abstract
    HTTP, thus allowing client and server to negotiate an integrity
    checksum of the exchanged resource representation.
 
-   This document obsoletes RFC 3230.  It replaces the term "instance"
+   This document obsoletes [RFC3230].  It replaces the term "instance"
    with "representation", which makes it consistent with the HTTP
-   Semantic and Context defined in RFC 7231.
+   Semantic and Context defined in [RFC7231].
 
 Note to Readers
 
@@ -47,15 +47,15 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on October 31, 2019.
+   This Internet-Draft will expire on November 2, 2019.
 
 
 
 
 
-Polli & Pardue          Expires October 31, 2019                [Page 1]
+Polli & Pardue          Expires November 2, 2019                [Page 1]
 
-Internet-Draft                   RDHTTP                       April 2019
+Internet-Draft                   RDHTTP                         May 2019
 
 
 Copyright Notice
@@ -100,20 +100,22 @@ Table of Contents
        6.2.1.  Client request data is fully contained in the payload  10
        6.2.2.  A client requests an unsupported Digest, the server
                MAY reply with an unsupported digest  . . . . . . . .  11
+       6.2.3.  Eg.  A client requests an unsupported Digest, the
+               server MAY reply with a 400 . . . . . . . . . . . . .  11
    7.  Security Considerations . . . . . . . . . . . . . . . . . . .  11
-     7.1.  Usage in signatures . . . . . . . . . . . . . . . . . . .  12
+     7.1.  Usage in signatures . . . . . . . . . . . . . . . . . . .  11
      7.2.  Message Truncation  . . . . . . . . . . . . . . . . . . .  12
      7.3.  Algorithm Agility . . . . . . . . . . . . . . . . . . . .  12
+
+
+
+Polli & Pardue          Expires November 2, 2019                [Page 2]
+
+Internet-Draft                   RDHTTP                         May 2019
+
+
    8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  12
      8.1.  The "id-sha-256" Digest Algorithm . . . . . . . . . . . .  12
-
-
-
-Polli & Pardue          Expires October 31, 2019                [Page 2]
-
-Internet-Draft                   RDHTTP                       April 2019
-
-
      8.2.  The "id-sha-512" Digest Algorithm . . . . . . . . . . . .  12
      8.3.  Want-Digest Header Field Registration . . . . . . . . . .  12
      8.4.  Digest Header Field Registration  . . . . . . . . . . . .  13
@@ -143,40 +145,41 @@ Internet-Draft                   RDHTTP                       April 2019
       The Content-MD5 header field has been removed because it was
       inconsistently implemented with respect to partial responses.
 
-   RFC 3230 provided a more flexible solution introducing the concept of
-   "instance", and the headers Digest and Want-Digest.
+   [RFC3230] provided a more flexible solution introducing the concept
+   of "instance", and the headers Digest and Want-Digest.
 
 1.2.  This proposal
 
-   The concept of "selected representation" defined in RFC 7231 made RFC
-   3230 definitions inconsistent with the current standard.  A refresh
-   was then required.
+   The concept of "selected representation" defined in [RFC7231] made
+   [RFC3230] definitions inconsistent with the current standard.  A
+   refresh was then required.
 
-   This document updates the Digest and Want-Digest header field
-   definitions to align with RFC 7231 concepts.
+   This document updates the "Digest" and "Want-Digest" header field
+   definitions to align with [RFC7231] concepts.
 
    This approach can be easily adapted to use-cases where the
    transferred data does require some sort of manipulation to be
    considered a representation or conveys a partial representation of a
    resource (eg.  Range Requests).
 
+
+
+
+Polli & Pardue          Expires November 2, 2019                [Page 3]
+
+Internet-Draft                   RDHTTP                         May 2019
+
+
    Changes are semantically compatible with existing implementations and
    better cover both the request and response cases.
 
-
-
-Polli & Pardue          Expires October 31, 2019                [Page 3]
-
-Internet-Draft                   RDHTTP                       April 2019
-
-
    Being calculated on the selected representation, the Digest is tied
-   to the Content-Coding.
+   to the Content-Encoding.
 
    A given resource has thus multiple possible digests values.  To allow
-   both parties to exchange a Digest of a representation with only the
-   Identity content coding [3] applied, two more algorithms are added
-   (id-sha-256 and id-sha-512).
+   both parties to exchange a Digest of a representation with no content
+   codings [3] two more algorithms are added (id-sha-256 and id-sha-
+   512).
 
 1.3.  Goals
 
@@ -192,9 +195,9 @@ Internet-Draft                   RDHTTP                       April 2019
    The goals do not include:
 
    o  header integrity The digest mechanisms described here cover only
-      representation data, and do not protect the integrity of
-      associated representation metadata headers or other message
-      headers.
+      representation and selected representation data, and do not
+      protect the integrity of associated representation metadata
+      headers or other message headers.
 
    o  authentication The digest mechanisms described here are not meant
       to support authentication of the source of a digest or of a
@@ -209,36 +212,34 @@ Internet-Draft                   RDHTTP                       April 2019
 1.4.  Notational Conventions
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
-   document are to be interpreted as described in [RFC2119].
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in BCP
+   14 RFC2119 [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
+
+
+
+
+
+Polli & Pardue          Expires November 2, 2019                [Page 4]
+
+Internet-Draft                   RDHTTP                         May 2019
+
 
    The definitions "representation", "selected representation",
    "representation data", "representation metadata" and "payload body"
-   in this document are to be interpreted as described in [RFC7231].
-
-
-
-
-
-
-Polli & Pardue          Expires October 31, 2019                [Page 4]
-
-Internet-Draft                   RDHTTP                       April 2019
-
+   in this document are to be interpreted as described in [RFC7230] and
+   [RFC7231].
 
 2.  Resource representation and representation-data
 
-   This document uses the definitions "representation", "selected
-   representation", "representation data", "representation metadata" and
-   "payload body" defined in RFC 7231.
-
    The value of the digest is calculated against the selected
-   representation of a resource, that is defined in RFC 7231 as:
+   representation of a resource, that is defined in [RFC7231] as:
 
      representation-data := Content-Encoding( Content-Type( bits ) )
 
-   and is thus independent of Transfer-Coding and other transformation
-   applied from Intermediaries or tied to Range Requests.
+   and is thus independent from Transfer-Encoding and other
+   transformation applied from Intermediaries or tied to Range Requests.
 
    Note that Content-Encoding [4] can be an ordered list.
 
@@ -250,14 +251,14 @@ Internet-Draft                   RDHTTP                       April 2019
 
          digest-algorithm = token
 
-   The BNF for "parameter" is as is used in RFC 7230.  All digest-
+   The BNF for "parameter" is as is used in [RFC7230].  All digest-
    algorithm values are case-insensitive.
 
    The Internet Assigned Numbers Authority (IANA) acts as a registry for
    digest-algorithm values.  The registry contains the following tokens.
 
-   *NB: This RFC updates RFC 5843 which is still delegated for all
-   algorithms updates*
+   *NB: This RFC updates which is still delegated for all algorithms
+   updates*[RFC5843]
 
    o  SHA-256: The SHA-256 algorithm [FIPS180-3].  The output of this
       algorithm is encoded using the base64 encoding [RFC4648].
@@ -272,15 +273,17 @@ Internet-Draft                   RDHTTP                       April 2019
    o  MD5 The MD5 algorithm, as specified in [RFC1321].  The output of
       this algorithm is encoded using the base64 encoding [RFC4648].
 
+
+
+
+
+Polli & Pardue          Expires November 2, 2019                [Page 5]
+
+Internet-Draft                   RDHTTP                         May 2019
+
+
    o  SHA The SHA-1 algorithm [FIPS180-1].  The output of this algorithm
       is encoded using the base64 encoding [RFC4648].
-
-
-
-Polli & Pardue          Expires October 31, 2019                [Page 5]
-
-Internet-Draft                   RDHTTP                       April 2019
-
 
    o  UNIXsum The algorithm computed by the UNIX "sum" command, as
       defined by the Single UNIX Specification, Version 2 [UNIX].  The
@@ -299,12 +302,12 @@ Internet-Draft                   RDHTTP                       April 2019
    algorithms are defined:
 
    o  id-sha-512 The sha-512 digest of the representation-data of the
-      resource when only the Identity content coding is applied (eg.
-      "Content-Encoding: identity")
+      resource when no content coding is applied (eg.  "Content-
+      Encoding: identity")
 
    o  id-sha-256 The sha-256 digest of the representation-data of the
-      resource when only the Identity content coding is applied (eg.
-      "Content-Encoding: identity")
+      resource when no content coding is applied (eg.  "Content-
+      Encoding: identity")
 
    If other digest-algorithm values are defined, the associated encoding
    MUST either be represented as a quoted string, or MUST NOT include
@@ -330,12 +333,9 @@ Internet-Draft                   RDHTTP                       April 2019
 
 
 
-
-
-
-Polli & Pardue          Expires October 31, 2019                [Page 6]
+Polli & Pardue          Expires November 2, 2019                [Page 6]
 
-Internet-Draft                   RDHTTP                       April 2019
+Internet-Draft                   RDHTTP                         May 2019
 
 
 3.1.1.  digest-algorithm encoding examples
@@ -389,9 +389,9 @@ Internet-Draft                   RDHTTP                       April 2019
 
 
 
-Polli & Pardue          Expires October 31, 2019                [Page 7]
+Polli & Pardue          Expires November 2, 2019                [Page 7]
 
-Internet-Draft                   RDHTTP                       April 2019
+Internet-Draft                   RDHTTP                         May 2019
 
 
    o  partially-contained in the message body,
@@ -424,9 +424,10 @@ Internet-Draft                   RDHTTP                       April 2019
 5.  Deprecate Negotiation of Content-MD5
 
    This RFC deprecates the negotiation of Content-MD5 as this header has
-   been obsoleted by RFC7231
+   been obsoleted by [RFC7231]
 
-   This RFC DISCOURAGES the use of MD5 algorithm for security reasons.
+   The MD5 algorithm is NOT RECOMMENDED as it's now vulnerable to
+   collision attacks [CMU-836068]
 
 6.  Examples
 
@@ -444,10 +445,9 @@ Internet-Draft                   RDHTTP                       April 2019
 
 
 
-
-Polli & Pardue          Expires October 31, 2019                [Page 8]
+Polli & Pardue          Expires November 2, 2019                [Page 8]
 
-Internet-Draft                   RDHTTP                       April 2019
+Internet-Draft                   RDHTTP                         May 2019
 
 
    Request:
@@ -501,9 +501,9 @@ Internet-Draft                   RDHTTP                       April 2019
 
 
 
-Polli & Pardue          Expires October 31, 2019                [Page 9]
+Polli & Pardue          Expires November 2, 2019                [Page 9]
 
-Internet-Draft                   RDHTTP                       April 2019
+Internet-Draft                   RDHTTP                         May 2019
 
 
 6.1.4.  Digest in both Request and Response.  Returned value depends on
@@ -557,9 +557,9 @@ Internet-Draft                   RDHTTP                       April 2019
 
 
 
-Polli & Pardue          Expires October 31, 2019               [Page 10]
+Polli & Pardue          Expires November 2, 2019               [Page 10]
 
-Internet-Draft                   RDHTTP                       April 2019
+Internet-Draft                   RDHTTP                         May 2019
 
 
 6.2.2.  A client requests an unsupported Digest, the server MAY reply
@@ -570,53 +570,37 @@ Internet-Draft                   RDHTTP                       April 2019
 
    Request:
 
-   GET /items/123 Want-Digest: sha;q=1
+     GET /items/123
+     Want-Digest: sha;q=1
 
    Response:
 
-   HTTP/1.1 200 Ok Content-Type: application/json Content-Encoding:
-   identity Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
+     HTTP/1.1 200 Ok
+     Content-Type: application/json
+     Content-Encoding: identity
+     Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
-   {"hello": "world"}
+     {"hello": "world"}
 
-   Eg.  A client requests an unsupported Digest, the server MAY reply
-   with a 400
+6.2.3.  Eg.  A client requests an unsupported Digest, the server MAY
+        reply with a 400
 
    The client requests a sha Digest, the server advises for sha-256 and
    sha-512
 
    Request:
 
-   GET /items/123 Want-Digest: sha;q=1
+     GET /items/123
+     Want-Digest: sha;q=1
 
    Response:
 
-   HTTP/1.1 400 Bad Request Want-Digest: sha-256, sha-512
+     HTTP/1.1 400 Bad Request
+     Want-Digest: sha-256, sha-512
 
    ...
 
 7.  Security Considerations
-
-   The integrity of an entire message body depends on the means by which
-   the integrity proof for the first record is protected.  If this value
-   comes from the same place as the message, then this provides only
-   limited protection against transport-level errors (something that TLS
-   provides adequate protection against).
-
-   Separate protection for header fields might be provided by other
-   means if the first record retrieved is the first record in the
-   message, but range requests do not allow for this option.
-
-
-
-
-
-
-
-Polli & Pardue          Expires October 31, 2019               [Page 11]
-
-Internet-Draft                   RDHTTP                       April 2019
-
 
 7.1.  Usage in signatures
 
@@ -625,8 +609,17 @@ Internet-Draft                   RDHTTP                       April 2019
 
    It's important to note that, being the Digest header an hash of a
    resource representation, signing only the "Digest" header, without
-   all the representation metatada (eg.  the values of Content-Type and
-   Content-Encoding) may expose the communication to tampering.
+
+
+
+
+Polli & Pardue          Expires November 2, 2019               [Page 11]
+
+Internet-Draft                   RDHTTP                         May 2019
+
+
+   all the representation metatada (eg.  the values of "Content-Type"
+   and "Content-Encoding") may expose the communication to tampering.
 
 7.2.  Message Truncation
 
@@ -667,16 +660,19 @@ Internet-Draft                   RDHTTP                       April 2019
 
    Status: standard
 
-
-
-Polli & Pardue          Expires October 31, 2019               [Page 12]
-
-Internet-Draft                   RDHTTP                       April 2019
-
-
    Author/Change controller: IETF
 
    Specification document(s): Section 4.1 of this document
+
+
+
+
+
+
+Polli & Pardue          Expires November 2, 2019               [Page 12]
+
+Internet-Draft                   RDHTTP                         May 2019
+
 
 8.4.  Digest Header Field Registration
 
@@ -696,6 +692,11 @@ Internet-Draft                   RDHTTP                       April 2019
 9.  References
 
 9.1.  Normative References
+
+   [CMU-836068]
+              Carnagie Mellon University, Software Engineering
+              Institute, ., "MD5 Vulnerable to collision attacks",
+              December 2008, <https://www.kb.cert.org/vuls/id/836068/>.
 
    [FIPS180-1]
               Department of Commerce, National., "NIST FIPS 180-1,
@@ -724,10 +725,9 @@ Internet-Draft                   RDHTTP                       April 2019
 
 
 
-
-Polli & Pardue          Expires October 31, 2019               [Page 13]
+Polli & Pardue          Expires November 2, 2019               [Page 13]
 
-Internet-Draft                   RDHTTP                       April 2019
+Internet-Draft                   RDHTTP                         May 2019
 
 
    [RFC1321]  Rivest, R., "The MD5 Message-Digest Algorithm", RFC 1321,
@@ -771,19 +771,19 @@ Internet-Draft                   RDHTTP                       April 2019
               RFC 7233, DOI 10.17487/RFC7233, June 2014,
               <https://www.rfc-editor.org/info/rfc7233>.
 
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/info/rfc8174>.
+
    [UNIX]     The Open Group, ., "The Single UNIX Specification, Version
               2 - 6 Vol Set for UNIX 98", February 1997.
 
 
 
 
-
-
-
-
-Polli & Pardue          Expires October 31, 2019               [Page 14]
+Polli & Pardue          Expires November 2, 2019               [Page 14]
 
-Internet-Draft                   RDHTTP                       April 2019
+Internet-Draft                   RDHTTP                         May 2019
 
 
 9.2.  Informative References
@@ -792,13 +792,17 @@ Internet-Draft                   RDHTTP                       April 2019
               DOI 10.17487/RFC2818, May 2000,
               <https://www.rfc-editor.org/info/rfc2818>.
 
-   [RFC5789]  Dusseault, L. and J. Snell, "PATCH Method for HTTP",
-              RFC 5789, DOI 10.17487/RFC5789, March 2010,
-              <https://www.rfc-editor.org/info/rfc5789>.
+   [RFC5788]  Melnikov, A. and D. Cridland, "IMAP4 Keyword Registry",
+              RFC 5788, DOI 10.17487/RFC5788, March 2010,
+              <https://www.rfc-editor.org/info/rfc5788>.
 
    [RFC6962]  Laurie, B., Langley, A., and E. Kasper, "Certificate
               Transparency", RFC 6962, DOI 10.17487/RFC6962, June 2013,
               <https://www.rfc-editor.org/info/rfc6962>.
+
+   [RFC7396]  Hoffman, P. and J. Snell, "JSON Merge Patch", RFC 7396,
+              DOI 10.17487/RFC7396, October 2014,
+              <https://www.rfc-editor.org/info/rfc7396>.
 
    [SRI]      Akhawe, D., Braun, F., Marier, F., and J. Weinberger,
               "Subresource Integrity", n.d..
@@ -819,7 +823,7 @@ Internet-Draft                   RDHTTP                       April 2019
 
 Appendix A.  Acknowledgements
 
-   The vast majority of this document is inherited from RFC 3230, so
+   The vast majority of this document is inherited from [RFC3230], so
    thanks to J.  Mogul and A.  Van Hoff for their great work.  The
    original idea of refreshing this document arose from an interesting
    discussion with M.  Nottingham, J.  Yasskin and M.  Thomson when
@@ -831,16 +835,14 @@ Appendix B.  FAQ
 
        Those were unnecessary to understanding and using this spec.
 
-   2.  Why remove references to instance manipulation?
 
 
-
-
-
-Polli & Pardue          Expires October 31, 2019               [Page 15]
+Polli & Pardue          Expires November 2, 2019               [Page 15]
 
-Internet-Draft                   RDHTTP                       April 2019
+Internet-Draft                   RDHTTP                         May 2019
 
+
+   2.  Why remove references to instance manipulation?
 
        Unnecessary again for correctly using and applying the spec.  An
        example with Range Request is more than enough.
@@ -848,17 +850,20 @@ Internet-Draft                   RDHTTP                       April 2019
    3.  How to use "Digest" with "PATCH" method?
 
        The PATCH verb brings some complexities (eg. about representation
-       metadata headers, patch document format, ...), eg "Note that
-       entity-headers contained in the request apply only to the
-       contained patch document and MUST NOT be applied to the resource
-       being modified." see [RFC5789], Section 2.  Moreover a "200 OK"
-       response to a PATCH request would contain the digest of the
-       result of applying the patch and relate to the etag of this new
-       object, but this behavior is probably tighly coupled to the
-       application logic and the client has a low probability of
-       guessing the actual outcome of the operation because there may
-       have been other changes to the document (by the server, or other
-       clients), making all this difficult to implement.
+       metadata headers, patch document format, ...),
+
+       *  PATCH entity-headers apply to the patch document and MUST NOT
+          be applied to the target resource, see [rfc5789], Section 2.
+
+       *  servers shouldn't assume PATCH semantics for generic media
+          types like "application/json" but should instead use a proper
+          content-type, eg [RFC7396]
+
+       *  a "200 OK" response to a PATCH request would contain the
+          digest of the patched item, and the etag of the new object.
+          This behavior - tighly coupled to the application logic -
+          gives the client low probability of guessing the actual
+          outcome of this operation (eg. concurrent changes, ...)
 
 Authors' Addresses
 
@@ -888,9 +893,4 @@ Authors' Addresses
 
 
 
-
-
-
-
-
-Polli & Pardue          Expires October 31, 2019               [Page 16]
+Polli & Pardue          Expires November 2, 2019               [Page 16]
