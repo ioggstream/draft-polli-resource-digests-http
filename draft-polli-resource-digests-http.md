@@ -144,10 +144,10 @@ Changes are semantically compatible with existing implementations
 and better cover both the request and response cases.
 
 Being calculated on the selected representation, the
-Digest is tied to the Content-Encoding. 
+`Digest` value is tied to the `Content-Encoding` and `Content-Type` header fields:
+a given resource has thus multiple possible digests values.
 
-A given resource has thus multiple possible digests values.
-To allow both parties to exchange a Digest of a representation 
+To allow the exchange of a representation digest 
 with [no content codings](https://tools.ietf.org/html/rfc7231#section-3.1.2.1)
 two more algorithms are added (id-sha-256 and id-sha-512).
 
