@@ -143,9 +143,10 @@ or conveys a partial representation of a resource (eg. Range Requests).
 Changes are semantically compatible with existing implementations 
 and better cover both the request and response cases.
 
-Being calculated on the selected representation, the
-`Digest` value is tied to the `Content-Encoding` and `Content-Type` header fields:
-a given resource has thus multiple possible digests values.
+The value of `Digest` is calculated on selected representation, 
+which is tied to the value contained in any `Content-Encoding` or `Content-Type` 
+header fields.
+Therefore, a given resource may have multiple different digest values.
 
 To allow the exchange of a representation digest 
 with [no content codings](https://tools.ietf.org/html/rfc7231#section-3.1.2.1)
