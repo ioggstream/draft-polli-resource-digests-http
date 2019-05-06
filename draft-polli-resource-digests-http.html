@@ -299,12 +299,12 @@ ul.toc li {
 <link href="#rfc.section.6.1" rel="Chapter" title="6.1 Unsolicited Digest response">
 <link href="#rfc.section.6.1.1" rel="Chapter" title="6.1.1 Representation data is fully contained in the payload">
 <link href="#rfc.section.6.1.2" rel="Chapter" title="6.1.2 Representation data is not contained in the payload">
-<link href="#rfc.section.6.1.3" rel="Chapter" title="6.1.3 Representation data is partially contained in the payload (range request?)">
+<link href="#rfc.section.6.1.3" rel="Chapter" title="6.1.3 Representation data is partially contained in the payload i.e. range request">
 <link href="#rfc.section.6.1.4" rel="Chapter" title="6.1.4 Digest in both Request and Response. Returned value depends on representation metadata">
 <link href="#rfc.section.6.2" rel="Chapter" title="6.2 Want-Digest solicited digest responses">
 <link href="#rfc.section.6.2.1" rel="Chapter" title="6.2.1 Client request data is fully contained in the payload">
 <link href="#rfc.section.6.2.2" rel="Chapter" title="6.2.2 A client requests an unsupported Digest, the server MAY reply with an unsupported digest">
-<link href="#rfc.section.6.2.3" rel="Chapter" title="6.2.3 Eg.  A client requests an unsupported Digest, the server MAY reply with a 400">
+<link href="#rfc.section.6.2.3" rel="Chapter" title="6.2.3 A client requests an unsupported Digest, the server MAY reply with a 400">
 <link href="#rfc.section.7" rel="Chapter" title="7 Security Considerations">
 <link href="#rfc.section.7.1" rel="Chapter" title="7.1 Usage in signatures">
 <link href="#rfc.section.7.2" rel="Chapter" title="7.2 Message Truncation">
@@ -327,7 +327,7 @@ ul.toc li {
 
   <meta name="dct.creator" content="Polli, R. and L. Pardue" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-polli-resource-digests-http-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2019-05-01" />
+  <meta name="dct.issued" scheme="ISO8601" content="2019-05-06" />
   <meta name="dct.abstract" content="This document defines the Digest and Want-Digest header fields for HTTP, thus allowing client and server to negotiate an integrity checksum of the exchanged resource representation.This document obsoletes . It replaces the term &#8220;instance&#8221; with &#8220;representation&#8221;, which makes it consistent  with the HTTP Semantic and Context defined in ." />
   <meta name="description" content="This document defines the Digest and Want-Digest header fields for HTTP, thus allowing client and server to negotiate an integrity checksum of the exchanged resource representation.This document obsoletes . It replaces the term &#8220;instance&#8221; with &#8220;representation&#8221;, which makes it consistent  with the HTTP Semantic and Context defined in ." />
 
@@ -351,8 +351,8 @@ ul.toc li {
 <td class="right">L. Pardue</td>
 </tr>
 <tr>
-<td class="left">Expires: November 2, 2019</td>
-<td class="right">May 01, 2019</td>
+<td class="left">Expires: November 7, 2019</td>
+<td class="right">May 06, 2019</td>
 </tr>
 
     	
@@ -368,12 +368,12 @@ ul.toc li {
 <h1><a>Note to Readers</a></h1>
 <p><em>RFC EDITOR: please remove this section before publication</em></p>
 <p>Discussion of this draft takes place on the HTTP working group mailing list (ietf-http-wg@w3.org), which is archived at <a href="https://lists.w3.org/Archives/Public/ietf-http-wg/">https://lists.w3.org/Archives/Public/ietf-http-wg/</a>.</p>
-<p>The source code and issues list for this draft can be found at <a href="https://github.com/martinthomson/http-mice">https://github.com/martinthomson/http-mice</a>.</p>
+<p>The source code and issues list for this draft can be found at <a href="https://github.com/ioggstream/draft-polli-resource-digests-http">https://github.com/ioggstream/draft-polli-resource-digests-http</a>.</p>
 <h1 id="rfc.status"><a href="#rfc.status">Status of This Memo</a></h1>
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on November 2, 2019.</p>
+<p>This Internet-Draft will expire on November 7, 2019.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2019 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -417,7 +417,7 @@ ul.toc li {
 </li>
 <li>6.1.2.   <a href="#rfc.section.6.1.2">Representation data is not contained in the payload</a>
 </li>
-<li>6.1.3.   <a href="#rfc.section.6.1.3">Representation data is partially contained in the payload (range request?)</a>
+<li>6.1.3.   <a href="#rfc.section.6.1.3">Representation data is partially contained in the payload i.e. range request</a>
 </li>
 <li>6.1.4.   <a href="#rfc.section.6.1.4">Digest in both Request and Response. Returned value depends on representation metadata</a>
 </li>
@@ -427,7 +427,7 @@ ul.toc li {
 </li>
 <li>6.2.2.   <a href="#rfc.section.6.2.2">A client requests an unsupported Digest, the server MAY reply with an unsupported digest</a>
 </li>
-<li>6.2.3.   <a href="#rfc.section.6.2.3">Eg.  A client requests an unsupported Digest, the server MAY reply with a 400</a>
+<li>6.2.3.   <a href="#rfc.section.6.2.3">A client requests an unsupported Digest, the server MAY reply with a 400</a>
 </li>
 </ul></ul><li>7.   <a href="#rfc.section.7">Security Considerations</a>
 </li>
@@ -498,16 +498,20 @@ ul.toc li {
 <p id="rfc.section.1.3.p.3">The goals do not include:</p>
 <p></p>
 
-<ul>
-<li>header integrity The digest mechanisms described here cover only representation and selected representation data, and do not protect the integrity of associated representation metadata headers or other message headers.</li>
-<li>authentication The digest mechanisms described here are not meant to support authentication of the source of a digest or of a message or anything else.  These mechanisms, therefore, are not a sufficient defense against many kinds of malicious attacks.</li>
-<li>privacy Digest mechanisms do not provide message privacy.</li>
-<li>authorization The digest mechanisms described here are not meant to support authorization or other kinds of access controls.</li>
-</ul>
+<dl>
+<dt>Header integrity:</dt>
+<dd style="margin-left: 8">The digest mechanisms described here cover only representation and selected representation data, and do not protect the integrity of associated representation metadata headers or other message headers.</dd>
+<dt>Authentication:</dt>
+<dd style="margin-left: 8">The digest mechanisms described here are not meant to support authentication of the source of a digest or of a message or anything else.  These mechanisms, therefore, are not a sufficient defense against many kinds of malicious attacks.</dd>
+<dt>Privacy:</dt>
+<dd style="margin-left: 8">Digest mechanisms do not provide message privacy.</dd>
+<dt>Authorization:</dt>
+<dd style="margin-left: 8">The digest mechanisms described here are not meant to support authorization or other kinds of access controls.</dd>
+</dl>
 <h2 id="rfc.section.1.4">
 <a href="#rfc.section.1.4">1.4.</a> <a href="#notational-conventions" id="notational-conventions">Notational Conventions</a>
 </h2>
-<p id="rfc.section.1.4.p.1">The key words &#8220;MUST&#8221;, &#8220;MUST NOT&#8221;, &#8220;REQUIRED&#8221;, &#8220;SHALL&#8221;, &#8220;SHALL NOT&#8221;, &#8220;SHOULD&#8221;, &#8220;SHOULD NOT&#8221;, &#8220;RECOMMENDED&#8221;, &#8220;NOT RECOMMENDED&#8221;, &#8220;MAY&#8221;, and &#8220;OPTIONAL&#8221; in this document are to be interpreted as described in BCP 14 <a href="#RFC8174" class="xref">RFC2119</a> when, and only when, they appear in all capitals, as shown here.</p>
+<p id="rfc.section.1.4.p.1">The key words &#8220;MUST&#8221;, &#8220;MUST NOT&#8221;, &#8220;REQUIRED&#8221;, &#8220;SHALL&#8221;, &#8220;SHALL NOT&#8221;, &#8220;SHOULD&#8221;, &#8220;SHOULD NOT&#8221;, &#8220;RECOMMENDED&#8221;, &#8220;NOT RECOMMENDED&#8221;, &#8220;MAY&#8221;, and &#8220;OPTIONAL&#8221; in this document are to be interpreted as described in BCP 14 (<a href="#RFC2119" class="xref">[RFC2119]</a> and <a href="#RFC8174" class="xref">[RFC8174]</a>) when, and only when, they appear in all capitals, as shown here.</p>
 <p id="rfc.section.1.4.p.2">The definitions &#8220;representation&#8221;, &#8220;selected representation&#8221;, &#8220;representation data&#8221;, &#8220;representation metadata&#8221; and &#8220;payload body&#8221; in this document are to be interpreted as described in <a href="#RFC7230" class="xref">[RFC7230]</a> and <a href="#RFC7231" class="xref">[RFC7231]</a>.</p>
 <h1 id="rfc.section.2">
 <a href="#rfc.section.2">2.</a> <a href="#resource-representation-and-representation-data" id="resource-representation-and-representation-data">Resource representation and representation-data</a>
@@ -516,7 +520,7 @@ ul.toc li {
 <pre>
   representation-data := Content-Encoding( Content-Type( bits ) )
 </pre>
-<p id="rfc.section.2.p.2">and is thus independent from Transfer-Encoding and other transformation applied from Intermediaries or tied to Range Requests.</p>
+<p id="rfc.section.2.p.2">and is thus independent from Transfer-Encoding and other transformation applied by Intermediaries or tied to Range Requests.</p>
 <p id="rfc.section.2.p.3">Note that <a href="https://tools.ietf.org/html/rfc7231#section-3.1.2.2">Content-Encoding</a> can be an ordered list.</p>
 <h1 id="rfc.section.3">
 <a href="#rfc.section.3">3.</a> <a href="#algorithms" id="algorithms">Digest Algorithm values</a>
@@ -527,24 +531,32 @@ ul.toc li {
 </pre>
 <p id="rfc.section.3.p.2">The BNF for &#8220;parameter&#8221; is as is used in <a href="#RFC7230" class="xref">[RFC7230]</a>.  All digest- algorithm values are case-insensitive.</p>
 <p id="rfc.section.3.p.3">The Internet Assigned Numbers Authority (IANA) acts as a registry for digest-algorithm values.  The registry contains the following tokens.</p>
-<p><strong>NB: This RFC updates  which is still delegated for all algorithms updates</strong><a href="#RFC5843" class="xref">[RFC5843]</a></p>
+<p><strong>NB: This RFC updates</strong> <a href="#RFC5843" class="xref">[RFC5843]</a> <strong>which is still delegated for all algorithms updates</strong></p>
 <p></p>
 
-<ul>
-<li>SHA-256: The SHA-256 algorithm <a href="#FIPS180-3" class="xref">[FIPS180-3]</a>.  The output of this algorithm is encoded using the base64 encoding <a href="#RFC4648" class="xref">[RFC4648]</a>.  <br><br> Reference: <a href="#FIPS180-3" class="xref">[FIPS180-3]</a>, <a href="#RFC4648" class="xref">[RFC4648]</a>, this document.</li>
-<li>SHA-512: The SHA-512 algorithm <a href="#FIPS180-3" class="xref">[FIPS180-3]</a>.  The output of this algorithm is encoded using the base64 encoding <a href="#RFC4648" class="xref">[RFC4648]</a>.  <br><br> Reference: <a href="#FIPS180-3" class="xref">[FIPS180-3]</a>, <a href="#RFC4648" class="xref">[RFC4648]</a>, this document.</li>
-<li>MD5               The MD5 algorithm, as specified in <a href="#RFC1321" class="xref">[RFC1321]</a>.  The output of this algorithm is encoded using the base64 encoding  <a href="#RFC4648" class="xref">[RFC4648]</a>.</li>
-<li>SHA               The SHA-1 algorithm <a href="#FIPS180-1" class="xref">[FIPS180-1]</a>.  The output of this algorithm is encoded using the base64 encoding  <a href="#RFC4648" class="xref">[RFC4648]</a>.</li>
-<li>UNIXsum           The algorithm computed by the UNIX &#8220;sum&#8221; command, as defined by the Single UNIX Specification, Version 2 <a href="#UNIX" class="xref">[UNIX]</a>.  The output of this algorithm is an ASCII decimal-digit string representing the 16-bit checksum, which is the first word of the output of the UNIX &#8220;sum&#8221; command.</li>
-<li>UNIXcksum         The algorithm computed by the UNIX &#8220;cksum&#8221; command, as defined by the Single UNIX Specification, Version 2 <a href="#UNIX" class="xref">[UNIX]</a>.  The output of this algorithm is an ASCII digit string representing the 32-bit CRC, which is the first word of the output of the UNIX &#8220;cksum&#8221; command.</li>
-</ul>
+<dl>
+<dt>SHA-256:</dt>
+<dd style="margin-left: 8">The SHA-256 algorithm <a href="#FIPS180-3" class="xref">[FIPS180-3]</a>.  The output of this algorithm is encoded using the base64 encoding <a href="#RFC4648" class="xref">[RFC4648]</a>.  Reference: <a href="#FIPS180-3" class="xref">[FIPS180-3]</a>, <a href="#RFC4648" class="xref">[RFC4648]</a>, this document.</dd>
+<dt>SHA-512:</dt>
+<dd style="margin-left: 8">The SHA-512 algorithm <a href="#FIPS180-3" class="xref">[FIPS180-3]</a>.  The output of this algorithm is encoded using the base64 encoding <a href="#RFC4648" class="xref">[RFC4648]</a>.  Reference: <a href="#FIPS180-3" class="xref">[FIPS180-3]</a>, <a href="#RFC4648" class="xref">[RFC4648]</a>, this document.</dd>
+<dt>MD5:</dt>
+<dd style="margin-left: 8">The MD5 algorithm, as specified in <a href="#RFC1321" class="xref">[RFC1321]</a>.  The output of this algorithm is encoded using the base64 encoding  <a href="#RFC4648" class="xref">[RFC4648]</a>.</dd>
+<dt>SHA:</dt>
+<dd style="margin-left: 8">The SHA-1 algorithm <a href="#FIPS180-1" class="xref">[FIPS180-1]</a>.  The output of this algorithm is encoded using the base64 encoding  <a href="#RFC4648" class="xref">[RFC4648]</a>.</dd>
+<dt>UNIXsum:</dt>
+<dd style="margin-left: 8">The algorithm computed by the UNIX &#8220;sum&#8221; command, as defined by the Single UNIX Specification, Version 2 <a href="#UNIX" class="xref">[UNIX]</a>.  The output of this algorithm is an ASCII decimal-digit string representing the 16-bit checksum, which is the first word of the output of the UNIX &#8220;sum&#8221; command.</dd>
+<dt>UNIXcksum:</dt>
+<dd style="margin-left: 8">The algorithm computed by the UNIX &#8220;cksum&#8221; command, as defined by the Single UNIX Specification, Version 2 <a href="#UNIX" class="xref">[UNIX]</a>.  The output of this algorithm is an ASCII digit string representing the 32-bit CRC, which is the first word of the output of the UNIX &#8220;cksum&#8221; command.</dd>
+</dl>
 <p id="rfc.section.3.p.6">To allow sender and recipient to provide a checksum which is independent from the Content-Coding, the following additional algorithms are defined:</p>
 <p></p>
 
-<ul>
-<li>id-sha-512 The sha-512 digest of the representation-data of the resource when no content coding is applied (eg. <samp>Content-Encoding: identity</samp>)</li>
-<li>id-sha-256 The sha-256 digest of the representation-data of the resource when no content coding is applied (eg. <samp>Content-Encoding: identity</samp>)</li>
-</ul>
+<dl>
+<dt>id-sha-512:</dt>
+<dd style="margin-left: 8">The sha-512 digest of the representation-data of the resource when no content coding is applied (eg. <samp>Content-Encoding: identity</samp>)</dd>
+<dt>id-sha-256:</dt>
+<dd style="margin-left: 8">The sha-256 digest of the representation-data of the resource when no content coding is applied (eg. <samp>Content-Encoding: identity</samp>)</dd>
+</dl>
 <p id="rfc.section.3.p.8">If other digest-algorithm values are defined, the associated encoding MUST either be represented as a quoted string, or MUST NOT include &#8220;;&#8221; or &#8220;,&#8221; in the character sets used for the encoding.</p>
 <h2 id="rfc.section.3.1">
 <a href="#rfc.section.3.1">3.1.</a> <a href="#representation-digest" id="representation-digest">Representation digest</a>
@@ -629,7 +641,7 @@ Response:
 
   HTTP/1.1 200 Ok
   Content-Type: application/json
-  Content-Encoding: identity 
+  Content-Encoding: identity
   Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
   {"hello": "world"}
@@ -646,25 +658,28 @@ Response:
 
   HTTP/1.1 200 Ok
   Content-Type: application/json
-  Content-Encoding: identity 
+  Content-Encoding: identity
   Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
 </pre>
 <h3 id="rfc.section.6.1.3">
-<a href="#rfc.section.6.1.3">6.1.3.</a> <a href="#representation-data-is-partially-contained-in-the-payload-range-request" id="representation-data-is-partially-contained-in-the-payload-range-request">Representation data is partially contained in the payload (range request?)</a>
+<a href="#rfc.section.6.1.3">6.1.3.</a> <a href="#representation-data-is-partially-contained-in-the-payload-ie-range-request" id="representation-data-is-partially-contained-in-the-payload-ie-range-request">Representation data is partially contained in the payload i.e. range request</a>
 </h3>
 <pre>
 Request:
 
   GET /items/123
-...
+  Range: bytes=1-7
 
 Response:
 
-  HTTP/1.1 200 Ok
+  HTTP/1.1 206 Partial Content
   Content-Type: application/json
-  Content-Encoding: identity 
+  Content-Encoding: identity
+  Content-Range: bytes 1-7/18
   Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
+
+  "hello"
 
 </pre>
 <h3 id="rfc.section.6.1.4">
@@ -674,21 +689,21 @@ Response:
 <pre>
 Request:
 
-PUT /items/123
-Content-Type: application/json
-Content-Encoding: identity
-Accept-Encoding: br
-Digest: sha-256=4REjxQ4yrqUVicfSKYNO/cF9zNj5ANbzgDZt3/h3Qxo=
+  PUT /items/123
+  Content-Type: application/json
+  Content-Encoding: identity
+  Accept-Encoding: br
+  Digest: sha-256=4REjxQ4yrqUVicfSKYNO/cF9zNj5ANbzgDZt3/h3Qxo=
 
-{"hello": "world"}
+  {"hello": "world"}
 
 Response:
 
-Content-Type: application/json
-Content-Encoding: br
-Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
+  Content-Type: application/json
+  Content-Encoding: br
+  Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
-b'\x8b\x08\x80{"hello": "world"}\x03'
+  b'\x8b\x08\x80{"hello": "world"}\x03'
 
 </pre>
 <h2 id="rfc.section.6.2">
@@ -708,7 +723,7 @@ Response:
 
   HTTP/1.1 200 Ok
   Content-Type: application/json
-  Content-Encoding: identity 
+  Content-Encoding: identity
   Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
   {"hello": "world"}
@@ -727,13 +742,13 @@ Response:
 
   HTTP/1.1 200 Ok
   Content-Type: application/json
-  Content-Encoding: identity 
+  Content-Encoding: identity
   Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
   {"hello": "world"}
 </pre>
 <h3 id="rfc.section.6.2.3">
-<a href="#rfc.section.6.2.3">6.2.3.</a> <a href="#eg-a-client-requests-an-unsupported-digest-the-server-may-reply-with-a-400" id="eg-a-client-requests-an-unsupported-digest-the-server-may-reply-with-a-400">Eg.  A client requests an unsupported Digest, the server MAY reply with a 400</a>
+<a href="#rfc.section.6.2.3">6.2.3.</a> <a href="#a-client-requests-an-unsupported-digest-the-server-may-reply-with-a-400" id="a-client-requests-an-unsupported-digest-the-server-may-reply-with-a-400">A client requests an unsupported Digest, the server MAY reply with a 400</a>
 </h3>
 <p id="rfc.section.6.2.3.p.1">The client requests a sha Digest, the server advises for sha-256 and sha-512</p>
 <pre>
@@ -861,6 +876,11 @@ Response:
 <a>Josefsson, S.</a>, "<a href="https://tools.ietf.org/html/rfc4648">The Base16, Base32, and Base64 Data Encodings</a>", RFC 4648, DOI 10.17487/RFC4648, October 2006.</td>
 </tr>
 <tr>
+<td class="reference"><b id="RFC5789">[RFC5789]</b></td>
+<td class="top">
+<a>Dusseault, L.</a> and <a>J. Snell</a>, "<a href="https://tools.ietf.org/html/rfc5789">PATCH Method for HTTP</a>", RFC 5789, DOI 10.17487/RFC5789, March 2010.</td>
+</tr>
+<tr>
 <td class="reference"><b id="RFC5843">[RFC5843]</b></td>
 <td class="top">
 <a>Bryan, A.</a>, "<a href="https://tools.ietf.org/html/rfc5843">Additional Hash Algorithms for HTTP Instance Digests</a>", RFC 5843, DOI 10.17487/RFC5843, April 2010.</td>
@@ -933,7 +953,7 @@ Response:
 <li>Why remove all references to content-md5?  <br><br> Those were unnecessary to understanding and using this spec.</li>
 <li>Why remove references to instance manipulation?  <br><br> Unnecessary again for correctly using and applying the spec. An example with Range Request is more than enough.</li>
 <li>How to use <samp>Digest</samp> with <samp>PATCH</samp> method?  <br><br> The PATCH verb brings some complexities (eg. about representation metadata headers, patch document format, &#8230;),  <ul>
-<li>PATCH entity-headers apply to the patch document and MUST NOT be applied to the target resource, see [rfc5789], Section 2.</li>
+<li>PATCH entity-headers apply to the patch document and MUST NOT be applied to the target resource, see <a href="#RFC5789" class="xref">[RFC5789]</a>, Section 2.</li>
 <li>servers shouldn&#8217;t assume PATCH semantics for generic media types like &#8220;application/json&#8221; but should instead use a proper content-type, eg <a href="#RFC7396" class="xref">[RFC7396]</a>
 </li>
 <li>a <samp>200 OK</samp> response to a PATCH request would contain the digest of the patched item, and the etag of the new object.  This behavior - tighly coupled to the application logic - gives the client low probability of guessing the actual outcome of this operation (eg. concurrent changes, &#8230;)</li>
