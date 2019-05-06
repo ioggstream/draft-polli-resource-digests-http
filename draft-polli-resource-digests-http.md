@@ -27,6 +27,7 @@ normative:
   RFC1321:
   RFC3230:
   RFC2119:
+  RFC5789:
   RFC5843:
   RFC4648:
   RFC7230:
@@ -619,7 +620,7 @@ the MICE Content Encoding.
    The PATCH verb brings some complexities (eg. about representation metadata headers, patch document format, ...),
 
    - PATCH entity-headers apply to the patch document and MUST NOT be applied to the target resource,
-     see [rfc5789], Section 2.
+     see [RFC5789], Section 2.
    - servers shouldn't assume PATCH semantics for generic media types like "application/json" but should
      instead use a proper content-type, eg [RFC7396]
    - a `200 OK` response to a PATCH request would contain the digest of the patched item, and the etag of the new object.
