@@ -139,14 +139,13 @@ Internet-Draft                   RDHTTP                         May 2019
 1.1.  Brief history of integrity headers
 
    The Content-MD5 header field was originally introduced to provide
-   integrity, but HTTP/1.1 in https://tools.ietf.org/html/
-   rfc7231#appendix-B obsoleted it:
+   integrity, but HTTP/1.1 [RFC7231] in appendix-B obsoleted it:
 
       The Content-MD5 header field has been removed because it was
       inconsistently implemented with respect to partial responses.
 
    [RFC3230] provided a more flexible solution introducing the concept
-   of "instance", and the headers Digest and Want-Digest.
+   of "instance", and the headers "Digest" and "Want-Digest".
 
 1.2.  This proposal
 
@@ -165,6 +164,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
+
 Polli & Pardue          Expires November 7, 2019                [Page 3]
 
 Internet-Draft                   RDHTTP                         May 2019
@@ -173,13 +173,14 @@ Internet-Draft                   RDHTTP                         May 2019
    Changes are semantically compatible with existing implementations and
    better cover both the request and response cases.
 
-   Being calculated on the selected representation, the Digest is tied
-   to the Content-Encoding.
+   The value of "Digest" is calculated on selected representation, which
+   is tied to the value contained in any "Content-Encoding" or "Content-
+   Type" header fields.  Therefore, a given resource may have multiple
+   different digest values.
 
-   A given resource has thus multiple possible digests values.  To allow
-   both parties to exchange a Digest of a representation with no content
-   codings [3] two more algorithms are added (id-sha-256 and id-sha-
-   512).
+   To allow both parties to exchange a Digest of a representation with
+   no content codings [3] two more algorithms are added ("id-sha-256"
+   and "id-sha-512").
 
 1.3.  Goals
 
@@ -220,7 +221,6 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-
 Polli & Pardue          Expires November 7, 2019                [Page 4]
 
 Internet-Draft                   RDHTTP                         May 2019
@@ -238,7 +238,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
      representation-data := Content-Encoding( Content-Type( bits ) )
 
-   and is thus independent from Transfer-Encoding and other
+   and is thus independent from "Transfer-Encoding" and other
    transformation applied by Intermediaries or tied to Range Requests.
 
    Note that Content-Encoding [4] can be an ordered list.

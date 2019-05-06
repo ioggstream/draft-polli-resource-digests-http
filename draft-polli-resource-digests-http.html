@@ -470,11 +470,11 @@ ul.toc li {
 <h2 id="rfc.section.1.1">
 <a href="#rfc.section.1.1">1.1.</a> <a href="#brief-history-of-integrity-headers" id="brief-history-of-integrity-headers">Brief history of integrity headers</a>
 </h2>
-<p id="rfc.section.1.1.p.1">The Content-MD5 header field was originally introduced to provide integrity, but HTTP/1.1 in https://tools.ietf.org/html/rfc7231#appendix-B obsoleted it:</p>
+<p id="rfc.section.1.1.p.1">The Content-MD5 header field was originally introduced to provide integrity, but HTTP/1.1  <a href="#RFC7231" class="xref">[RFC7231]</a> in appendix-B obsoleted it:</p>
 <p></p>
 
 <ul class="empty"><li>The Content-MD5 header field has been removed because it was inconsistently implemented with respect to partial responses.</li></ul>
-<p><a href="#RFC3230" class="xref">[RFC3230]</a> provided a more flexible solution introducing the concept of &#8220;instance&#8221;, and the headers Digest and Want-Digest.</p>
+<p><a href="#RFC3230" class="xref">[RFC3230]</a> provided a more flexible solution introducing the concept of &#8220;instance&#8221;, and the headers <samp>Digest</samp> and <samp>Want-Digest</samp>.</p>
 <h2 id="rfc.section.1.2">
 <a href="#rfc.section.1.2">1.2.</a> <a href="#this-proposal" id="this-proposal">This proposal</a>
 </h2>
@@ -482,8 +482,8 @@ ul.toc li {
 <p id="rfc.section.1.2.p.2">This document updates the <samp>Digest</samp> and <samp>Want-Digest</samp> header field definitions to align with <a href="#RFC7231" class="xref">[RFC7231]</a> concepts.</p>
 <p id="rfc.section.1.2.p.3">This approach can be easily adapted to use-cases where the transferred data does require some sort of manipulation to be considered a representation or conveys a partial representation of a resource (eg. Range Requests).</p>
 <p id="rfc.section.1.2.p.4">Changes are semantically compatible with existing implementations and better cover both the request and response cases.</p>
-<p id="rfc.section.1.2.p.5">Being calculated on the selected representation, the Digest is tied to the Content-Encoding.</p>
-<p id="rfc.section.1.2.p.6">A given resource has thus multiple possible digests values.  To allow both parties to exchange a Digest of a representation with <a href="https://tools.ietf.org/html/rfc7231#section-3.1.2.1">no content codings</a> two more algorithms are added (id-sha-256 and id-sha-512).</p>
+<p id="rfc.section.1.2.p.5">The value of <samp>Digest</samp> is calculated on selected representation, which is tied to the value contained in any <samp>Content-Encoding</samp> or <samp>Content-Type</samp> header fields.  Therefore, a given resource may have multiple different digest values.</p>
+<p id="rfc.section.1.2.p.6">To allow both parties to exchange a Digest of a representation with <a href="https://tools.ietf.org/html/rfc7231#section-3.1.2.1">no content codings</a> two more algorithms are added (<samp>id-sha-256</samp> and <samp>id-sha-512</samp>).</p>
 <h2 id="rfc.section.1.3">
 <a href="#rfc.section.1.3">1.3.</a> <a href="#goals" id="goals">Goals</a>
 </h2>
@@ -516,11 +516,11 @@ ul.toc li {
 <h1 id="rfc.section.2">
 <a href="#rfc.section.2">2.</a> <a href="#resource-representation-and-representation-data" id="resource-representation-and-representation-data">Resource representation and representation-data</a>
 </h1>
-<p id="rfc.section.2.p.1">The value of the digest is calculated against the selected representation of a resource, that is  defined in <a href="#RFC7231" class="xref">[RFC7231]</a> as:</p>
+<p id="rfc.section.2.p.1">The value of the digest is calculated against the selected representation of a resource, that is defined in <a href="#RFC7231" class="xref">[RFC7231]</a> as:</p>
 <pre>
   representation-data := Content-Encoding( Content-Type( bits ) )
 </pre>
-<p id="rfc.section.2.p.2">and is thus independent from Transfer-Encoding and other transformation applied by Intermediaries or tied to Range Requests.</p>
+<p id="rfc.section.2.p.2">and is thus independent from <samp>Transfer-Encoding</samp> and other transformation applied by Intermediaries or tied to Range Requests.</p>
 <p id="rfc.section.2.p.3">Note that <a href="https://tools.ietf.org/html/rfc7231#section-3.1.2.2">Content-Encoding</a> can be an ordered list.</p>
 <h1 id="rfc.section.3">
 <a href="#rfc.section.3">3.</a> <a href="#algorithms" id="algorithms">Digest Algorithm values</a>
