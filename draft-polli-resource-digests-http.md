@@ -6,7 +6,7 @@ category: std
 
 ipr: trust200902
 area: General
-workgroup: 
+workgroup:
 keyword: Internet-Draft
 
 stand_alone: yes
@@ -18,21 +18,22 @@ author:
     name: Roberto Polli
     organization: Team Digitale
     email: robipolli@gmail.com
- -   
+ -
     ins: L. Pardue
     name: Lucas Pardue
     email: lucaspardue.24.7@gmail.com
-    
+
 normative:
   RFC1321:
   RFC3230:
   RFC2119:
+  RFC5789:
   RFC5843:
   RFC4648:
   RFC7230:
   RFC7231:
   RFC7233:
-  RFC8174: 
+  RFC8174:
   FIPS180-1:
     title: NIST FIPS 180-1, Secure Hash Standard
     author:
@@ -61,7 +62,7 @@ normative:
       ins: The Open Group
     date: 1997-02
   NIST800-32:
-    title: Introduction to Public Key Technology and the Federal PKI Infrastructure    
+    title: Introduction to Public Key Technology and the Federal PKI Infrastructure
     author:
       name: NIST
       ins: National Institute of Standards and Technology, U.S. Department of Commerce
@@ -74,7 +75,7 @@ normative:
       ins: Carnagie Mellon University, Software Engineering Institute
     date: 2008-12-31
     target: https://www.kb.cert.org/vuls/id/836068/
- 
+
 informative:
   RFC2818:
   RFC5788:
@@ -94,7 +95,7 @@ This document defines the Digest and Want-Digest header fields for HTTP, thus al
  and server to negotiate an integrity checksum of the exchanged resource representation.
 
 This document obsoletes [RFC3230]. It replaces the term "instance" with "representation",
-which makes it consistent  with the HTTP Semantic and Context defined in [RFC7231].   
+which makes it consistent  with the HTTP Semantic and Context defined in [RFC7231].
 
 
 --- note_Note_to_Readers
@@ -106,7 +107,7 @@ Discussion of this draft takes place on the HTTP working group mailing list
 <https://lists.w3.org/Archives/Public/ietf-http-wg/>.
 
 The source code and issues list for this draft can be found at
-<https://github.com/martinthomson/http-mice>.
+<https://github.com/ioggstream/draft-polli-resource-digests-http>.
 
 
 --- middle
@@ -114,12 +115,12 @@ The source code and issues list for this draft can be found at
 # Introduction
 
 Integrity protection for HTTP content is typically achieved via TCP or HTTPS [RFC2818].
-However, additional integrity protection might be desirable for some use cases. 
-This might be for additional protection against failures or attack (see [SRI]), 
-programming errors, corruption of stored data or because content needs 
+However, additional integrity protection might be desirable for some use cases.
+This might be for additional protection against failures or attack (see [SRI]),
+programming errors, corruption of stored data or because content needs
 to remain unmodified throughout multiple HTTPS-protected exchanges.
 
-## Brief history of integrity headers 
+## Brief history of integrity headers
 
 The Content-MD5 header field was originally introduced to provide integrity, but HTTP/1.1 in https://tools.ietf.org/html/rfc7231#appendix-B obsoleted it:
 
@@ -136,18 +137,18 @@ inconsistent with the current standard. A refresh was then required.
 
 This document updates the `Digest` and `Want-Digest` header field definitions to align with [RFC7231] concepts.
 
-This approach can be easily adapted to use-cases where the transferred data 
-does require some sort of manipulation to be considered a representation 
-or conveys a partial representation of a resource (eg. Range Requests). 
+This approach can be easily adapted to use-cases where the transferred data
+does require some sort of manipulation to be considered a representation
+or conveys a partial representation of a resource (eg. Range Requests).
 
-Changes are semantically compatible with existing implementations 
+Changes are semantically compatible with existing implementations
 and better cover both the request and response cases.
 
 Being calculated on the selected representation, the
-Digest is tied to the Content-Encoding. 
+Digest is tied to the Content-Encoding.
 
 A given resource has thus multiple possible digests values.
-To allow both parties to exchange a Digest of a representation 
+To allow both parties to exchange a Digest of a representation
 with [no content codings](https://tools.ietf.org/html/rfc7231#section-3.1.2.1)
 two more algorithms are added (id-sha-256 and id-sha-512).
 
@@ -164,46 +165,46 @@ The goals of this proposal are:
 
 The goals do not include:
 
-   -  header integrity
-      The digest mechanisms described here cover only representation and selected representation data,
-      and do not protect the integrity of associated
-      representation metadata headers or other message headers.
+  Header integrity:
+  : The digest mechanisms described here cover only representation and selected representation data,
+    and do not protect the integrity of associated
+    representation metadata headers or other message headers.
 
-   -  authentication
-      The digest mechanisms described here are not meant to support
-      authentication of the source of a digest or of a message or
-      anything else.  These mechanisms, therefore, are not a sufficient
-      defense against many kinds of malicious attacks.
+  Authentication:
+  : The digest mechanisms described here are not meant to support
+    authentication of the source of a digest or of a message or
+    anything else.  These mechanisms, therefore, are not a sufficient
+    defense against many kinds of malicious attacks.
 
-   -  privacy
-      Digest mechanisms do not provide message privacy.
+  Privacy:
+  : Digest mechanisms do not provide message privacy.
 
-   -  authorization
-      The digest mechanisms described here are not meant to support
-      authorization or other kinds of access controls.
+  Authorization:
+  : The digest mechanisms described here are not meant to support
+    authorization or other kinds of access controls.
 
 
 ## Notational Conventions
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this
-document are to be interpreted as described in BCP 14 [RFC2119] [RFC8174]
+document are to be interpreted as described in BCP 14 ([RFC2119] and [RFC8174])
 when, and only when, they appear in all capitals, as shown here.
 
-The definitions "representation", "selected representation", "representation data", 
+The definitions "representation", "selected representation", "representation data",
 "representation metadata" and "payload body" in this document are to be
 interpreted as described in [RFC7230] and [RFC7231].
 
 
 # Resource representation and representation-data
 
-The value of the digest is calculated against the selected representation of a 
+The value of the digest is calculated against the selected representation of a
 resource, that is  defined in [RFC7231] as:
 
 ~~~
   representation-data := Content-Encoding( Content-Type( bits ) )
 ~~~
 
-and is thus independent from Transfer-Encoding and other transformation applied from Intermediaries
+and is thus independent from Transfer-Encoding and other transformation applied by Intermediaries
 or tied to Range Requests.
 
 Note that [Content-Encoding](https://tools.ietf.org/html/rfc7231#section-3.1.2.2) can be an ordered list.
@@ -227,48 +228,57 @@ Note that [Content-Encoding](https://tools.ietf.org/html/rfc7231#section-3.1.2.2
    The Internet Assigned Numbers Authority (IANA) acts as a registry for
    digest-algorithm values.  The registry contains the
    following tokens.
-   
-   **NB: This RFC updates [RFC5843] which is still delegated for all algorithms updates** 
 
-  - SHA-256: The SHA-256 algorithm [FIPS180-3].  The output of
-      this algorithm is encoded using the base64 encoding [RFC4648].
+   **NB: This RFC updates** [RFC5843] **which is still delegated for all algorithms updates**
 
-      Reference: [FIPS180-3], [RFC4648], this document.
+  SHA-256:
+  : The SHA-256 algorithm [FIPS180-3].  The output of
+    this algorithm is encoded using the base64 encoding [RFC4648].
 
-  - SHA-512: The SHA-512 algorithm [FIPS180-3].  The output of
-      this algorithm is encoded using the base64 encoding [RFC4648].
+    Reference: [FIPS180-3], [RFC4648], this document.
 
-      Reference: [FIPS180-3], [RFC4648], this document.
+  SHA-512:
+  : The SHA-512 algorithm [FIPS180-3].  The output of
+    this algorithm is encoded using the base64 encoding [RFC4648].
+
+    Reference: [FIPS180-3], [RFC4648], this document.
 
 
-  - MD5               The MD5 algorithm, as specified in [RFC1321].
-                     The output of this algorithm is encoded using the
-                     base64 encoding  [RFC4648].
+  MD5:
+  : The MD5 algorithm, as specified in [RFC1321].
+    The output of this algorithm is encoded using the
+    base64 encoding  [RFC4648].
 
-  - SHA               The SHA-1 algorithm [FIPS180-1].  The output of this
-                     algorithm is encoded using the base64 encoding  [RFC4648].
+  SHA:
+  : The SHA-1 algorithm [FIPS180-1].  The output of this
+    algorithm is encoded using the base64 encoding  [RFC4648].
 
-  - UNIXsum           The algorithm computed by the UNIX "sum" command,
-                     as defined by the Single UNIX Specification,
-                     Version 2 [UNIX].  The output of this algorithm is an
-                     ASCII decimal-digit string representing the 16-bit
-                     checksum, which is the first word of the output of
-                     the UNIX "sum" command.
+  UNIXsum:
+  : The algorithm computed by the UNIX "sum" command,
+    as defined by the Single UNIX Specification,
+    Version 2 [UNIX].  The output of this algorithm is an
+    ASCII decimal-digit string representing the 16-bit
+    checksum, which is the first word of the output of
+    the UNIX "sum" command.
 
-  - UNIXcksum         The algorithm computed by the UNIX "cksum" command,
-                     as defined by the Single UNIX Specification,
-                     Version 2 [UNIX].  The output of this algorithm is an
-                     ASCII digit string representing the 32-bit CRC,
-                     which is the first word of the output of the UNIX
-                     "cksum" command.
+  UNIXcksum:
+  : The algorithm computed by the UNIX "cksum" command,
+    as defined by the Single UNIX Specification,
+    Version 2 [UNIX].  The output of this algorithm is an
+    ASCII digit string representing the 32-bit CRC,
+    which is the first word of the output of the UNIX
+    "cksum" command.
 
 To allow sender and recipient to provide a checksum which is independent from the Content-Coding,
 the following additional algorithms are defined:
 
-   - id-sha-512 The sha-512 digest of the representation-data of the resource when no
-                      content coding is applied (eg. `Content-Encoding: identity`)
-   - id-sha-256 The sha-256 digest of the representation-data of the resource when no
-                      content coding is applied (eg. `Content-Encoding: identity`)
+   id-sha-512:
+   : The sha-512 digest of the representation-data of the resource when no
+     content coding is applied (eg. `Content-Encoding: identity`)
+
+   id-sha-256:
+   : The sha-256 digest of the representation-data of the resource when no
+     content coding is applied (eg. `Content-Encoding: identity`)
 
    If other digest-algorithm values are defined, the associated encoding
    MUST either be represented as a quoted string, or MUST NOT include
@@ -343,7 +353,7 @@ The Digest header field provides a digest of the representation data
 
 `Representation data` might be:
 
-- fully contained in the message body, 
+- fully contained in the message body,
 - partially-contained in the message body,
 - or not at all contained in the message body.
 
@@ -354,7 +364,7 @@ For example, in a response to a HEAD request, the digest is calculated using  th
 representation data that would have been enclosed in the payload body
 if the same request had been a GET.
 
-Digest can be used in requests too. 
+Digest can be used in requests too.
 Returned value depends on the representation metadata headers.
 
 A Digest header field MAY contain multiple representation-data-digest values.
@@ -371,7 +381,7 @@ knowing that the recipient will ignore it.
 ...
 
 # Deprecate Negotiation of Content-MD5
-This RFC deprecates the negotiation of Content-MD5 as 
+This RFC deprecates the negotiation of Content-MD5 as
 this header has been obsoleted by [RFC7231]
 
 The MD5 algorithm is NOT RECOMMENDED as it's now vulnerable
@@ -393,7 +403,7 @@ Response:
 
   HTTP/1.1 200 Ok
   Content-Type: application/json
-  Content-Encoding: identity 
+  Content-Encoding: identity
   Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
   {"hello": "world"}
@@ -410,51 +420,54 @@ Response:
 
   HTTP/1.1 200 Ok
   Content-Type: application/json
-  Content-Encoding: identity 
+  Content-Encoding: identity
   Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
 ~~~
 
-###  Representation data is partially contained in the payload (range request?)
+###  Representation data is partially contained in the payload i.e. range request
 
 ~~~
 
 Request:
 
   GET /items/123
-...
+  Range: bytes=1-7
 
 Response:
 
-  HTTP/1.1 200 Ok
+  HTTP/1.1 206 Partial Content
   Content-Type: application/json
-  Content-Encoding: identity 
+  Content-Encoding: identity
+  Content-Range: bytes 1-7/18
   Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
+
+  "hello"
 
 ~~~
 
-### Digest in both Request and Response. Returned value depends on representation metadata 
+### Digest in both Request and Response. Returned value depends on representation metadata
 
 Digest can be used in requests too. Returned value depends on the representation metadata headers.
 
 ~~~
 Request:
 
-PUT /items/123
-Content-Type: application/json
-Content-Encoding: identity
-Accept-Encoding: br
-Digest: sha-256=4REjxQ4yrqUVicfSKYNO/cF9zNj5ANbzgDZt3/h3Qxo=
+  PUT /items/123
+  Content-Type: application/json
+  Content-Encoding: identity
+  Accept-Encoding: br
+  Digest: sha-256=4REjxQ4yrqUVicfSKYNO/cF9zNj5ANbzgDZt3/h3Qxo=
 
-{"hello": "world"}
+  {"hello": "world"}
 
 Response:
 
-Content-Type: application/json
-Content-Encoding: br
-Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
+  Content-Type: application/json
+  Content-Encoding: br
+  Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
-b'\x8b\x08\x80{"hello": "world"}\x03'
+  b'\x8b\x08\x80{"hello": "world"}\x03'
 
 ~~~
 
@@ -474,7 +487,7 @@ Response:
 
   HTTP/1.1 200 Ok
   Content-Type: application/json
-  Content-Encoding: identity 
+  Content-Encoding: identity
   Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
   {"hello": "world"}
@@ -494,13 +507,13 @@ Response:
 
   HTTP/1.1 200 Ok
   Content-Type: application/json
-  Content-Encoding: identity 
+  Content-Encoding: identity
   Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
   {"hello": "world"}
 ~~~
 
-### Eg.  A client requests an unsupported Digest, the server MAY reply with a 400
+### A client requests an unsupported Digest, the server MAY reply with a 400
 
 The client requests a sha Digest, the server advises for sha-256 and sha-512
 
@@ -617,9 +630,9 @@ the MICE Content Encoding.
 3. How to use `Digest` with `PATCH` method?
 
    The PATCH verb brings some complexities (eg. about representation metadata headers, patch document format, ...),
-   
+
    - PATCH entity-headers apply to the patch document and MUST NOT be applied to the target resource,
-     see [rfc5789], Section 2.
+     see [RFC5789], Section 2.
    - servers shouldn't assume PATCH semantics for generic media types like "application/json" but should
      instead use a proper content-type, eg [RFC7396]
    - a `200 OK` response to a PATCH request would contain the digest of the patched item, and the etag of the new object.
