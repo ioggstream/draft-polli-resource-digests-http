@@ -122,13 +122,14 @@ to remain unmodified throughout multiple HTTPS-protected exchanges.
 
 ## Brief history of integrity headers
 
-The Content-MD5 header field was originally introduced to provide integrity, but HTTP/1.1 in https://tools.ietf.org/html/rfc7231#appendix-B obsoleted it:
+The Content-MD5 header field was originally introduced to provide integrity,
+but HTTP/1.1  [RFC7231] in appendix-B obsoleted it:
 
   > The Content-MD5 header field has been removed because it was
   >  inconsistently implemented with respect to partial responses.
 
 [RFC3230] provided a more flexible solution introducing the concept of "instance",
-and the headers Digest and Want-Digest.
+and the headers `Digest` and `Want-Digest`.
 
 ## This proposal
 
@@ -144,13 +145,13 @@ or conveys a partial representation of a resource (eg. Range Requests).
 Changes are semantically compatible with existing implementations
 and better cover both the request and response cases.
 
-Being calculated on the selected representation, the
-Digest is tied to the Content-Encoding.
+The value of `Digest` is calculated on selected representation,
+which is tied to the value contained in any `Content-Encoding` or `Content-Type` header fields.
+Therefore, a given resource may have multiple different digest values.
 
-A given resource has thus multiple possible digests values.
 To allow both parties to exchange a Digest of a representation
 with [no content codings](https://tools.ietf.org/html/rfc7231#section-3.1.2.1)
-two more algorithms are added (id-sha-256 and id-sha-512).
+two more algorithms are added (`id-sha-256` and `id-sha-512`).
 
 ## Goals
 
@@ -198,13 +199,13 @@ interpreted as described in [RFC7230] and [RFC7231].
 # Resource representation and representation-data
 
 The value of the digest is calculated against the selected representation of a
-resource, that is  defined in [RFC7231] as:
+resource, that is defined in [RFC7231] as:
 
 ~~~
   representation-data := Content-Encoding( Content-Type( bits ) )
 ~~~
 
-and is thus independent from Transfer-Encoding and other transformation applied by Intermediaries
+and is thus independent from `Transfer-Encoding` and other transformation applied by Intermediaries
 or tied to Range Requests.
 
 Note that [Content-Encoding](https://tools.ietf.org/html/rfc7231#section-3.1.2.2) can be an ordered list.
