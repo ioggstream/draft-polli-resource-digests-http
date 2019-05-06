@@ -6,7 +6,7 @@ category: std
 
 ipr: trust200902
 area: General
-workgroup: 
+workgroup:
 keyword: Internet-Draft
 
 stand_alone: yes
@@ -18,11 +18,11 @@ author:
     name: Roberto Polli
     organization: Team Digitale
     email: robipolli@gmail.com
- -   
+ -
     ins: L. Pardue
     name: Lucas Pardue
     email: lucaspardue.24.7@gmail.com
-    
+
 normative:
   RFC1321:
   RFC3230:
@@ -32,7 +32,7 @@ normative:
   RFC7230:
   RFC7231:
   RFC7233:
-  RFC8174: 
+  RFC8174:
   FIPS180-1:
     title: NIST FIPS 180-1, Secure Hash Standard
     author:
@@ -61,7 +61,7 @@ normative:
       ins: The Open Group
     date: 1997-02
   NIST800-32:
-    title: Introduction to Public Key Technology and the Federal PKI Infrastructure    
+    title: Introduction to Public Key Technology and the Federal PKI Infrastructure
     author:
       name: NIST
       ins: National Institute of Standards and Technology, U.S. Department of Commerce
@@ -74,7 +74,7 @@ normative:
       ins: Carnagie Mellon University, Software Engineering Institute
     date: 2008-12-31
     target: https://www.kb.cert.org/vuls/id/836068/
- 
+
 informative:
   RFC2818:
   RFC5788:
@@ -94,7 +94,7 @@ This document defines the Digest and Want-Digest header fields for HTTP, thus al
  and server to negotiate an integrity checksum of the exchanged resource representation.
 
 This document obsoletes [RFC3230]. It replaces the term "instance" with "representation",
-which makes it consistent  with the HTTP Semantic and Context defined in [RFC7231].   
+which makes it consistent  with the HTTP Semantic and Context defined in [RFC7231].
 
 
 --- note_Note_to_Readers
@@ -106,7 +106,7 @@ Discussion of this draft takes place on the HTTP working group mailing list
 <https://lists.w3.org/Archives/Public/ietf-http-wg/>.
 
 The source code and issues list for this draft can be found at
-<https://github.com/martinthomson/http-mice>.
+<https://github.com/ioggstream/draft-polli-resource-digests-http>.
 
 
 --- middle
@@ -114,12 +114,12 @@ The source code and issues list for this draft can be found at
 # Introduction
 
 Integrity protection for HTTP content is typically achieved via TCP or HTTPS [RFC2818].
-However, additional integrity protection might be desirable for some use cases. 
-This might be for additional protection against failures or attack (see [SRI]), 
-programming errors, corruption of stored data or because content needs 
+However, additional integrity protection might be desirable for some use cases.
+This might be for additional protection against failures or attack (see [SRI]),
+programming errors, corruption of stored data or because content needs
 to remain unmodified throughout multiple HTTPS-protected exchanges.
 
-## Brief history of integrity headers 
+## Brief history of integrity headers
 
 The Content-MD5 header field was originally introduced to provide integrity, but HTTP/1.1 in https://tools.ietf.org/html/rfc7231#appendix-B obsoleted it:
 
@@ -136,18 +136,18 @@ inconsistent with the current standard. A refresh was then required.
 
 This document updates the `Digest` and `Want-Digest` header field definitions to align with [RFC7231] concepts.
 
-This approach can be easily adapted to use-cases where the transferred data 
-does require some sort of manipulation to be considered a representation 
-or conveys a partial representation of a resource (eg. Range Requests). 
+This approach can be easily adapted to use-cases where the transferred data
+does require some sort of manipulation to be considered a representation
+or conveys a partial representation of a resource (eg. Range Requests).
 
-Changes are semantically compatible with existing implementations 
+Changes are semantically compatible with existing implementations
 and better cover both the request and response cases.
 
 Being calculated on the selected representation, the
-Digest is tied to the Content-Encoding. 
+Digest is tied to the Content-Encoding.
 
 A given resource has thus multiple possible digests values.
-To allow both parties to exchange a Digest of a representation 
+To allow both parties to exchange a Digest of a representation
 with [no content codings](https://tools.ietf.org/html/rfc7231#section-3.1.2.1)
 two more algorithms are added (id-sha-256 and id-sha-512).
 
@@ -189,14 +189,14 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 document are to be interpreted as described in BCP 14 [RFC2119] [RFC8174]
 when, and only when, they appear in all capitals, as shown here.
 
-The definitions "representation", "selected representation", "representation data", 
+The definitions "representation", "selected representation", "representation data",
 "representation metadata" and "payload body" in this document are to be
 interpreted as described in [RFC7230] and [RFC7231].
 
 
 # Resource representation and representation-data
 
-The value of the digest is calculated against the selected representation of a 
+The value of the digest is calculated against the selected representation of a
 resource, that is  defined in [RFC7231] as:
 
 ~~~
@@ -227,8 +227,8 @@ Note that [Content-Encoding](https://tools.ietf.org/html/rfc7231#section-3.1.2.2
    The Internet Assigned Numbers Authority (IANA) acts as a registry for
    digest-algorithm values.  The registry contains the
    following tokens.
-   
-   **NB: This RFC updates [RFC5843] which is still delegated for all algorithms updates** 
+
+   **NB: This RFC updates [RFC5843] which is still delegated for all algorithms updates**
 
   - SHA-256: The SHA-256 algorithm [FIPS180-3].  The output of
       this algorithm is encoded using the base64 encoding [RFC4648].
@@ -343,7 +343,7 @@ The Digest header field provides a digest of the representation data
 
 `Representation data` might be:
 
-- fully contained in the message body, 
+- fully contained in the message body,
 - partially-contained in the message body,
 - or not at all contained in the message body.
 
@@ -354,7 +354,7 @@ For example, in a response to a HEAD request, the digest is calculated using  th
 representation data that would have been enclosed in the payload body
 if the same request had been a GET.
 
-Digest can be used in requests too. 
+Digest can be used in requests too.
 Returned value depends on the representation metadata headers.
 
 A Digest header field MAY contain multiple representation-data-digest values.
@@ -371,7 +371,7 @@ knowing that the recipient will ignore it.
 ...
 
 # Deprecate Negotiation of Content-MD5
-This RFC deprecates the negotiation of Content-MD5 as 
+This RFC deprecates the negotiation of Content-MD5 as
 this header has been obsoleted by [RFC7231]
 
 The MD5 algorithm is NOT RECOMMENDED as it's now vulnerable
@@ -393,7 +393,7 @@ Response:
 
   HTTP/1.1 200 Ok
   Content-Type: application/json
-  Content-Encoding: identity 
+  Content-Encoding: identity
   Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
   {"hello": "world"}
@@ -410,7 +410,7 @@ Response:
 
   HTTP/1.1 200 Ok
   Content-Type: application/json
-  Content-Encoding: identity 
+  Content-Encoding: identity
   Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
 ~~~
@@ -428,12 +428,12 @@ Response:
 
   HTTP/1.1 200 Ok
   Content-Type: application/json
-  Content-Encoding: identity 
+  Content-Encoding: identity
   Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
 ~~~
 
-### Digest in both Request and Response. Returned value depends on representation metadata 
+### Digest in both Request and Response. Returned value depends on representation metadata
 
 Digest can be used in requests too. Returned value depends on the representation metadata headers.
 
@@ -474,7 +474,7 @@ Response:
 
   HTTP/1.1 200 Ok
   Content-Type: application/json
-  Content-Encoding: identity 
+  Content-Encoding: identity
   Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
   {"hello": "world"}
@@ -494,7 +494,7 @@ Response:
 
   HTTP/1.1 200 Ok
   Content-Type: application/json
-  Content-Encoding: identity 
+  Content-Encoding: identity
   Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
   {"hello": "world"}
@@ -617,7 +617,7 @@ the MICE Content Encoding.
 3. How to use `Digest` with `PATCH` method?
 
    The PATCH verb brings some complexities (eg. about representation metadata headers, patch document format, ...),
-   
+
    - PATCH entity-headers apply to the patch document and MUST NOT be applied to the target resource,
      see [rfc5789], Section 2.
    - servers shouldn't assume PATCH semantics for generic media types like "application/json" but should
