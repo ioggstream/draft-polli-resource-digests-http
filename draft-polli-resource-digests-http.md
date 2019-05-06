@@ -165,29 +165,29 @@ The goals of this proposal are:
 
 The goals do not include:
 
-   -  header integrity
-      The digest mechanisms described here cover only representation and selected representation data,
-      and do not protect the integrity of associated
-      representation metadata headers or other message headers.
+  Header integrity:
+  : The digest mechanisms described here cover only representation and selected representation data,
+    and do not protect the integrity of associated
+    representation metadata headers or other message headers.
 
-   -  authentication
-      The digest mechanisms described here are not meant to support
-      authentication of the source of a digest or of a message or
-      anything else.  These mechanisms, therefore, are not a sufficient
-      defense against many kinds of malicious attacks.
+  Authentication:
+  : The digest mechanisms described here are not meant to support
+    authentication of the source of a digest or of a message or
+    anything else.  These mechanisms, therefore, are not a sufficient
+    defense against many kinds of malicious attacks.
 
-   -  privacy
-      Digest mechanisms do not provide message privacy.
+  Privacy:
+  : Digest mechanisms do not provide message privacy.
 
-   -  authorization
-      The digest mechanisms described here are not meant to support
-      authorization or other kinds of access controls.
+  Authorization:
+  : The digest mechanisms described here are not meant to support
+    authorization or other kinds of access controls.
 
 
 ## Notational Conventions
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this
-document are to be interpreted as described in BCP 14 [RFC2119] [RFC8174]
+document are to be interpreted as described in BCP 14 ([RFC2119] and [RFC8174])
 when, and only when, they appear in all capitals, as shown here.
 
 The definitions "representation", "selected representation", "representation data",
@@ -204,7 +204,7 @@ resource, that is  defined in [RFC7231] as:
   representation-data := Content-Encoding( Content-Type( bits ) )
 ~~~
 
-and is thus independent from Transfer-Encoding and other transformation applied from Intermediaries
+and is thus independent from Transfer-Encoding and other transformation applied by Intermediaries
 or tied to Range Requests.
 
 Note that [Content-Encoding](https://tools.ietf.org/html/rfc7231#section-3.1.2.2) can be an ordered list.
@@ -229,47 +229,56 @@ Note that [Content-Encoding](https://tools.ietf.org/html/rfc7231#section-3.1.2.2
    digest-algorithm values.  The registry contains the
    following tokens.
 
-   **NB: This RFC updates [RFC5843] which is still delegated for all algorithms updates**
+   **NB: This RFC updates** [RFC5843] **which is still delegated for all algorithms updates**
 
-  - SHA-256: The SHA-256 algorithm [FIPS180-3].  The output of
-      this algorithm is encoded using the base64 encoding [RFC4648].
+  SHA-256:
+  : The SHA-256 algorithm [FIPS180-3].  The output of
+    this algorithm is encoded using the base64 encoding [RFC4648].
 
-      Reference: [FIPS180-3], [RFC4648], this document.
+    Reference: [FIPS180-3], [RFC4648], this document.
 
-  - SHA-512: The SHA-512 algorithm [FIPS180-3].  The output of
-      this algorithm is encoded using the base64 encoding [RFC4648].
+  SHA-512:
+  : The SHA-512 algorithm [FIPS180-3].  The output of
+    this algorithm is encoded using the base64 encoding [RFC4648].
 
-      Reference: [FIPS180-3], [RFC4648], this document.
+    Reference: [FIPS180-3], [RFC4648], this document.
 
 
-  - MD5               The MD5 algorithm, as specified in [RFC1321].
-                     The output of this algorithm is encoded using the
-                     base64 encoding  [RFC4648].
+  MD5:
+  : The MD5 algorithm, as specified in [RFC1321].
+    The output of this algorithm is encoded using the
+    base64 encoding  [RFC4648].
 
-  - SHA               The SHA-1 algorithm [FIPS180-1].  The output of this
-                     algorithm is encoded using the base64 encoding  [RFC4648].
+  SHA:
+  : The SHA-1 algorithm [FIPS180-1].  The output of this
+    algorithm is encoded using the base64 encoding  [RFC4648].
 
-  - UNIXsum           The algorithm computed by the UNIX "sum" command,
-                     as defined by the Single UNIX Specification,
-                     Version 2 [UNIX].  The output of this algorithm is an
-                     ASCII decimal-digit string representing the 16-bit
-                     checksum, which is the first word of the output of
-                     the UNIX "sum" command.
+  UNIXsum:
+  : The algorithm computed by the UNIX "sum" command,
+    as defined by the Single UNIX Specification,
+    Version 2 [UNIX].  The output of this algorithm is an
+    ASCII decimal-digit string representing the 16-bit
+    checksum, which is the first word of the output of
+    the UNIX "sum" command.
 
-  - UNIXcksum         The algorithm computed by the UNIX "cksum" command,
-                     as defined by the Single UNIX Specification,
-                     Version 2 [UNIX].  The output of this algorithm is an
-                     ASCII digit string representing the 32-bit CRC,
-                     which is the first word of the output of the UNIX
-                     "cksum" command.
+  UNIXcksum:
+  : The algorithm computed by the UNIX "cksum" command,
+    as defined by the Single UNIX Specification,
+    Version 2 [UNIX].  The output of this algorithm is an
+    ASCII digit string representing the 32-bit CRC,
+    which is the first word of the output of the UNIX
+    "cksum" command.
 
 To allow sender and recipient to provide a checksum which is independent from the Content-Coding,
 the following additional algorithms are defined:
 
-   - id-sha-512 The sha-512 digest of the representation-data of the resource when no
-                      content coding is applied (eg. `Content-Encoding: identity`)
-   - id-sha-256 The sha-256 digest of the representation-data of the resource when no
-                      content coding is applied (eg. `Content-Encoding: identity`)
+   id-sha-512:
+   : The sha-512 digest of the representation-data of the resource when no
+     content coding is applied (eg. `Content-Encoding: identity`)
+
+   id-sha-256:
+   : The sha-256 digest of the representation-data of the resource when no
+     content coding is applied (eg. `Content-Encoding: identity`)
 
    If other digest-algorithm values are defined, the associated encoding
    MUST either be represented as a quoted string, or MUST NOT include
@@ -416,21 +425,24 @@ Response:
 
 ~~~
 
-###  Representation data is partially contained in the payload (range request?)
+###  Representation data is partially contained in the payload i.e. range request
 
 ~~~
 
 Request:
 
   GET /items/123
-...
+  Range: bytes=1-7
 
 Response:
 
-  HTTP/1.1 200 Ok
+  HTTP/1.1 206 Partial Content
   Content-Type: application/json
   Content-Encoding: identity
+  Content-Range: bytes 1-7/18
   Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
+
+  "hello"
 
 ~~~
 
@@ -441,21 +453,21 @@ Digest can be used in requests too. Returned value depends on the representation
 ~~~
 Request:
 
-PUT /items/123
-Content-Type: application/json
-Content-Encoding: identity
-Accept-Encoding: br
-Digest: sha-256=4REjxQ4yrqUVicfSKYNO/cF9zNj5ANbzgDZt3/h3Qxo=
+  PUT /items/123
+  Content-Type: application/json
+  Content-Encoding: identity
+  Accept-Encoding: br
+  Digest: sha-256=4REjxQ4yrqUVicfSKYNO/cF9zNj5ANbzgDZt3/h3Qxo=
 
-{"hello": "world"}
+  {"hello": "world"}
 
 Response:
 
-Content-Type: application/json
-Content-Encoding: br
-Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
+  Content-Type: application/json
+  Content-Encoding: br
+  Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
-b'\x8b\x08\x80{"hello": "world"}\x03'
+  b'\x8b\x08\x80{"hello": "world"}\x03'
 
 ~~~
 
@@ -501,7 +513,7 @@ Response:
   {"hello": "world"}
 ~~~
 
-### Eg.  A client requests an unsupported Digest, the server MAY reply with a 400
+### A client requests an unsupported Digest, the server MAY reply with a 400
 
 The client requests a sha Digest, the server advises for sha-256 and sha-512
 
