@@ -6,6 +6,10 @@ jobs:
     working_directory: ~/draft
 
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "6e:af:d1:98:10:40:6f:21:ea:6c:80:9e:a2:d2:66:89"
+
       - checkout
 
       # Build txt and html versions of drafts
