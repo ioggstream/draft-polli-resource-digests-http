@@ -626,7 +626,8 @@ the MICE Content Encoding.
 2. Why remove references to instance manipulation?
 
    Unnecessary again for correctly using and applying the spec. An
-   example with Range Request is more than enough.
+   example with Range Request is more than enough. This doc uses the term
+   "partial representation" which should group all those cases
 
 3. How to use `Digest` with `PATCH` method?
 
@@ -639,3 +640,15 @@ the MICE Content Encoding.
    - a `200 OK` response to a PATCH request would contain the digest of the patched item, and the etag of the new object.
      This behavior - tighly coupled to the application logic - gives the client low probability of guessing the actual
      outcome of this operation (eg. concurrent changes, ...)
+     
+4. Why remove references to delta-encoding?
+
+   Unnecessary for a correct implementation of this spec. The revised spec can be nicely adapted
+   to "delta encoding", but all the references here to delta encoding don't add anything to this RFC.
+   Another job would be to refresh delta encoding.
+   
+5. Why remove references to Digest Authentication?
+
+   Digest Authentication references, as this RFC seems to me completely unrelated 
+   to Digest Authentication but for the word "Digest"
+
