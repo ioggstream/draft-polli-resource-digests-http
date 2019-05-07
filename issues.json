@@ -1,6 +1,60 @@
 [
 
   {
+    "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/12",
+    "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
+    "labels_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/12/labels{/name}",
+    "comments_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/12/comments",
+    "events_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/12/events",
+    "html_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/12",
+    "id": 441325734,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0Mjc2NjczMTY4",
+    "number": 12,
+    "title": "Carefully explained the checksum problem.",
+    "user": {
+      "login": "ioggstream",
+      "id": 1140844,
+      "node_id": "MDQ6VXNlcjExNDA4NDQ=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1140844?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/ioggstream",
+      "html_url": "https://github.com/ioggstream",
+      "followers_url": "https://api.github.com/users/ioggstream/followers",
+      "following_url": "https://api.github.com/users/ioggstream/following{/other_user}",
+      "gists_url": "https://api.github.com/users/ioggstream/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/ioggstream/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/ioggstream/subscriptions",
+      "organizations_url": "https://api.github.com/users/ioggstream/orgs",
+      "repos_url": "https://api.github.com/users/ioggstream/repos",
+      "events_url": "https://api.github.com/users/ioggstream/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/ioggstream/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2019-05-07T16:28:46Z",
+    "updated_at": "2019-05-07T16:45:05Z",
+    "closed_at": null,
+    "author_association": "OWNER",
+    "pull_request": {
+      "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/pulls/12",
+      "html_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/12",
+      "diff_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/12.diff",
+      "patch_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/12.patch"
+    },
+    "body": "## This PR\r\n\r\nExplains why we need requirement for selected representation\r\n\r\n## Note\r\n\r\nI somewhat repeated part of the introduction to explicitly\r\nclarify the requirement and make this document independent\r\nfrom the reading of RFC3230"
+  },
+  {
     "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/11",
     "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
     "labels_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/11/labels{/name}",
@@ -88,7 +142,7 @@
     "labels": [
 
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": null,
     "assignees": [
@@ -97,8 +151,8 @@
     "milestone": null,
     "comments": 2,
     "created_at": "2019-05-04T14:51:04Z",
-    "updated_at": "2019-05-06T18:17:55Z",
-    "closed_at": null,
+    "updated_at": "2019-05-06T22:10:25Z",
+    "closed_at": "2019-05-06T22:10:25Z",
     "author_association": "OWNER",
     "pull_request": {
       "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/pulls/10",
@@ -480,17 +534,17 @@
     "labels": [
 
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": null,
     "assignees": [
 
     ],
     "milestone": null,
-    "comments": 2,
+    "comments": 4,
     "created_at": "2019-04-30T10:19:17Z",
-    "updated_at": "2019-05-06T17:23:59Z",
-    "closed_at": null,
+    "updated_at": "2019-05-06T21:52:20Z",
+    "closed_at": "2019-05-06T21:35:17Z",
     "author_association": "CONTRIBUTOR",
     "body": "Oops. \r\n\r\nBecause I forked the repo, the way GitHub pages works to self-host a HTML version of the I-D is a little messed up. This repo points at mine, which is not the correct source of truth. \r\n\r\nI think what we need to do is add a gh-pages branch to the master repo, I can submit the PR to update it with files and update README.md to point to your HTML.\r\n\r\nSounds ok?"
   },
