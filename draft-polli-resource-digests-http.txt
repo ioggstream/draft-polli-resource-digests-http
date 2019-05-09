@@ -5,7 +5,7 @@
 Network Working Group                                           R. Polli
 Internet-Draft                                             Team Digitale
 Intended status: Standards Track                               L. Pardue
-Expires: November 8, 2019                                   May 07, 2019
+Expires: November 10, 2019                                  May 09, 2019
 
 
                        Resource Digests for HTTP
@@ -47,13 +47,13 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on November 8, 2019.
+   This Internet-Draft will expire on November 10, 2019.
 
 
 
 
 
-Polli & Pardue          Expires November 8, 2019                [Page 1]
+Polli & Pardue          Expires November 10, 2019               [Page 1]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -81,51 +81,51 @@ Table of Contents
      1.3.  Goals . . . . . . . . . . . . . . . . . . . . . . . . . .   4
      1.4.  Notational Conventions  . . . . . . . . . . . . . . . . .   4
    2.  Resource representation and representation-data . . . . . . .   5
-   3.  Digest Algorithm values . . . . . . . . . . . . . . . . . . .   5
-     3.1.  Representation digest . . . . . . . . . . . . . . . . . .   6
-       3.1.1.  digest-algorithm encoding examples  . . . . . . . . .   7
-   4.  Header Specifications . . . . . . . . . . . . . . . . . . . .   7
-     4.1.  Want-Digest . . . . . . . . . . . . . . . . . . . . . . .   7
-     4.2.  Digest  . . . . . . . . . . . . . . . . . . . . . . . . .   7
-   5.  Deprecate Negotiation of Content-MD5  . . . . . . . . . . . .   8
-   6.  Examples  . . . . . . . . . . . . . . . . . . . . . . . . . .   8
-     6.1.  Unsolicited Digest response . . . . . . . . . . . . . . .   8
-       6.1.1.  Representation data is fully contained in the payload   8
-       6.1.2.  Representation data is not contained in the payload .   9
+   3.  Digest Algorithm values . . . . . . . . . . . . . . . . . . .   6
+     3.1.  Representation digest . . . . . . . . . . . . . . . . . .   7
+       3.1.1.  digest-algorithm encoding examples  . . . . . . . . .   8
+   4.  Header Specifications . . . . . . . . . . . . . . . . . . . .   8
+     4.1.  Want-Digest . . . . . . . . . . . . . . . . . . . . . . .   8
+     4.2.  Digest  . . . . . . . . . . . . . . . . . . . . . . . . .   9
+   5.  Deprecate Negotiation of Content-MD5  . . . . . . . . . . . .   9
+   6.  Examples  . . . . . . . . . . . . . . . . . . . . . . . . . .  10
+     6.1.  Unsolicited Digest response . . . . . . . . . . . . . . .  10
+       6.1.1.  Representation data is fully contained in the payload  10
+       6.1.2.  Representation data is not contained in the payload .  10
        6.1.3.  Representation data is partially contained in the
-               payload i.e. range request  . . . . . . . . . . . . .   9
+               payload i.e. range request  . . . . . . . . . . . . .  10
        6.1.4.  Digest in both Request and Response. Returned value
-               depends on representation metadata  . . . . . . . . .  10
-     6.2.  Want-Digest solicited digest responses  . . . . . . . . .  10
-       6.2.1.  Client request data is fully contained in the payload  10
+               depends on representation metadata  . . . . . . . . .  11
+     6.2.  Want-Digest solicited digest responses  . . . . . . . . .  11
+       6.2.1.  Client request data is fully contained in the payload  11
        6.2.2.  A client requests an unsupported Digest, the server
-               MAY reply with an unsupported digest  . . . . . . . .  11
+               MAY reply with an unsupported digest  . . . . . . . .  12
        6.2.3.  A client requests an unsupported Digest, the server
-               MAY reply with a 400  . . . . . . . . . . . . . . . .  11
-   7.  Security Considerations . . . . . . . . . . . . . . . . . . .  11
-     7.1.  Usage in signatures . . . . . . . . . . . . . . . . . . .  11
-     7.2.  Message Truncation  . . . . . . . . . . . . . . . . . . .  12
-     7.3.  Algorithm Agility . . . . . . . . . . . . . . . . . . . .  12
+               MAY reply with a 400  . . . . . . . . . . . . . . . .  12
+   7.  Security Considerations . . . . . . . . . . . . . . . . . . .  13
+     7.1.  Usage in signatures . . . . . . . . . . . . . . . . . . .  13
+     7.2.  Message Truncation  . . . . . . . . . . . . . . . . . . .  13
+     7.3.  Algorithm Agility . . . . . . . . . . . . . . . . . . . .  13
 
 
 
-Polli & Pardue          Expires November 8, 2019                [Page 2]
+Polli & Pardue          Expires November 10, 2019               [Page 2]
 
 Internet-Draft                   RDHTTP                         May 2019
 
 
-   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  12
-     8.1.  The "id-sha-256" Digest Algorithm . . . . . . . . . . . .  12
-     8.2.  The "id-sha-512" Digest Algorithm . . . . . . . . . . . .  12
-     8.3.  Want-Digest Header Field Registration . . . . . . . . . .  12
-     8.4.  Digest Header Field Registration  . . . . . . . . . . . .  13
-   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  13
-     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  13
-     9.2.  Informative References  . . . . . . . . . . . . . . . . .  15
-     9.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  15
-   Appendix A.  Acknowledgements . . . . . . . . . . . . . . . . . .  15
-   Appendix B.  FAQ  . . . . . . . . . . . . . . . . . . . . . . . .  16
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  17
+   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  13
+     8.1.  The "id-sha-256" Digest Algorithm . . . . . . . . . . . .  13
+     8.2.  The "id-sha-512" Digest Algorithm . . . . . . . . . . . .  13
+     8.3.  Want-Digest Header Field Registration . . . . . . . . . .  14
+     8.4.  Digest Header Field Registration  . . . . . . . . . . . .  14
+   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  14
+     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  14
+     9.2.  Informative References  . . . . . . . . . . . . . . . . .  16
+     9.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  16
+   Appendix A.  Acknowledgements . . . . . . . . . . . . . . . . . .  17
+   Appendix B.  FAQ  . . . . . . . . . . . . . . . . . . . . . . . .  17
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  18
 
 1.  Introduction
 
@@ -165,7 +165,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 8, 2019                [Page 3]
+Polli & Pardue          Expires November 10, 2019               [Page 3]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -221,7 +221,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 8, 2019                [Page 4]
+Polli & Pardue          Expires November 10, 2019               [Page 4]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -233,15 +233,83 @@ Internet-Draft                   RDHTTP                         May 2019
 
 2.  Resource representation and representation-data
 
-   The value of the digest is calculated against the selected
-   representation of a resource, that is defined in [RFC7231] as:
+   To avoid inconsistencies, an integrity mechanism for http messages
+   should decouple the checksum calculation:
 
-     representation-data := Content-Encoding( Content-Type( bits ) )
+   o  from the payload body - which may be altered by mechanism like
+      Range Requests or the method (eg.  HEAD);
 
-   and is thus independent from "Transfer-Encoding" and other
-   transformation applied by Intermediaries or tied to Range Requests.
+   o  and from the message body - which depends on "Transfer-Encoding"
+      and whatever tranformations the intermediaries may apply.
 
-   Note that Content-Encoding [4] can be an ordered list.
+   The following examples shows how representation metadata, payload
+   tranformations and method impacts on the message and payload body.
+
+   Here is a gzip-compressed json object
+
+   # gzip.compress(json.dumps(  {"a": "1"*100}  ).encode()))
+
+   Request:
+
+       PUT /entries/1234 HTTP/1.1
+       Content-Type: application/json
+       Content-Encoding: gzip
+
+       H4sIAItWyFwC/6tWSlSyUlAypANQqgUAREcqfG0AAAA=
+
+
+   Now the same payload body conveys a malformed json object.
+
+   Request:
+
+       PUT /entries/1234 HTTP/1.1
+       Content-Type: application/json
+
+       H4sIAItWyFwC/6tWSlSyUlAypANQqgUAREcqfG0AAAA=
+
+
+   A Range-Request alters the payload body, conveying a partial
+   representation.
+
+
+
+
+
+
+
+Polli & Pardue          Expires November 10, 2019               [Page 5]
+
+Internet-Draft                   RDHTTP                         May 2019
+
+
+   Request:
+
+       GET /entries/1234 HTTP/1.1
+       Range: bytes=1-7
+
+   Response:
+
+       HTTP/1.1 206 Partial Content
+       Content-Encoding: gzip
+       Content-Type: application/json
+       Content-Range: bytes=1-7
+
+       iwgAla3RXA==
+
+   Now the method too alters the payload body.
+
+   Request:
+
+       HEAD /entries/1234 HTTP/1.1
+       Accept: application/json
+       Accept-Encoding: gzip
+
+   Response:
+
+       HTTP/1.1 200 OK
+       Content-Type: application/json
+       Content-Encoding: gzip
+
 
 3.  Digest Algorithm values
 
@@ -260,6 +328,16 @@ Internet-Draft                   RDHTTP                         May 2019
    *NB: This RFC updates* [RFC5843] *which is still delegated for all
    algorithms updates*
 
+
+
+
+
+
+Polli & Pardue          Expires November 10, 2019               [Page 6]
+
+Internet-Draft                   RDHTTP                         May 2019
+
+
    SHA-256:  The SHA-256 algorithm [FIPS180-3].  The output of this
       algorithm is encoded using the base64 encoding [RFC4648].
       Reference: [FIPS180-3], [RFC4648], this document.
@@ -273,14 +351,6 @@ Internet-Draft                   RDHTTP                         May 2019
 
    SHA:  The SHA-1 algorithm [FIPS180-1].  The output of this algorithm
       is encoded using the base64 encoding [RFC4648].
-
-
-
-
-Polli & Pardue          Expires November 8, 2019                [Page 5]
-
-Internet-Draft                   RDHTTP                         May 2019
-
 
    UNIXsum:  The algorithm computed by the UNIX "sum" command, as
       defined by the Single UNIX Specification, Version 2 [UNIX].  The
@@ -316,27 +386,25 @@ Internet-Draft                   RDHTTP                         May 2019
    algorithm, together with an indication of the algorithm used (and any
    parameters).
 
-       representation-data-digest = digest-algorithm "="
-                               <encoded digest output>
-
-   The digest is computed on the entire "representation data" of the
-   resource and is tied to the Content-Type and the Content-Encoding of
-   the message.
-
-   The encoded digest output uses the encoding format defined for the
-   specific digest-algorithm.
 
 
 
-
-
-
-
-
-Polli & Pardue          Expires November 8, 2019                [Page 6]
+Polli & Pardue          Expires November 10, 2019               [Page 7]
 
 Internet-Draft                   RDHTTP                         May 2019
 
+
+       representation-data-digest = digest-algorithm "="
+                               <encoded digest output>
+
+   As explained in {#resource-representations} the digest is computed on
+   the entire selected "representation data" of the resource defined in
+   [RFC7231]:
+
+     representation-data := Content-Encoding( Content-Type( bits ) )
+
+   The encoded digest output uses the encoding format defined for the
+   specific digest-algorithm.
 
 3.1.1.  digest-algorithm encoding examples
 
@@ -374,6 +442,14 @@ Internet-Draft                   RDHTTP                         May 2019
 
    Examples:
 
+
+
+
+Polli & Pardue          Expires November 10, 2019               [Page 8]
+
+Internet-Draft                   RDHTTP                         May 2019
+
+
    Want-Digest: sha-256 Want-Digest: SHA-256;q=0.3, sha;q=1
 
 4.2.  Digest
@@ -385,14 +461,6 @@ Internet-Draft                   RDHTTP                         May 2019
    "Representation data" might be:
 
    o  fully contained in the message body,
-
-
-
-
-Polli & Pardue          Expires November 8, 2019                [Page 7]
-
-Internet-Draft                   RDHTTP                         May 2019
-
 
    o  partially-contained in the message body,
 
@@ -429,26 +497,20 @@ Internet-Draft                   RDHTTP                         May 2019
    The MD5 algorithm is NOT RECOMMENDED as it's now vulnerable to
    collision attacks [CMU-836068]
 
+
+
+
+
+Polli & Pardue          Expires November 10, 2019               [Page 9]
+
+Internet-Draft                   RDHTTP                         May 2019
+
+
 6.  Examples
 
 6.1.  Unsolicited Digest response
 
 6.1.1.  Representation data is fully contained in the payload
-
-
-
-
-
-
-
-
-
-
-
-Polli & Pardue          Expires November 8, 2019                [Page 8]
-
-Internet-Draft                   RDHTTP                         May 2019
-
 
    Request:
 
@@ -480,6 +542,26 @@ Internet-Draft                   RDHTTP                         May 2019
 6.1.3.  Representation data is partially contained in the payload i.e.
         range request
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Polli & Pardue          Expires November 10, 2019              [Page 10]
+
+Internet-Draft                   RDHTTP                         May 2019
+
+
    Request:
 
      GET /items/123
@@ -494,16 +576,6 @@ Internet-Draft                   RDHTTP                         May 2019
      Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
      "hello"
-
-
-
-
-
-
-
-Polli & Pardue          Expires November 8, 2019                [Page 9]
-
-Internet-Draft                   RDHTTP                         May 2019
 
 
 6.1.4.  Digest in both Request and Response.  Returned value depends on
@@ -538,6 +610,14 @@ Internet-Draft                   RDHTTP                         May 2019
    The client requests a digest, preferring sha.  The server is free to
    reply with sha-256 anyway.
 
+
+
+
+Polli & Pardue          Expires November 10, 2019              [Page 11]
+
+Internet-Draft                   RDHTTP                         May 2019
+
+
    Request:
 
      GET /items/123
@@ -551,16 +631,6 @@ Internet-Draft                   RDHTTP                         May 2019
      Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
      {"hello": "world"}
-
-
-
-
-
-
-Polli & Pardue          Expires November 8, 2019               [Page 10]
-
-Internet-Draft                   RDHTTP                         May 2019
-
 
 6.2.2.  A client requests an unsupported Digest, the server MAY reply
         with an unsupported digest
@@ -588,6 +658,22 @@ Internet-Draft                   RDHTTP                         May 2019
    The client requests a sha Digest, the server advises for sha-256 and
    sha-512
 
+
+
+
+
+
+
+
+
+
+
+
+Polli & Pardue          Expires November 10, 2019              [Page 12]
+
+Internet-Draft                   RDHTTP                         May 2019
+
+
    Request:
 
      GET /items/123
@@ -609,15 +695,6 @@ Internet-Draft                   RDHTTP                         May 2019
 
    It's important to note that, being the Digest header an hash of a
    resource representation, signing only the "Digest" header, without
-
-
-
-
-Polli & Pardue          Expires November 8, 2019               [Page 11]
-
-Internet-Draft                   RDHTTP                         May 2019
-
-
    all the representation metatada (eg.  the values of "Content-Type"
    and "Content-Encoding") may expose the communication to tampering.
 
@@ -634,7 +711,7 @@ Internet-Draft                   RDHTTP                         May 2019
 8.1.  The "id-sha-256" Digest Algorithm
 
    This memo registers the "id-sha-256" digest algorithm in the HTTP
-   Digest Algorithm Values [5] registry:
+   Digest Algorithm Values [4] registry:
 
    o  Digest Algorithm: id-sha-256
 
@@ -643,7 +720,15 @@ Internet-Draft                   RDHTTP                         May 2019
 8.2.  The "id-sha-512" Digest Algorithm
 
    This memo registers the "id-sha-512" digest algorithm in the HTTP
-   Digest Algorithm Values [6] registry:
+   Digest Algorithm Values [5] registry:
+
+
+
+
+Polli & Pardue          Expires November 10, 2019              [Page 13]
+
+Internet-Draft                   RDHTTP                         May 2019
+
 
    o  Digest Algorithm: id-sha-512
 
@@ -663,16 +748,6 @@ Internet-Draft                   RDHTTP                         May 2019
    Author/Change controller: IETF
 
    Specification document(s): Section 4.1 of this document
-
-
-
-
-
-
-Polli & Pardue          Expires November 8, 2019               [Page 12]
-
-Internet-Draft                   RDHTTP                         May 2019
-
 
 8.4.  Digest Header Field Registration
 
@@ -703,6 +778,14 @@ Internet-Draft                   RDHTTP                         May 2019
               Secure Hash Standard", April 1995,
               <http://csrc.nist.gov/fips/fip180-1.txt>.
 
+
+
+
+Polli & Pardue          Expires November 10, 2019              [Page 14]
+
+Internet-Draft                   RDHTTP                         May 2019
+
+
    [FIPS180-3]
               Department of Commerce, National., "NIST FIPS 180-3,
               Secure Hash Standard", October 2008,
@@ -721,14 +804,6 @@ Internet-Draft                   RDHTTP                         May 2019
               February 2001,
               <https://nvlpubs.nist.gov/nistpubs/Legacy/SP/
               nistspecialpublication800-32.pdf>.
-
-
-
-
-Polli & Pardue          Expires November 8, 2019               [Page 13]
-
-Internet-Draft                   RDHTTP                         May 2019
-
 
    [RFC1321]  Rivest, R., "The MD5 Message-Digest Algorithm", RFC 1321,
               DOI 10.17487/RFC1321, April 1992,
@@ -760,6 +835,13 @@ Internet-Draft                   RDHTTP                         May 2019
               Digests", RFC 5843, DOI 10.17487/RFC5843, April 2010,
               <https://www.rfc-editor.org/info/rfc5843>.
 
+
+
+Polli & Pardue          Expires November 10, 2019              [Page 15]
+
+Internet-Draft                   RDHTTP                         May 2019
+
+
    [RFC7230]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
               Protocol (HTTP/1.1): Message Syntax and Routing",
               RFC 7230, DOI 10.17487/RFC7230, June 2014,
@@ -778,13 +860,6 @@ Internet-Draft                   RDHTTP                         May 2019
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
-
-
-
-Polli & Pardue          Expires November 8, 2019               [Page 14]
-
-Internet-Draft                   RDHTTP                         May 2019
-
 
    [UNIX]     The Open Group, ., "The Single UNIX Specification, Version
               2 - 6 Vol Set for UNIX 98", February 1997.
@@ -816,13 +891,18 @@ Internet-Draft                   RDHTTP                         May 2019
 
    [2] https://github.com/ioggstream/draft-polli-resource-digests-http
 
+
+
+Polli & Pardue          Expires November 10, 2019              [Page 16]
+
+Internet-Draft                   RDHTTP                         May 2019
+
+
    [3] https://tools.ietf.org/html/rfc7231#section-3.1.2.1
 
-   [4] https://tools.ietf.org/html/rfc7231#section-3.1.2.2
+   [4] https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml
 
    [5] https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml
-
-   [6] https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml
 
 Appendix A.  Acknowledgements
 
@@ -831,16 +911,6 @@ Appendix A.  Acknowledgements
    original idea of refreshing this document arose from an interesting
    discussion with M.  Nottingham, J.  Yasskin and M.  Thomson when
    reviewing the MICE Content Encoding.
-
-
-
-
-
-
-Polli & Pardue          Expires November 8, 2019               [Page 15]
-
-Internet-Draft                   RDHTTP                         May 2019
-
 
 Appendix B.  FAQ
 
@@ -875,6 +945,15 @@ Appendix B.  FAQ
 
    4.  Why remove references to delta-encoding?
 
+
+
+
+
+Polli & Pardue          Expires November 10, 2019              [Page 17]
+
+Internet-Draft                   RDHTTP                         May 2019
+
+
        Unnecessary for a correct implementation of this spec.  The
        revised spec can be nicely adapted to "delta encoding", but all
        the references here to delta encoding don't add anything to this
@@ -885,18 +964,6 @@ Appendix B.  FAQ
        Digest Authentication references, as this RFC seems to me
        completely unrelated to Digest Authentication but for the word
        "Digest"
-
-
-
-
-
-
-
-
-Polli & Pardue          Expires November 8, 2019               [Page 16]
-
-Internet-Draft                   RDHTTP                         May 2019
-
 
 Authors' Addresses
 
@@ -938,15 +1005,4 @@ Authors' Addresses
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-Polli & Pardue          Expires November 8, 2019               [Page 17]
+Polli & Pardue          Expires November 10, 2019              [Page 18]
