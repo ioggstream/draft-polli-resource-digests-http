@@ -2,9 +2,9 @@
 
 This is the working area for the individual Internet-Draft, "Resource Digests for HTTP".
 
-* [Editor's Copy](https://LPardue.github.io/draft-polli-resource-digests-http/#go.draft-polli-resource-digests-http.html)
+* [Editor's Copy](https://ioggstream.github.io/draft-polli-resource-digests-http/#go.draft-polli-resource-digests-http.html)
 * [Individual Draft](https://tools.ietf.org/html/draft-polli-resource-digests-http)
-* [Compare Editor's Copy to Individual Draft](https://LPardue.github.io/draft-polli-resource-digests-http/#go.draft-polli-resource-digests-http.diff)
+* [Compare Editor's Copy to Individual Draft](https://ioggstream.github.io/draft-polli-resource-digests-http/#go.draft-polli-resource-digests-http.diff)
 
 ## Building the Draft
 
@@ -21,4 +21,4 @@ This requires that you have the necessary software installed.  See
 ## Contributing
 
 See the
-[guidelines for contributions](https://github.com/LPardue/draft-polli-resource-digests-http/blob/master/CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/ioggstream/draft-polli-resource-digests-http/blob/master/CONTRIBUTING.md).
