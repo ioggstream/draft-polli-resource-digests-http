@@ -236,7 +236,7 @@ Request:
 
 ~~~
 
-A Range-Requests alters the payload body, conveying a partial representation.
+A Range-Request alters the payload body, conveying a partial representation.
 
 ~~~
 Request:
