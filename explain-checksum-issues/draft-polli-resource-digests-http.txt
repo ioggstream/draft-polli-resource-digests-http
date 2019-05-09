@@ -268,7 +268,7 @@ Internet-Draft                   RDHTTP                         May 2019
        H4sIAItWyFwC/6tWSlSyUlAypANQqgUAREcqfG0AAAA=
 
 
-   A Range-Requests alters the payload body, conveying a partial
+   A Range-Request alters the payload body, conveying a partial
    representation.
 
 
