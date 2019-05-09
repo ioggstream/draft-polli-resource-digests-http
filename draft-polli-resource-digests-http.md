@@ -242,7 +242,7 @@ A Range-Requests alters the payload body, conveying a partial representation.
 Request:
 
     GET /entries/1234 HTTP/1.1
-    Accept-Range: bytes=1-7
+    Range: bytes=1-7
 
 Response:
 
