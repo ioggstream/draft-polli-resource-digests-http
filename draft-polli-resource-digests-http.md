@@ -196,20 +196,81 @@ The definitions "representation", "selected representation", "representation dat
 interpreted as described in [RFC7230] and [RFC7231].
 
 
-# Resource representation and representation-data
+# Resource representation and representation-data {#resource-representation}
 
-The value of the digest is calculated against the selected representation of a
-resource, that is defined in [RFC7231] as:
+To avoid inconsistencies, an integrity mechanism for http messages
+should decouple the checksum calculation:
+
+- from the payload body - which may be altered by mechanism like Range Requests or the method (eg. HEAD);
+
+- and from the message body - which depends on `Transfer-Encoding` and whatever tranformations
+the intermediaries may apply.
+
+The following examples shows how representation metadata, payload tranformations and method
+impacts on the message and payload body.
+
+Here is a gzip-compressed json object
 
 ~~~
-  representation-data := Content-Encoding( Content-Type( bits ) )
+# gzip.compress(json.dumps(  {"a": "1"*100}  ).encode()))
+
+Request:
+
+    PUT /entries/1234 HTTP/1.1
+    Content-Type: application/json
+    Content-Encoding: gzip
+
+    H4sIAItWyFwC/6tWSlSyUlAypANQqgUAREcqfG0AAAA=
+
 ~~~
 
-and is thus independent from `Transfer-Encoding` and other transformation applied by Intermediaries
-or tied to Range Requests.
+Now the same payload body conveys a malformed json object.
 
-Note that [Content-Encoding](https://tools.ietf.org/html/rfc7231#section-3.1.2.2) can be an ordered list.
+~~~
+Request:
 
+    PUT /entries/1234 HTTP/1.1
+    Content-Type: application/json
+
+    H4sIAItWyFwC/6tWSlSyUlAypANQqgUAREcqfG0AAAA=
+
+~~~
+
+A Range-Request alters the payload body, conveying a partial representation.
+
+~~~
+Request:
+
+    GET /entries/1234 HTTP/1.1
+    Range: bytes=1-7
+
+Response:
+
+    HTTP/1.1 206 Partial Content
+    Content-Encoding: gzip
+    Content-Type: application/json
+    Content-Range: bytes=1-7
+
+    iwgAla3RXA==
+~~~
+
+
+Now the method too alters the payload body.
+
+~~~
+Request:
+
+    HEAD /entries/1234 HTTP/1.1
+    Accept: application/json
+    Accept-Encoding: gzip
+
+Response:
+
+    HTTP/1.1 200 OK
+    Content-Type: application/json
+    Content-Encoding: gzip
+
+~~~
 
 
 # Digest Algorithm values {#algorithms}
@@ -296,8 +357,14 @@ parameters).
                             <encoded digest output>
 ~~~
 
-The digest is computed on the entire `representation data` of the resource
-and is tied to the Content-Type and the Content-Encoding of the message.
+As explained in {#resource-representations} the digest
+is computed on the entire selected `representation data` of the resource
+defined in [RFC7231]:
+
+~~~
+  representation-data := Content-Encoding( Content-Type( bits ) )
+~~~
+
 
 The encoded digest output uses the encoding format defined for the
 specific digest-algorithm.
