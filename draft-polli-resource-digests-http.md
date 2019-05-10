@@ -117,8 +117,9 @@ The source code and issues list for this draft can be found at
 Integrity protection for HTTP content is typically achieved via TCP or HTTPS [RFC2818].
 However, additional integrity protection might be desirable for some use cases.
 This might be for additional protection against failures or attack (see [SRI]),
-programming errors, corruption of stored data or because content needs
-to remain unmodified throughout multiple HTTPS-protected exchanges.
+programming errors,
+corruption of stored data or
+because content needs to be signed or remain unmodified throughout multiple HTTPS-protected exchanges.
 
 ## Brief history of integrity headers
 
