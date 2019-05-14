@@ -5,7 +5,7 @@
 Network Working Group                                           R. Polli
 Internet-Draft                                             Team Digitale
 Intended status: Standards Track                               L. Pardue
-Expires: November 11, 2019                                  May 10, 2019
+Expires: November 15, 2019                                  May 14, 2019
 
 
                        Resource Digests for HTTP
@@ -47,13 +47,13 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on November 11, 2019.
+   This Internet-Draft will expire on November 15, 2019.
 
 
 
 
 
-Polli & Pardue          Expires November 11, 2019               [Page 1]
+Polli & Pardue          Expires November 15, 2019               [Page 1]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Polli & Pardue          Expires November 11, 2019               [Page 2]
+Polli & Pardue          Expires November 15, 2019               [Page 2]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -165,7 +165,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 11, 2019               [Page 3]
+Polli & Pardue          Expires November 15, 2019               [Page 3]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -221,7 +221,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 11, 2019               [Page 4]
+Polli & Pardue          Expires November 15, 2019               [Page 4]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -277,7 +277,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 11, 2019               [Page 5]
+Polli & Pardue          Expires November 15, 2019               [Page 5]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -333,7 +333,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 11, 2019               [Page 6]
+Polli & Pardue          Expires November 15, 2019               [Page 6]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -389,7 +389,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 11, 2019               [Page 7]
+Polli & Pardue          Expires November 15, 2019               [Page 7]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -445,7 +445,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 11, 2019               [Page 8]
+Polli & Pardue          Expires November 15, 2019               [Page 8]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -501,7 +501,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 11, 2019               [Page 9]
+Polli & Pardue          Expires November 15, 2019               [Page 9]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -557,7 +557,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 11, 2019              [Page 10]
+Polli & Pardue          Expires November 15, 2019              [Page 10]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -613,7 +613,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 11, 2019              [Page 11]
+Polli & Pardue          Expires November 15, 2019              [Page 11]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -669,7 +669,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 11, 2019              [Page 12]
+Polli & Pardue          Expires November 15, 2019              [Page 12]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -725,7 +725,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 11, 2019              [Page 13]
+Polli & Pardue          Expires November 15, 2019              [Page 13]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -781,7 +781,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 11, 2019              [Page 14]
+Polli & Pardue          Expires November 15, 2019              [Page 14]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -837,7 +837,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 11, 2019              [Page 15]
+Polli & Pardue          Expires November 15, 2019              [Page 15]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -893,7 +893,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 11, 2019              [Page 16]
+Polli & Pardue          Expires November 15, 2019              [Page 16]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -920,10 +920,10 @@ Appendix B.  FAQ
 
    2.  Why remove references to instance manipulation?
 
-       Unnecessary again for correctly using and applying the spec.  An
-       example with Range Request is more than enough.  This doc uses
+       Those were unnecessary for correctly using and applying the spec.
+       An example with Range Request is more than enough.  This doc uses
        the term "partial representation" which should group all those
-       cases
+       cases.
 
    3.  How to use "Digest" with "PATCH" method?
 
@@ -949,7 +949,7 @@ Appendix B.  FAQ
 
 
 
-Polli & Pardue          Expires November 11, 2019              [Page 17]
+Polli & Pardue          Expires November 15, 2019              [Page 17]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -961,9 +961,14 @@ Internet-Draft                   RDHTTP                         May 2019
 
    5.  Why remove references to Digest Authentication?
 
-       Digest Authentication references, as this RFC seems to me
-       completely unrelated to Digest Authentication but for the word
-       "Digest"
+       This RFC seems to me completely unrelated to Digest
+       Authentication but for the word "Digest".
+
+   6.  What changes in "Want-Digest"?
+
+       We allow to use the "Want-Digest" in responses to advertise the
+       supported digest-algorithms and the inability to accept requests
+       with unsupported digest-algorithms.
 
 Authors' Addresses
 
@@ -1000,9 +1005,4 @@ Authors' Addresses
 
 
 
-
-
-
-
-
-Polli & Pardue          Expires November 11, 2019              [Page 18]
+Polli & Pardue          Expires November 15, 2019              [Page 18]
