@@ -622,9 +622,12 @@ usable eg. in signatures.
 To discourage mistakes, this spec deprecates broken-cryptographic algorithms
 like `MD5` and `SHA-1`.
 
-It is reasonable to retain non cryptographic digest-algoritms
-like `UNIXsum` even if they are no stronger than
-the transport-layer integrity protection that guards each hop.
+Non cryptographic digest-algoritms (eg. `UNIXsum`)
+are retained for other use cases, like end-to-end integrity over multiple hops:
+while each hop is protected by TLS, the contents could get somehow malformed
+by buggy manipulation, buggy compressor, etc.
+
+Even a simple mechanism for end-to-end validation is thus valuable.
 
 ## Usage in signatures
 
