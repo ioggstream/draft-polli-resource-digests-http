@@ -692,9 +692,9 @@ the MICE Content Encoding.
 
 2. Why remove references to instance manipulation?
 
-   Unnecessary again for correctly using and applying the spec. An
+   Those were unnecessary for correctly using and applying the spec. An
    example with Range Request is more than enough. This doc uses the term
-   "partial representation" which should group all those cases
+   "partial representation" which should group all those cases.
 
 3. How to use `Digest` with `PATCH` method?
 
@@ -716,6 +716,10 @@ the MICE Content Encoding.
    
 5. Why remove references to Digest Authentication?
 
-   Digest Authentication references, as this RFC seems to me completely unrelated 
-   to Digest Authentication but for the word "Digest"
+   This RFC seems to me completely unrelated to Digest Authentication but for the word "Digest".
+
+6. What changes in `Want-Digest`?
+
+   We allow to use the `Want-Digest` in responses to advertise the supported digest-algorithms
+   and the inability to accept requests with unsupported digest-algorithms.
 
