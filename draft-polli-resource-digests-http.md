@@ -459,7 +459,7 @@ knowing that the recipient will ignore it.
 This RFC deprecates the negotiation of Content-MD5 as
 this header has been obsoleted by [RFC7231]
 
-# Deprecate broken cryptographic algorithms
+# Broken cryptographic algorithms are NOT RECOMMENDED
 
 The MD5 algorithm is NOT RECOMMENDED as it's now vulnerable
 to collision attacks [CMU-836068]
@@ -614,13 +614,13 @@ Response:
 
 # Security Considerations
 
-## Deprecate broken cryptographic algorithms
+## Broken cryptographic algorithms
 
 Cryptographic algorithms are supposed to provide a proof of integrity
 usable eg. in signatures.
 
-To discourage mistakes, this spec deprecates broken-cryptographic algorithms
-like `MD5` and `SHA-1`.
+To discourage mistakes, this spec explicits that broken-cryptographic algorithms
+like `MD5` and `SHA-1` are NOT RECOMMENDED.
 
 Non cryptographic digest-algoritms (eg. `UNIXsum`)
 are retained for other use cases, like end-to-end integrity over multiple hops:
@@ -634,10 +634,12 @@ Even a simple mechanism for end-to-end validation is thus valuable.
 Digital signatures are widely used together with checksums to provide
 the certain identification of the origin of a message [NIST800-32].
 
-It's important to note that, being the Digest header an hash of a resource representation,
+It's important to note that, being the `Digest` header an hash of a resource representation,
 signing only the `Digest` header, without all the representation metatada (eg.
 the values of `Content-Type` and `Content-Encoding`) may expose the communication
 to tampering.
+
+A `Digest` header using NOT RECOMMENDED {digest-algorithms} MUST NOT be used in signatures.
 
 
 ## Message Truncation
