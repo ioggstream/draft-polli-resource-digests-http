@@ -840,7 +840,8 @@ Response:
 </h2>
 <p id="rfc.section.8.1.p.1">Cryptographic algorithms are supposed to provide a proof of integrity usable eg. in signatures.</p>
 <p id="rfc.section.8.1.p.2">To discourage mistakes, this spec deprecates broken-cryptographic algorithms like <samp>MD5</samp> and <samp>SHA-1</samp>.</p>
-<p id="rfc.section.8.1.p.3">It is reasonable to retain non cryptographic digest-algoritms like <samp>UNIXsum</samp> even if they are no stronger than the transport-layer integrity protection that guards each hop.</p>
+<p id="rfc.section.8.1.p.3">Non cryptographic digest-algoritms (eg. <samp>UNIXsum</samp>) are retained for other use cases, like end-to-end integrity over multiple hops: while each hop is protected by TLS, the contents could get somehow malformed by buggy manipulation, buggy compressor, etc.</p>
+<p id="rfc.section.8.1.p.4">Even a simple mechanism for end-to-end validation is thus valuable.</p>
 <h2 id="rfc.section.8.2">
 <a href="#rfc.section.8.2">8.2.</a> <a href="#usage-in-signatures" id="usage-in-signatures">Usage in signatures</a>
 </h2>
