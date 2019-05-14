@@ -88,7 +88,7 @@ Table of Contents
      4.1.  Want-Digest . . . . . . . . . . . . . . . . . . . . . . .   8
      4.2.  Digest  . . . . . . . . . . . . . . . . . . . . . . . . .   9
    5.  Deprecate Negotiation of Content-MD5  . . . . . . . . . . . .   9
-   6.  Deprecate broken cryptographic algorithms . . . . . . . . . .  10
+   6.  Broken cryptographic algorithms are NOT RECOMMENDED . . . . .  10
    7.  Examples  . . . . . . . . . . . . . . . . . . . . . . . . . .  10
      7.1.  Unsolicited Digest response . . . . . . . . . . . . . . .  10
        7.1.1.  Representation data is fully contained in the payload  10
@@ -104,7 +104,7 @@ Table of Contents
        7.2.3.  A client requests an unsupported Digest, the server
                MAY reply with a 400  . . . . . . . . . . . . . . . .  12
    8.  Security Considerations . . . . . . . . . . . . . . . . . . .  13
-     8.1.  Deprecate broken cryptographic algorithms . . . . . . . .  13
+     8.1.  Broken cryptographic algorithms . . . . . . . . . . . . .  13
      8.2.  Usage in signatures . . . . . . . . . . . . . . . . . . .  13
 
 
@@ -115,7 +115,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
      8.3.  Message Truncation  . . . . . . . . . . . . . . . . . . .  13
-     8.4.  Algorithm Agility . . . . . . . . . . . . . . . . . . . .  13
+     8.4.  Algorithm Agility . . . . . . . . . . . . . . . . . . . .  14
    9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  14
      9.1.  The "id-sha-256" Digest Algorithm . . . . . . . . . . . .  14
      9.2.  The "id-sha-512" Digest Algorithm . . . . . . . . . . . .  14
@@ -506,7 +506,7 @@ Polli & Pardue          Expires November 15, 2019               [Page 9]
 Internet-Draft                   RDHTTP                         May 2019
 
 
-6.  Deprecate broken cryptographic algorithms
+6.  Broken cryptographic algorithms are NOT RECOMMENDED
 
    The MD5 algorithm is NOT RECOMMENDED as it's now vulnerable to
    collision attacks [CMU-836068]
@@ -688,13 +688,13 @@ Internet-Draft                   RDHTTP                         May 2019
 
 8.  Security Considerations
 
-8.1.  Deprecate broken cryptographic algorithms
+8.1.  Broken cryptographic algorithms
 
    Cryptographic algorithms are supposed to provide a proof of integrity
    usable eg. in signatures.
 
-   To discourage mistakes, this spec deprecates broken-cryptographic
-   algorithms like "MD5" and "SHA-1".
+   To discourage mistakes, this spec explicits that broken-cryptographic
+   algorithms like "MD5" and "SHA-1" are NOT RECOMMENDED.
 
    Non cryptographic digest-algoritms (eg.  "UNIXsum") are retained for
    other use cases, like end-to-end integrity over multiple hops: while
@@ -708,18 +708,18 @@ Internet-Draft                   RDHTTP                         May 2019
    Digital signatures are widely used together with checksums to provide
    the certain identification of the origin of a message [NIST800-32].
 
-   It's important to note that, being the Digest header an hash of a
+   It's important to note that, being the "Digest" header an hash of a
    resource representation, signing only the "Digest" header, without
    all the representation metatada (eg.  the values of "Content-Type"
    and "Content-Encoding") may expose the communication to tampering.
+
+   A "Digest" header using NOT RECOMMENDED {digest-algorithms} MUST NOT
+   be used in signatures.
 
 8.3.  Message Truncation
 
    ...
 
-8.4.  Algorithm Agility
-
-   ...
 
 
 
@@ -729,6 +729,10 @@ Polli & Pardue          Expires November 15, 2019              [Page 13]
 
 Internet-Draft                   RDHTTP                         May 2019
 
+
+8.4.  Algorithm Agility
+
+   ...
 
 9.  IANA Considerations
 
@@ -774,10 +778,6 @@ Internet-Draft                   RDHTTP                         May 2019
 
    Applicable protocol: http
 
-   Status: standard
-
-   Author/Change controller: IETF
-
 
 
 
@@ -785,6 +785,10 @@ Polli & Pardue          Expires November 15, 2019              [Page 14]
 
 Internet-Draft                   RDHTTP                         May 2019
 
+
+   Status: standard
+
+   Author/Change controller: IETF
 
    Specification document(s): Section 4.2 of this document
 
@@ -830,10 +834,6 @@ Internet-Draft                   RDHTTP                         May 2019
    [RFC1321]  Rivest, R., "The MD5 Message-Digest Algorithm", RFC 1321,
               DOI 10.17487/RFC1321, April 1992,
               <https://www.rfc-editor.org/info/rfc1321>.
-
-
-
-
 
 
 

@@ -295,7 +295,7 @@ ul.toc li {
 <link href="#rfc.section.4.1" rel="Chapter" title="4.1 Want-Digest">
 <link href="#rfc.section.4.2" rel="Chapter" title="4.2 Digest">
 <link href="#rfc.section.5" rel="Chapter" title="5 Deprecate Negotiation of Content-MD5">
-<link href="#rfc.section.6" rel="Chapter" title="6 Deprecate broken cryptographic algorithms">
+<link href="#rfc.section.6" rel="Chapter" title="6 Broken cryptographic algorithms are NOT RECOMMENDED">
 <link href="#rfc.section.7" rel="Chapter" title="7 Examples">
 <link href="#rfc.section.7.1" rel="Chapter" title="7.1 Unsolicited Digest response">
 <link href="#rfc.section.7.1.1" rel="Chapter" title="7.1.1 Representation data is fully contained in the payload">
@@ -307,7 +307,7 @@ ul.toc li {
 <link href="#rfc.section.7.2.2" rel="Chapter" title="7.2.2 A client requests an unsupported Digest, the server MAY reply with an unsupported digest">
 <link href="#rfc.section.7.2.3" rel="Chapter" title="7.2.3 A client requests an unsupported Digest, the server MAY reply with a 400">
 <link href="#rfc.section.8" rel="Chapter" title="8 Security Considerations">
-<link href="#rfc.section.8.1" rel="Chapter" title="8.1 Deprecate broken cryptographic algorithms">
+<link href="#rfc.section.8.1" rel="Chapter" title="8.1 Broken cryptographic algorithms">
 <link href="#rfc.section.8.2" rel="Chapter" title="8.2 Usage in signatures">
 <link href="#rfc.section.8.3" rel="Chapter" title="8.3 Message Truncation">
 <link href="#rfc.section.8.4" rel="Chapter" title="8.4 Algorithm Agility">
@@ -411,7 +411,7 @@ ul.toc li {
 </li>
 </ul><li>5.   <a href="#rfc.section.5">Deprecate Negotiation of Content-MD5</a>
 </li>
-<li>6.   <a href="#rfc.section.6">Deprecate broken cryptographic algorithms</a>
+<li>6.   <a href="#rfc.section.6">Broken cryptographic algorithms are NOT RECOMMENDED</a>
 </li>
 <li>7.   <a href="#rfc.section.7">Examples</a>
 </li>
@@ -435,7 +435,7 @@ ul.toc li {
 </li>
 </ul></ul><li>8.   <a href="#rfc.section.8">Security Considerations</a>
 </li>
-<ul><li>8.1.   <a href="#rfc.section.8.1">Deprecate broken cryptographic algorithms</a>
+<ul><li>8.1.   <a href="#rfc.section.8.1">Broken cryptographic algorithms</a>
 </li>
 <li>8.2.   <a href="#rfc.section.8.2">Usage in signatures</a>
 </li>
@@ -688,7 +688,7 @@ Want-Digest = "Want-Digest" ":"
 </h1>
 <p id="rfc.section.5.p.1">This RFC deprecates the negotiation of Content-MD5 as this header has been obsoleted by <a href="#RFC7231" class="xref">[RFC7231]</a></p>
 <h1 id="rfc.section.6">
-<a href="#rfc.section.6">6.</a> <a href="#deprecate-broken-cryptographic-algorithms" id="deprecate-broken-cryptographic-algorithms">Deprecate broken cryptographic algorithms</a>
+<a href="#rfc.section.6">6.</a> <a href="#broken-cryptographic-algorithms-are-not-recommended" id="broken-cryptographic-algorithms-are-not-recommended">Broken cryptographic algorithms are NOT RECOMMENDED</a>
 </h1>
 <p id="rfc.section.6.p.1">The MD5 algorithm is NOT RECOMMENDED as it&#8217;s now vulnerable to collision attacks <a href="#CMU-836068" class="xref">[CMU-836068]</a></p>
 <p id="rfc.section.6.p.2">The SHA-1 algorithm is NOT RECOMMENDED as it&#8217;s now vulnerable to collision attacks <a href="#IACR-2019-459" class="xref">[IACR-2019-459]</a></p>
@@ -836,17 +836,18 @@ Response:
 <a href="#rfc.section.8">8.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
 </h1>
 <h2 id="rfc.section.8.1">
-<a href="#rfc.section.8.1">8.1.</a> <a href="#deprecate-broken-cryptographic-algorithms-1" id="deprecate-broken-cryptographic-algorithms-1">Deprecate broken cryptographic algorithms</a>
+<a href="#rfc.section.8.1">8.1.</a> <a href="#broken-cryptographic-algorithms" id="broken-cryptographic-algorithms">Broken cryptographic algorithms</a>
 </h2>
 <p id="rfc.section.8.1.p.1">Cryptographic algorithms are supposed to provide a proof of integrity usable eg. in signatures.</p>
-<p id="rfc.section.8.1.p.2">To discourage mistakes, this spec deprecates broken-cryptographic algorithms like <samp>MD5</samp> and <samp>SHA-1</samp>.</p>
+<p id="rfc.section.8.1.p.2">To discourage mistakes, this spec explicits that broken-cryptographic algorithms like <samp>MD5</samp> and <samp>SHA-1</samp> are NOT RECOMMENDED.</p>
 <p id="rfc.section.8.1.p.3">Non cryptographic digest-algoritms (eg. <samp>UNIXsum</samp>) are retained for other use cases, like end-to-end integrity over multiple hops: while each hop is protected by TLS, the contents could get somehow malformed by buggy manipulation, buggy compressor, etc.</p>
 <p id="rfc.section.8.1.p.4">Even a simple mechanism for end-to-end validation is thus valuable.</p>
 <h2 id="rfc.section.8.2">
 <a href="#rfc.section.8.2">8.2.</a> <a href="#usage-in-signatures" id="usage-in-signatures">Usage in signatures</a>
 </h2>
 <p id="rfc.section.8.2.p.1">Digital signatures are widely used together with checksums to provide the certain identification of the origin of a message <a href="#NIST800-32" class="xref">[NIST800-32]</a>.</p>
-<p id="rfc.section.8.2.p.2">It&#8217;s important to note that, being the Digest header an hash of a resource representation, signing only the <samp>Digest</samp> header, without all the representation metatada (eg.  the values of <samp>Content-Type</samp> and <samp>Content-Encoding</samp>) may expose the communication to tampering.</p>
+<p id="rfc.section.8.2.p.2">It&#8217;s important to note that, being the <samp>Digest</samp> header an hash of a resource representation, signing only the <samp>Digest</samp> header, without all the representation metatada (eg.  the values of <samp>Content-Type</samp> and <samp>Content-Encoding</samp>) may expose the communication to tampering.</p>
+<p id="rfc.section.8.2.p.3">A <samp>Digest</samp> header using NOT RECOMMENDED {digest-algorithms} MUST NOT be used in signatures.</p>
 <h2 id="rfc.section.8.3">
 <a href="#rfc.section.8.3">8.3.</a> <a href="#message-truncation" id="message-truncation">Message Truncation</a>
 </h2>
