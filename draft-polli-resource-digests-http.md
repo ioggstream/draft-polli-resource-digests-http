@@ -75,6 +75,13 @@ normative:
       ins: Carnagie Mellon University, Software Engineering Institute
     date: 2008-12-31
     target: https://www.kb.cert.org/vuls/id/836068/
+  IACR-2019-459:
+    title: From Collisions to Chosen-Prefix Collisions Application to Full SHA-1
+    author:
+      name: Leurent, G, Peyrin, T
+      ins: Inria, France; Nanyang Technological University, Singapore; Temasek Laboratories, Singapore
+    date: 2019-05-06
+    target: https://eprint.iacr.org/2019/459.pdf
 
 informative:
   RFC2818:
@@ -305,7 +312,6 @@ Response:
 
     Reference: [FIPS180-3], [RFC4648], this document.
 
-
   MD5:
   : The MD5 algorithm, as specified in [RFC1321].
     The output of this algorithm is encoded using the
@@ -449,11 +455,17 @@ knowing that the recipient will ignore it.
 ...
 
 # Deprecate Negotiation of Content-MD5
+
 This RFC deprecates the negotiation of Content-MD5 as
 this header has been obsoleted by [RFC7231]
 
+# Deprecate broken cryptographic algorithms
+
 The MD5 algorithm is NOT RECOMMENDED as it's now vulnerable
 to collision attacks [CMU-836068]
+
+The SHA-1 algorithm is NOT RECOMMENDED as it's now vulnerable
+to collision attacks [IACR-2019-459]
 
 # Examples
 
@@ -601,6 +613,18 @@ Response:
 
 
 # Security Considerations
+
+## Deprecate broken cryptographic algorithms
+
+Cryptographic algorithms are supposed to provide a proof of integrity
+usable eg. in signatures.
+
+To discourage mistakes, this spec deprecates broken-cryptographic algorithms
+like `MD5` and `SHA-1`.
+
+It is reasonable to retain non cryptographic digest-algoritms
+like `UNIXsum` even if they are no stronger than
+the transport-layer integrity protection that guards each hop.
 
 ## Usage in signatures
 
