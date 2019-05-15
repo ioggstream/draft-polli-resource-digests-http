@@ -602,6 +602,18 @@ Response:
 
 # Security Considerations
 
+## `Digest` does not protect the full HTTP message
+
+This document specifies a data integrity mechanism that protects HTTP
+`representation data`, but not HTTP `representation metadata` headers,
+from certain kinds of accidental corruption.
+
+While it is not intended as general protection
+against malicious tampering with HTTP messages,
+this goal can be achieved using `Digest` together
+with a transport-layer security mechanism and digital signatures.
+
+
 ## Usage in signatures
 
 Digital signatures are widely used together with checksums to provide
