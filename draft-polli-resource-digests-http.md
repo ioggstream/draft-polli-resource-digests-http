@@ -92,7 +92,7 @@ informative:
 --- abstract
 
 This document defines the Digest and Want-Digest header fields for HTTP, thus allowing client
- and server to negotiate an integrity checksum of the exchanged resource representation.
+ and server to negotiate an integrity checksum of the exchanged resource representation data.
 
 This document obsoletes [RFC3230]. It replaces the term "instance" with "representation",
 which makes it consistent  with the HTTP Semantic and Context defined in [RFC7231].
