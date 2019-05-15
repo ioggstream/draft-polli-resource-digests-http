@@ -602,7 +602,7 @@ Response:
 
 # Security Considerations
 
-## `Digest` does not protect the full HTTP message
+## Digest does not protect the full HTTP message
 
 This document specifies a data integrity mechanism that protects HTTP
 `representation data`, but not HTTP `representation metadata` headers,
