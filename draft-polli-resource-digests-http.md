@@ -166,6 +166,11 @@ The goals of this proposal are:
 
 The goals do not include:
 
+  HTTP Message integrity:
+  : The digest mechanism described here do not cover the full HTTP message
+    nor its semantic, as representation metadata are not included in the
+    checksum.
+
   Header integrity:
   : The digest mechanisms described here cover only representation and selected representation data,
     and do not protect the integrity of associated
