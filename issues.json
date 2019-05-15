@@ -1,6 +1,162 @@
 [
 
   {
+    "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/21",
+    "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
+    "labels_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/21/labels{/name}",
+    "comments_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/21/comments",
+    "events_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/21/events",
+    "html_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/21",
+    "id": 444310105,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0Mjc4OTk0NjA1",
+    "number": 21,
+    "title": "Warnings in security considerations.",
+    "user": {
+      "login": "ioggstream",
+      "id": 1140844,
+      "node_id": "MDQ6VXNlcjExNDA4NDQ=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1140844?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/ioggstream",
+      "html_url": "https://github.com/ioggstream",
+      "followers_url": "https://api.github.com/users/ioggstream/followers",
+      "following_url": "https://api.github.com/users/ioggstream/following{/other_user}",
+      "gists_url": "https://api.github.com/users/ioggstream/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/ioggstream/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/ioggstream/subscriptions",
+      "organizations_url": "https://api.github.com/users/ioggstream/orgs",
+      "repos_url": "https://api.github.com/users/ioggstream/repos",
+      "events_url": "https://api.github.com/users/ioggstream/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/ioggstream/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2019-05-15T08:43:28Z",
+    "updated_at": "2019-05-15T08:44:16Z",
+    "closed_at": null,
+    "author_association": "OWNER",
+    "pull_request": {
+      "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/pulls/21",
+      "html_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/21",
+      "diff_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/21.diff",
+      "patch_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/21.patch"
+    },
+    "body": "## This PR\r\n\r\nFurther explicits that `Digest` just covers representation data. This is actually\r\nstated all over the document, included in [Goals](https://github.com/ioggstream/draft-polli-resource-digests-http/blob/master/draft-polli-resource-digests-http.md#goals)"
+  },
+  {
+    "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/20",
+    "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
+    "labels_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/20/labels{/name}",
+    "comments_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/20/comments",
+    "events_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/20/events",
+    "html_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/issues/20",
+    "id": 443862448,
+    "node_id": "MDU6SXNzdWU0NDM4NjI0NDg=",
+    "number": 20,
+    "title": "Using Digest in signatures",
+    "user": {
+      "login": "ioggstream",
+      "id": 1140844,
+      "node_id": "MDQ6VXNlcjExNDA4NDQ=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1140844?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/ioggstream",
+      "html_url": "https://github.com/ioggstream",
+      "followers_url": "https://api.github.com/users/ioggstream/followers",
+      "following_url": "https://api.github.com/users/ioggstream/following{/other_user}",
+      "gists_url": "https://api.github.com/users/ioggstream/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/ioggstream/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/ioggstream/subscriptions",
+      "organizations_url": "https://api.github.com/users/ioggstream/orgs",
+      "repos_url": "https://api.github.com/users/ioggstream/repos",
+      "events_url": "https://api.github.com/users/ioggstream/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/ioggstream/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2019-05-14T11:31:05Z",
+    "updated_at": "2019-05-14T11:31:05Z",
+    "closed_at": null,
+    "author_association": "OWNER",
+    "body": "## I expect\r\n\r\nTo better detail the usage of `Digest` in signatures, including:\r\n\r\n- what should be included in signature for integrity (representation metadata)\r\n- issues with signing partial representations (eg. Range-Request, PATCH, ..)\r\n- using strong crypto algorithms\r\n\r\n## Questions\r\n\r\n- should we explicit here further requirements (eg timestamps, request-target, :method:, ..) \r\n  or that's off-topic?\r\n\r\n## Notes\r\n\r\nSplit from #15 "
+  },
+  {
+    "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/19",
+    "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
+    "labels_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/19/labels{/name}",
+    "comments_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/19/comments",
+    "events_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/19/events",
+    "html_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/19",
+    "id": 443854329,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0Mjc4NjMzNDc0",
+    "number": 19,
+    "title": "Deprecate broken-cryptographic algorithms.",
+    "user": {
+      "login": "ioggstream",
+      "id": 1140844,
+      "node_id": "MDQ6VXNlcjExNDA4NDQ=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1140844?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/ioggstream",
+      "html_url": "https://github.com/ioggstream",
+      "followers_url": "https://api.github.com/users/ioggstream/followers",
+      "following_url": "https://api.github.com/users/ioggstream/following{/other_user}",
+      "gists_url": "https://api.github.com/users/ioggstream/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/ioggstream/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/ioggstream/subscriptions",
+      "organizations_url": "https://api.github.com/users/ioggstream/orgs",
+      "repos_url": "https://api.github.com/users/ioggstream/repos",
+      "events_url": "https://api.github.com/users/ioggstream/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/ioggstream/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2019-05-14T11:12:09Z",
+    "updated_at": "2019-05-14T12:10:01Z",
+    "closed_at": null,
+    "author_association": "OWNER",
+    "pull_request": {
+      "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/pulls/19",
+      "html_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/19",
+      "diff_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/19.diff",
+      "patch_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/19.patch"
+    },
+    "body": "## This PR\r\n\r\nDeprecate broken-cryptographic algorithms\r\n\r\n## See\r\n\r\n#16"
+  },
+  {
     "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/18",
     "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
     "labels_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/18/labels{/name}",
@@ -150,9 +306,9 @@
 
     ],
     "milestone": null,
-    "comments": 2,
+    "comments": 4,
     "created_at": "2019-05-10T13:05:32Z",
-    "updated_at": "2019-05-14T09:54:50Z",
+    "updated_at": "2019-05-14T17:44:13Z",
     "closed_at": null,
     "author_association": "OWNER",
     "body": "## I expect\r\n\r\nNon-crypto algorithms be deprecated and removed from this draft.\r\n\r\n## Because\r\n\r\n- `UNIXsum`, `UNIXcksum` do not provide more integrity than the underlying TLS\r\n- `MD5` and `SHA-1` are subject to collision\r\n\r\n## Note\r\n\r\nWhile crc2 and adler32 are mentioned in [http-dig-alg registry](https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml) I can't find any reference in RFC3230 nor in RFC5843.\r\n\r\n@jyasskin does it sound good to you?"
@@ -198,9 +354,9 @@
 
     ],
     "milestone": null,
-    "comments": 4,
+    "comments": 6,
     "created_at": "2019-05-10T00:28:48Z",
-    "updated_at": "2019-05-13T18:32:12Z",
+    "updated_at": "2019-05-14T17:23:28Z",
     "closed_at": null,
     "author_association": "NONE",
     "body": "https://ioggstream.github.io/draft-polli-resource-digests-http/draft-polli-resource-digests-http.html#goals says a goal is \"Digest coverage for either the resource’s representation data or selected representation data communicated via HTTP.\", but it's not clear to me why a client and server would use a digest. Some options include:\r\n\r\n* To detect message corruption. This is the only reason I can think of to use the ADLER32, CRC32c, MD5, SHA, UNIXsum, or UNIXcksum algorithms, but I think it's unnecessary with modern transport protocols?\r\n* To support signatures, for example in [Signed Exchanges](https://github.com/WICG/webpackage).\r\n* To give the client a hint about which SRI hash will be used, to maybe help with https://github.com/w3c/preload/issues/127.\r\n\r\nAre there others? If those are the only ones, and message corruption isn't needed anymore, we could deprecate all the non-cryptographic digest algorithms."
