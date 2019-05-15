@@ -79,15 +79,15 @@ Table of Contents
      1.1.  Brief history of integrity headers  . . . . . . . . . . .   3
      1.2.  This proposal . . . . . . . . . . . . . . . . . . . . . .   3
      1.3.  Goals . . . . . . . . . . . . . . . . . . . . . . . . . .   4
-     1.4.  Notational Conventions  . . . . . . . . . . . . . . . . .   4
+     1.4.  Notational Conventions  . . . . . . . . . . . . . . . . .   5
    2.  Resource representation and representation-data . . . . . . .   5
    3.  Digest Algorithm values . . . . . . . . . . . . . . . . . . .   6
-     3.1.  Representation digest . . . . . . . . . . . . . . . . . .   7
+     3.1.  Representation digest . . . . . . . . . . . . . . . . . .   8
        3.1.1.  digest-algorithm encoding examples  . . . . . . . . .   8
    4.  Header Specifications . . . . . . . . . . . . . . . . . . . .   8
      4.1.  Want-Digest . . . . . . . . . . . . . . . . . . . . . . .   8
      4.2.  Digest  . . . . . . . . . . . . . . . . . . . . . . . . .   9
-   5.  Deprecate Negotiation of Content-MD5  . . . . . . . . . . . .   9
+   5.  Deprecate Negotiation of Content-MD5  . . . . . . . . . . . .  10
    6.  Examples  . . . . . . . . . . . . . . . . . . . . . . . . . .  10
      6.1.  Unsolicited Digest response . . . . . . . . . . . . . . .  10
        6.1.1.  Representation data is fully contained in the payload  10
@@ -195,6 +195,10 @@ Internet-Draft                   RDHTTP                         May 2019
 
    The goals do not include:
 
+   HTTP Message integrity:  The digest mechanism described here do not
+      cover the full HTTP message nor its semantic, as representation
+      metadata are not included in the checksum.
+
    Header integrity:  The digest mechanisms described here cover only
       representation and selected representation data, and do not
       protect the integrity of associated representation metadata
@@ -210,13 +214,9 @@ Internet-Draft                   RDHTTP                         May 2019
    Authorization:  The digest mechanisms described here are not meant to
       support authorization or other kinds of access controls.
 
-1.4.  Notational Conventions
 
-   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
-   "OPTIONAL" in this document are to be interpreted as described in BCP
-   14 ([RFC2119] and [RFC8174]) when, and only when, they appear in all
-   capitals, as shown here.
+
+
 
 
 
@@ -225,6 +225,14 @@ Polli & Pardue          Expires November 16, 2019               [Page 4]
 
 Internet-Draft                   RDHTTP                         May 2019
 
+
+1.4.  Notational Conventions
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in BCP
+   14 ([RFC2119] and [RFC8174]) when, and only when, they appear in all
+   capitals, as shown here.
 
    The definitions "representation", "selected representation",
    "representation data", "representation metadata" and "payload body"
@@ -260,16 +268,8 @@ Internet-Draft                   RDHTTP                         May 2019
 
    Now the same payload body conveys a malformed json object.
 
-   Request:
-
-       PUT /entries/1234 HTTP/1.1
-       Content-Type: application/json
-
-       H4sIAItWyFwC/6tWSlSyUlAypANQqgUAREcqfG0AAAA=
 
 
-   A Range-Request alters the payload body, conveying a partial
-   representation.
 
 
 
@@ -281,6 +281,17 @@ Polli & Pardue          Expires November 16, 2019               [Page 5]
 
 Internet-Draft                   RDHTTP                         May 2019
 
+
+   Request:
+
+       PUT /entries/1234 HTTP/1.1
+       Content-Type: application/json
+
+       H4sIAItWyFwC/6tWSlSyUlAypANQqgUAREcqfG0AAAA=
+
+
+   A Range-Request alters the payload body, conveying a partial
+   representation.
 
    Request:
 
@@ -319,6 +330,14 @@ Internet-Draft                   RDHTTP                         May 2019
 
          digest-algorithm = token
 
+
+
+
+Polli & Pardue          Expires November 16, 2019               [Page 6]
+
+Internet-Draft                   RDHTTP                         May 2019
+
+
    The BNF for "parameter" is as is used in [RFC7230].  All digest-
    algorithm values are case-insensitive.
 
@@ -327,16 +346,6 @@ Internet-Draft                   RDHTTP                         May 2019
 
    *NB: This RFC updates* [RFC5843] *which is still delegated for all
    algorithms updates*
-
-
-
-
-
-
-Polli & Pardue          Expires November 16, 2019               [Page 6]
-
-Internet-Draft                   RDHTTP                         May 2019
-
 
    SHA-256:  The SHA-256 algorithm [FIPS180-3].  The output of this
       algorithm is encoded using the base64 encoding [RFC4648].
@@ -376,6 +385,15 @@ Internet-Draft                   RDHTTP                         May 2019
       resource when no content coding is applied (eg.  "Content-
       Encoding: identity")
 
+
+
+
+
+Polli & Pardue          Expires November 16, 2019               [Page 7]
+
+Internet-Draft                   RDHTTP                         May 2019
+
+
    If other digest-algorithm values are defined, the associated encoding
    MUST either be represented as a quoted string, or MUST NOT include
    ";" or "," in the character sets used for the encoding.
@@ -385,14 +403,6 @@ Internet-Draft                   RDHTTP                         May 2019
    A representation digest is the value of the output of a digest
    algorithm, together with an indication of the algorithm used (and any
    parameters).
-
-
-
-
-Polli & Pardue          Expires November 16, 2019               [Page 7]
-
-Internet-Draft                   RDHTTP                         May 2019
-
 
        representation-data-digest = digest-algorithm "="
                                <encoded digest output>
@@ -432,6 +442,14 @@ Internet-Draft                   RDHTTP                         May 2019
    If a digest-algorithm is not accompanied by a qvalue, it is treated
    as if its associated qvalue were 1.0.
 
+
+
+
+Polli & Pardue          Expires November 16, 2019               [Page 8]
+
+Internet-Draft                   RDHTTP                         May 2019
+
+
    The sender is willing to accept a digest-algorithm if and only if it
    is listed in a Want-Digest header field of a message, and its qvalue
    is non-zero.
@@ -441,14 +459,6 @@ Internet-Draft                   RDHTTP                         May 2019
    highest qvalue.
 
    Examples:
-
-
-
-
-Polli & Pardue          Expires November 16, 2019               [Page 8]
-
-Internet-Draft                   RDHTTP                         May 2019
-
 
    Want-Digest: sha-256 Want-Digest: SHA-256;q=0.3, sha;q=1
 
@@ -489,6 +499,13 @@ Internet-Draft                   RDHTTP                         May 2019
 
    ...
 
+
+
+Polli & Pardue          Expires November 16, 2019               [Page 9]
+
+Internet-Draft                   RDHTTP                         May 2019
+
+
 5.  Deprecate Negotiation of Content-MD5
 
    This RFC deprecates the negotiation of Content-MD5 as this header has
@@ -496,15 +513,6 @@ Internet-Draft                   RDHTTP                         May 2019
 
    The MD5 algorithm is NOT RECOMMENDED as it's now vulnerable to
    collision attacks [CMU-836068]
-
-
-
-
-
-Polli & Pardue          Expires November 16, 2019               [Page 9]
-
-Internet-Draft                   RDHTTP                         May 2019
-
 
 6.  Examples
 
@@ -541,14 +549,6 @@ Internet-Draft                   RDHTTP                         May 2019
 
 6.1.3.  Representation data is partially contained in the payload i.e.
         range request
-
-
-
-
-
-
-
-
 
 
 
