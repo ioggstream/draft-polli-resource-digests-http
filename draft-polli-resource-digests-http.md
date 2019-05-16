@@ -16,7 +16,6 @@ author:
  -
     ins: R. Polli
     name: Roberto Polli
-    organization: Team Digitale
     email: robipolli@gmail.com
  -
     ins: L. Pardue
