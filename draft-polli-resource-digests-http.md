@@ -114,12 +114,17 @@ The source code and issues list for this draft can be found at
 
 # Introduction
 
-Integrity protection for HTTP content is typically achieved via TCP or HTTPS [RFC2818].
-However, additional integrity protection might be desirable for some use cases.
-This might be for additional protection against failures or attack (see [SRI]),
-programming errors,
-corruption of stored data or
-because content needs to be signed or remain unmodified throughout multiple HTTPS-protected exchanges.
+Integrity protection for HTTP content is multi layered and
+is usually achieved at transport level via TCP checksums and
+TLS records.
+
+The HTTP protocol does not provide a mean to protect the various
+message parts. Besides, it might be desirable to add further guarantees
+to the ones provided by the transport layer (eg. HTTPS). This may be for:
+- detect programming errors and corruption of stored data;
+- the need for the representation-data remain unmodified throughout multiple hops;
+- implement signature mechanisms that cover the desired parts of an HTTP exchange;
+- additional protection against failures or attack (see [SRI]).
 
 ## Brief history of integrity headers
 
