@@ -5,7 +5,7 @@
 Network Working Group                                           R. Polli
 Internet-Draft                                             Team Digitale
 Intended status: Standards Track                               L. Pardue
-Expires: November 11, 2019                                  May 10, 2019
+Expires: November 17, 2019                                  May 16, 2019
 
 
                        Resource Digests for HTTP
@@ -47,13 +47,13 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on November 11, 2019.
+   This Internet-Draft will expire on November 17, 2019.
 
 
 
 
 
-Polli & Pardue          Expires November 11, 2019               [Page 1]
+Polli & Pardue          Expires November 17, 2019               [Page 1]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -79,15 +79,15 @@ Table of Contents
      1.1.  Brief history of integrity headers  . . . . . . . . . . .   3
      1.2.  This proposal . . . . . . . . . . . . . . . . . . . . . .   3
      1.3.  Goals . . . . . . . . . . . . . . . . . . . . . . . . . .   4
-     1.4.  Notational Conventions  . . . . . . . . . . . . . . . . .   4
+     1.4.  Notational Conventions  . . . . . . . . . . . . . . . . .   5
    2.  Resource representation and representation-data . . . . . . .   5
    3.  Digest Algorithm values . . . . . . . . . . . . . . . . . . .   6
-     3.1.  Representation digest . . . . . . . . . . . . . . . . . .   7
+     3.1.  Representation digest . . . . . . . . . . . . . . . . . .   8
        3.1.1.  digest-algorithm encoding examples  . . . . . . . . .   8
    4.  Header Specifications . . . . . . . . . . . . . . . . . . . .   8
      4.1.  Want-Digest . . . . . . . . . . . . . . . . . . . . . . .   8
      4.2.  Digest  . . . . . . . . . . . . . . . . . . . . . . . . .   9
-   5.  Deprecate Negotiation of Content-MD5  . . . . . . . . . . . .   9
+   5.  Deprecate Negotiation of Content-MD5  . . . . . . . . . . . .  10
    6.  Examples  . . . . . . . . . . . . . . . . . . . . . . . . . .  10
      6.1.  Unsolicited Digest response . . . . . . . . . . . . . . .  10
        6.1.1.  Representation data is fully contained in the payload  10
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Polli & Pardue          Expires November 11, 2019               [Page 2]
+Polli & Pardue          Expires November 17, 2019               [Page 2]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -129,13 +129,17 @@ Internet-Draft                   RDHTTP                         May 2019
 
 1.  Introduction
 
-   Integrity protection for HTTP content is typically achieved via TCP
-   or HTTPS [RFC2818].  However, additional integrity protection might
-   be desirable for some use cases.  This might be for additional
-   protection against failures or attack (see [SRI]), programming
-   errors, corruption of stored data or because content needs to be
-   signed or remain unmodified throughout multiple HTTPS-protected
-   exchanges.
+   Integrity protection for HTTP content is multi layered and is usually
+   achieved at transport level via TCP checksums and TLS records.
+
+   The HTTP protocol does not provide a mean to protect the various
+   message parts.  Besides, it might be desirable to add further
+   guarantees to the ones provided by the transport layer (eg.  HTTPS).
+   This may be for: - detect programming errors and corruption of stored
+   data; - the need for the representation-data remain unmodified
+   throughout multiple hops; - implement signature mechanisms that cover
+   the desired parts of an HTTP exchange; - additional protection
+   against failures or attack (see [SRI]).
 
 1.1.  Brief history of integrity headers
 
@@ -157,18 +161,19 @@ Internet-Draft                   RDHTTP                         May 2019
    This document updates the "Digest" and "Want-Digest" header field
    definitions to align with [RFC7231] concepts.
 
+
+
+
+
+Polli & Pardue          Expires November 17, 2019               [Page 3]
+
+Internet-Draft                   RDHTTP                         May 2019
+
+
    This approach can be easily adapted to use-cases where the
    transferred data does require some sort of manipulation to be
    considered a representation or conveys a partial representation of a
    resource (eg.  Range Requests).
-
-
-
-
-Polli & Pardue          Expires November 11, 2019               [Page 3]
-
-Internet-Draft                   RDHTTP                         May 2019
-
 
    Changes are semantically compatible with existing implementations and
    better cover both the request and response cases.
@@ -210,6 +215,17 @@ Internet-Draft                   RDHTTP                         May 2019
    Authorization:  The digest mechanisms described here are not meant to
       support authorization or other kinds of access controls.
 
+
+
+
+
+
+
+Polli & Pardue          Expires November 17, 2019               [Page 4]
+
+Internet-Draft                   RDHTTP                         May 2019
+
+
 1.4.  Notational Conventions
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
@@ -217,14 +233,6 @@ Internet-Draft                   RDHTTP                         May 2019
    "OPTIONAL" in this document are to be interpreted as described in BCP
    14 ([RFC2119] and [RFC8174]) when, and only when, they appear in all
    capitals, as shown here.
-
-
-
-
-Polli & Pardue          Expires November 11, 2019               [Page 4]
-
-Internet-Draft                   RDHTTP                         May 2019
-
 
    The definitions "representation", "selected representation",
    "representation data", "representation metadata" and "payload body"
@@ -260,6 +268,20 @@ Internet-Draft                   RDHTTP                         May 2019
 
    Now the same payload body conveys a malformed json object.
 
+
+
+
+
+
+
+
+
+
+Polli & Pardue          Expires November 17, 2019               [Page 5]
+
+Internet-Draft                   RDHTTP                         May 2019
+
+
    Request:
 
        PUT /entries/1234 HTTP/1.1
@@ -270,17 +292,6 @@ Internet-Draft                   RDHTTP                         May 2019
 
    A Range-Request alters the payload body, conveying a partial
    representation.
-
-
-
-
-
-
-
-Polli & Pardue          Expires November 11, 2019               [Page 5]
-
-Internet-Draft                   RDHTTP                         May 2019
-
 
    Request:
 
@@ -319,6 +330,14 @@ Internet-Draft                   RDHTTP                         May 2019
 
          digest-algorithm = token
 
+
+
+
+Polli & Pardue          Expires November 17, 2019               [Page 6]
+
+Internet-Draft                   RDHTTP                         May 2019
+
+
    The BNF for "parameter" is as is used in [RFC7230].  All digest-
    algorithm values are case-insensitive.
 
@@ -327,16 +346,6 @@ Internet-Draft                   RDHTTP                         May 2019
 
    *NB: This RFC updates* [RFC5843] *which is still delegated for all
    algorithms updates*
-
-
-
-
-
-
-Polli & Pardue          Expires November 11, 2019               [Page 6]
-
-Internet-Draft                   RDHTTP                         May 2019
-
 
    SHA-256:  The SHA-256 algorithm [FIPS180-3].  The output of this
       algorithm is encoded using the base64 encoding [RFC4648].
@@ -376,6 +385,15 @@ Internet-Draft                   RDHTTP                         May 2019
       resource when no content coding is applied (eg.  "Content-
       Encoding: identity")
 
+
+
+
+
+Polli & Pardue          Expires November 17, 2019               [Page 7]
+
+Internet-Draft                   RDHTTP                         May 2019
+
+
    If other digest-algorithm values are defined, the associated encoding
    MUST either be represented as a quoted string, or MUST NOT include
    ";" or "," in the character sets used for the encoding.
@@ -385,14 +403,6 @@ Internet-Draft                   RDHTTP                         May 2019
    A representation digest is the value of the output of a digest
    algorithm, together with an indication of the algorithm used (and any
    parameters).
-
-
-
-
-Polli & Pardue          Expires November 11, 2019               [Page 7]
-
-Internet-Draft                   RDHTTP                         May 2019
-
 
        representation-data-digest = digest-algorithm "="
                                <encoded digest output>
@@ -432,6 +442,14 @@ Internet-Draft                   RDHTTP                         May 2019
    If a digest-algorithm is not accompanied by a qvalue, it is treated
    as if its associated qvalue were 1.0.
 
+
+
+
+Polli & Pardue          Expires November 17, 2019               [Page 8]
+
+Internet-Draft                   RDHTTP                         May 2019
+
+
    The sender is willing to accept a digest-algorithm if and only if it
    is listed in a Want-Digest header field of a message, and its qvalue
    is non-zero.
@@ -441,14 +459,6 @@ Internet-Draft                   RDHTTP                         May 2019
    highest qvalue.
 
    Examples:
-
-
-
-
-Polli & Pardue          Expires November 11, 2019               [Page 8]
-
-Internet-Draft                   RDHTTP                         May 2019
-
 
    Want-Digest: sha-256 Want-Digest: SHA-256;q=0.3, sha;q=1
 
@@ -489,6 +499,13 @@ Internet-Draft                   RDHTTP                         May 2019
 
    ...
 
+
+
+Polli & Pardue          Expires November 17, 2019               [Page 9]
+
+Internet-Draft                   RDHTTP                         May 2019
+
+
 5.  Deprecate Negotiation of Content-MD5
 
    This RFC deprecates the negotiation of Content-MD5 as this header has
@@ -496,15 +513,6 @@ Internet-Draft                   RDHTTP                         May 2019
 
    The MD5 algorithm is NOT RECOMMENDED as it's now vulnerable to
    collision attacks [CMU-836068]
-
-
-
-
-
-Polli & Pardue          Expires November 11, 2019               [Page 9]
-
-Internet-Draft                   RDHTTP                         May 2019
-
 
 6.  Examples
 
@@ -549,15 +557,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-
-
-
-
-
-
-
-
-Polli & Pardue          Expires November 11, 2019              [Page 10]
+Polli & Pardue          Expires November 17, 2019              [Page 10]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -613,7 +613,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 11, 2019              [Page 11]
+Polli & Pardue          Expires November 17, 2019              [Page 11]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -669,7 +669,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 11, 2019              [Page 12]
+Polli & Pardue          Expires November 17, 2019              [Page 12]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -725,7 +725,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 11, 2019              [Page 13]
+Polli & Pardue          Expires November 17, 2019              [Page 13]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -781,7 +781,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 11, 2019              [Page 14]
+Polli & Pardue          Expires November 17, 2019              [Page 14]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -837,7 +837,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 11, 2019              [Page 15]
+Polli & Pardue          Expires November 17, 2019              [Page 15]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -893,7 +893,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 11, 2019              [Page 16]
+Polli & Pardue          Expires November 17, 2019              [Page 16]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -949,7 +949,7 @@ Appendix B.  FAQ
 
 
 
-Polli & Pardue          Expires November 11, 2019              [Page 17]
+Polli & Pardue          Expires November 17, 2019              [Page 17]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -1005,4 +1005,4 @@ Authors' Addresses
 
 
 
-Polli & Pardue          Expires November 11, 2019              [Page 18]
+Polli & Pardue          Expires November 17, 2019              [Page 18]
