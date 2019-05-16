@@ -43,7 +43,7 @@
     "milestone": null,
     "comments": 0,
     "created_at": "2019-05-15T08:43:28Z",
-    "updated_at": "2019-05-15T08:44:16Z",
+    "updated_at": "2019-05-15T08:49:16Z",
     "closed_at": null,
     "author_association": "OWNER",
     "pull_request": {
@@ -254,7 +254,7 @@
     "milestone": null,
     "comments": 0,
     "created_at": "2019-05-10T13:42:37Z",
-    "updated_at": "2019-05-10T13:42:37Z",
+    "updated_at": "2019-05-16T10:00:46Z",
     "closed_at": null,
     "author_association": "OWNER",
     "pull_request": {
@@ -306,9 +306,9 @@
 
     ],
     "milestone": null,
-    "comments": 4,
+    "comments": 5,
     "created_at": "2019-05-10T13:05:32Z",
-    "updated_at": "2019-05-14T17:44:13Z",
+    "updated_at": "2019-05-16T09:46:01Z",
     "closed_at": null,
     "author_association": "OWNER",
     "body": "## I expect\r\n\r\nNon-crypto algorithms be deprecated and removed from this draft.\r\n\r\n## Because\r\n\r\n- `UNIXsum`, `UNIXcksum` do not provide more integrity than the underlying TLS\r\n- `MD5` and `SHA-1` are subject to collision\r\n\r\n## Note\r\n\r\nWhile crc2 and adler32 are mentioned in [http-dig-alg registry](https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml) I can't find any reference in RFC3230 nor in RFC5843.\r\n\r\n@jyasskin does it sound good to you?"
@@ -354,9 +354,9 @@
 
     ],
     "milestone": null,
-    "comments": 6,
+    "comments": 7,
     "created_at": "2019-05-10T00:28:48Z",
-    "updated_at": "2019-05-14T17:23:28Z",
+    "updated_at": "2019-05-15T15:13:07Z",
     "closed_at": null,
     "author_association": "NONE",
     "body": "https://ioggstream.github.io/draft-polli-resource-digests-http/draft-polli-resource-digests-http.html#goals says a goal is \"Digest coverage for either the resource’s representation data or selected representation data communicated via HTTP.\", but it's not clear to me why a client and server would use a digest. Some options include:\r\n\r\n* To detect message corruption. This is the only reason I can think of to use the ADLER32, CRC32c, MD5, SHA, UNIXsum, or UNIXcksum algorithms, but I think it's unnecessary with modern transport protocols?\r\n* To support signatures, for example in [Signed Exchanges](https://github.com/WICG/webpackage).\r\n* To give the client a hint about which SRI hash will be used, to maybe help with https://github.com/w3c/preload/issues/127.\r\n\r\nAre there others? If those are the only ones, and message corruption isn't needed anymore, we could deprecate all the non-cryptographic digest algorithms."
