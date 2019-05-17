@@ -317,7 +317,7 @@ Response:
     The output of this algorithm is encoded using the
     base64 encoding  [RFC4648].
     The MD5 algorithm is NOT RECOMMENDED as it's now vulnerable
-    to collision attacks [CMU-836068]
+    to collision attacks [CMU-836068].
 
     Reference: [RFC1321], [RFC4648], this document.
 
@@ -327,7 +327,7 @@ Response:
   : The SHA-1 algorithm [FIPS180-1].  The output of this
     algorithm is encoded using the base64 encoding  [RFC4648].
     The SHA algorithm is NOT RECOMMENDED as it's now vulnerable
-    to collision attacks
+    to collision attacks [IACR-2019-459].
 
     Reference: [FIPS-180-3], [RFC4648], this document.
 
@@ -486,10 +486,10 @@ this header has been obsoleted by [RFC7231]
 # Broken cryptographic algorithms are NOT RECOMMENDED
 
 The MD5 algorithm is NOT RECOMMENDED as it's now vulnerable
-to collision attacks [CMU-836068]
+to collision attacks [CMU-836068].
 
-The SHA-1 algorithm is NOT RECOMMENDED as it's now vulnerable
-to collision attacks [IACR-2019-459]
+The SHA algorithm is NOT RECOMMENDED as it's now vulnerable
+to collision attacks [IACR-2019-459].
 
 # Examples
 
@@ -643,13 +643,23 @@ Response:
 Cryptographic algorithms are supposed to provide a proof of integrity
 usable eg. in signatures.
 
-To discourage mistakes, this spec explicits that broken-cryptographic algorithms
-like `MD5` and `SHA-1` are NOT RECOMMENDED.
+To discourage mistakes, broken-cryptographic algorithms
+like `MD5` and `SHA-1` are now NOT RECOMMENDED.
 
-Non cryptographic digest-algoritms (eg. `UNIXsum`)
-are retained for other use cases, like end-to-end integrity over multiple hops:
-while each hop is protected by TLS, the contents could get somehow malformed
-by buggy manipulation, buggy compressor, etc.
+## Digest for end-to-end integrity
+
+`Digest` alone does not provide end-to-end integrity
+of HTTP messages over multiple hops, as it just covers
+the representation-data and not the representation metadata.
+
+Besides, it allows to protect representation data from
+buggy manipulation, buggy compression, etc.
+
+Moreover identity digest algorithms (eg. ID-SHA-256 and ID-SHA-512)
+allow piecing together a resource from different sources
+(e.g. different servers that perhaps apply different content codings)
+enabling the user-agent to detect that the application-layer tasks completed properly,
+before handing off to say the HTML parser, video player etc.
 
 Even a simple mechanism for end-to-end validation is thus valuable.
 
@@ -663,8 +673,10 @@ signing only the `Digest` header, without all the representation metatada (eg.
 the values of `Content-Type` and `Content-Encoding`) may expose the communication
 to tampering.
 
-A `Digest` header using NOT RECOMMENDED {digest-algorithms} MUST NOT be used in signatures.
+`Digest` SHOULD always be used over a connection which provides
+integrity at transport layer that protects HTTP headers.
 
+A `Digest` header using NOT RECOMMENDED {digest-algorithms} MUST NOT be used in signatures.
 
 ## Message Truncation
 
@@ -782,6 +794,11 @@ Author/Change controller:  IETF
 Specification document(s):  {{digest-header}} of this document
 
 --- back
+
+# Change Log
+
+RFC EDITOR PLEASE DELETE THIS SECTION.
+
 
 # Acknowledgements
 
