@@ -295,20 +295,36 @@ Response:
 
     Reference: [FIPS180-3], [RFC4648], this document.
 
+    Status: standard
+
   SHA-512:
   : The SHA-512 algorithm [FIPS180-3].  The output of
     this algorithm is encoded using the base64 encoding [RFC4648].
 
     Reference: [FIPS180-3], [RFC4648], this document.
 
+    Status: standard
+
   MD5:
   : The MD5 algorithm, as specified in [RFC1321].
     The output of this algorithm is encoded using the
     base64 encoding  [RFC4648].
+    The MD5 algorithm is NOT RECOMMENDED as it's now vulnerable
+    to collision attacks [CMU-836068]
+
+    Reference: [RFC1321], [RFC4648], this document.
+
+    Status: obsoleted
 
   SHA:
   : The SHA-1 algorithm [FIPS180-1].  The output of this
     algorithm is encoded using the base64 encoding  [RFC4648].
+    The SHA algorithm is NOT RECOMMENDED as it's now vulnerable
+    to collision attacks
+
+    Reference: [FIPS-180-3], [RFC4648], this document.
+
+    Status: obsoleted
 
   UNIXsum:
   : The algorithm computed by the UNIX "sum" command,
@@ -333,9 +349,18 @@ the following additional algorithms are defined:
    : The sha-512 digest of the representation-data of the resource when no
      content coding is applied (eg. `Content-Encoding: identity`)
 
+     Reference: [FIPS180-3], [RFC4648], this document.
+
+     Status: standard
+
+
    ID-SHA-256:
    : The sha-256 digest of the representation-data of the resource when no
      content coding is applied (eg. `Content-Encoding: identity`)
+
+     Reference: [FIPS180-3], [RFC4648], this document.
+
+     Status: standard
 
    If other digest-algorithm values are defined, the associated encoding
    MUST either be represented as a quoted string, or MUST NOT include
@@ -450,8 +475,6 @@ knowing that the recipient will ignore it.
 This RFC deprecates the negotiation of Content-MD5 as
 this header has been obsoleted by [RFC7231]
 
-The MD5 algorithm is NOT RECOMMENDED as it's now vulnerable
-to collision attacks [CMU-836068]
 
 # Examples
 
@@ -621,6 +644,49 @@ to tampering.
 
 # IANA Considerations
 
+## Establish the HTTP Digest Algorithm Values
+
+This memo sets this spec to be the establishing
+document for the [HTTP Digest
+Algorithm
+Values](https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml)
+
+## The "status" field in the HTTP Digest Algorithm Values
+
+This memo adds the field "Status" to the [HTTP Digest
+Algorithm
+Values](https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml)
+registry. The allowed values for the "Status" fields are described below.
+
+   Status
+   :  Specify "standard", "experimental", "historic",
+      "obsoleted", or "deprecated" according to the type
+      and status of the primary document in which the algorithm
+      is defined.
+
+## Obsolete "MD5" Digest Algorithm {#iana-MD5}
+
+This memo updates the "MD5" digest algorithm in the [HTTP Digest
+Algorithm
+Values](https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml)
+registry:
+
+* Digest Algorithm: MD5
+* Description: As specified in {{algorithms}}.
+* Status: As specified in {{algorithms}}.
+
+
+## Obsolete "SHA" Digest Algorithm {#iana-SHA}
+
+This memo updates the "SHA" digest algorithm in the [HTTP Digest
+Algorithm
+Values](https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml)
+registry:
+
+* Digest Algorithm: SHA
+* Description: As specified in {{algorithms}}.
+* Status: As specified in {{algorithms}}.
+
 ## The "ID-SHA-256" Digest Algorithm {#iana-ID-SHA-256}
 
 This memo registers the "ID-SHA-256" digest algorithm in the [HTTP Digest
@@ -630,6 +696,7 @@ registry:
 
 * Digest Algorithm: ID-SHA-256
 * Description: As specified in {{algorithms}}.
+* Status: As specified in {{algorithms}}.
 
 ## The "ID-SHA-512" Digest Algorithm {#iana-ID-SHA-512}
 
@@ -640,6 +707,17 @@ registry:
 
 * Digest Algorithm: ID-SHA-512
 * Description: As specified in {{algorithms}}.
+* Status: As specified in {{algorithms}}.
+
+## Changes compared to RFC5843
+
+The status has been updated to "obsoleted" for both "SHA" and "MD5",
+and their descriptions states that those algorithms are NOT RECOMMENDED.
+
+The status for all other algorithms have been updated to "standard".
+
+The "ID-SHA-256" and "ID-SHA-512" algorithms have been added to
+the registry.
 
 ## Want-Digest Header Field Registration
 
@@ -705,13 +783,13 @@ the MICE Content Encoding.
    - a `200 OK` response to a PATCH request would contain the digest of the patched item, and the etag of the new object.
      This behavior - tighly coupled to the application logic - gives the client low probability of guessing the actual
      outcome of this operation (eg. concurrent changes, ...)
-     
+
 4. Why remove references to delta-encoding?
 
    Unnecessary for a correct implementation of this spec. The revised spec can be nicely adapted
    to "delta encoding", but all the references here to delta encoding don't add anything to this RFC.
    Another job would be to refresh delta encoding.
-   
+
 5. Why remove references to Digest Authentication?
 
    This RFC seems to me completely unrelated to Digest Authentication but for the word "Digest".
