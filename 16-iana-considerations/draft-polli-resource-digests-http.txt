@@ -349,8 +349,8 @@ Internet-Draft                   RDHTTP                         May 2019
    MD5:  The MD5 algorithm, as specified in [RFC1321].  The output of
       this algorithm is encoded using the base64 encoding [RFC4648].
       The MD5 algorithm is NOT RECOMMENDED as it's now vulnerable to
-      collision attacks [CMU-836068] Reference: Reference: [RFC1321],
-      [RFC4648], this document.  Status: obsoleted
+      collision attacks [CMU-836068] Reference: [RFC1321], [RFC4648],
+      this document.  Status: obsoleted
 
    SHA:  The SHA-1 algorithm [FIPS180-1].  The output of this algorithm
       is encoded using the base64 encoding [RFC4648].  The SHA algorithm
