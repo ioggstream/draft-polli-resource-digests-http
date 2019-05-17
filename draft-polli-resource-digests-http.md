@@ -74,6 +74,13 @@ normative:
       ins: Carnagie Mellon University, Software Engineering Institute
     date: 2008-12-31
     target: https://www.kb.cert.org/vuls/id/836068/
+  IACR-2019-459:
+    title: From Collisions to Chosen-Prefix Collisions Application to Full SHA-1
+    author:
+      name: Leurent, G, Peyrin, T
+      ins: Inria, France; Nanyang Technological University, Singapore; Temasek Laboratories, Singapore
+    date: 2019-05-06
+    target: https://eprint.iacr.org/2019/459.pdf
 
 informative:
   RFC2818:
@@ -472,9 +479,17 @@ knowing that the recipient will ignore it.
 ...
 
 # Deprecate Negotiation of Content-MD5
+
 This RFC deprecates the negotiation of Content-MD5 as
 this header has been obsoleted by [RFC7231]
 
+# Broken cryptographic algorithms are NOT RECOMMENDED
+
+The MD5 algorithm is NOT RECOMMENDED as it's now vulnerable
+to collision attacks [CMU-836068]
+
+The SHA-1 algorithm is NOT RECOMMENDED as it's now vulnerable
+to collision attacks [IACR-2019-459]
 
 # Examples
 
@@ -623,15 +638,32 @@ Response:
 
 # Security Considerations
 
+## Broken cryptographic algorithms
+
+Cryptographic algorithms are supposed to provide a proof of integrity
+usable eg. in signatures.
+
+To discourage mistakes, this spec explicits that broken-cryptographic algorithms
+like `MD5` and `SHA-1` are NOT RECOMMENDED.
+
+Non cryptographic digest-algoritms (eg. `UNIXsum`)
+are retained for other use cases, like end-to-end integrity over multiple hops:
+while each hop is protected by TLS, the contents could get somehow malformed
+by buggy manipulation, buggy compressor, etc.
+
+Even a simple mechanism for end-to-end validation is thus valuable.
+
 ## Usage in signatures
 
 Digital signatures are widely used together with checksums to provide
 the certain identification of the origin of a message [NIST800-32].
 
-It's important to note that, being the Digest header an hash of a resource representation,
+It's important to note that, being the `Digest` header an hash of a resource representation,
 signing only the `Digest` header, without all the representation metatada (eg.
 the values of `Content-Type` and `Content-Encoding`) may expose the communication
 to tampering.
+
+A `Digest` header using NOT RECOMMENDED {digest-algorithms} MUST NOT be used in signatures.
 
 
 ## Message Truncation
