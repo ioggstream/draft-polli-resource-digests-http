@@ -5,7 +5,7 @@
 Network Working Group                                           R. Polli
 Internet-Draft
 Intended status: Standards Track                               L. Pardue
-Expires: November 17, 2019                                  May 16, 2019
+Expires: November 18, 2019                                  May 17, 2019
 
 
                        Resource Digests for HTTP
@@ -47,13 +47,13 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on November 17, 2019.
+   This Internet-Draft will expire on November 18, 2019.
 
 
 
 
 
-Polli & Pardue          Expires November 17, 2019               [Page 1]
+Polli & Pardue          Expires November 18, 2019               [Page 1]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -109,14 +109,14 @@ Table of Contents
 
 
 
-Polli & Pardue          Expires November 17, 2019               [Page 2]
+Polli & Pardue          Expires November 18, 2019               [Page 2]
 
 Internet-Draft                   RDHTTP                         May 2019
 
 
    8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  13
-     8.1.  The "id-sha-256" Digest Algorithm . . . . . . . . . . . .  13
-     8.2.  The "id-sha-512" Digest Algorithm . . . . . . . . . . . .  13
+     8.1.  The "ID-SHA-256" Digest Algorithm . . . . . . . . . . . .  13
+     8.2.  The "ID-SHA-512" Digest Algorithm . . . . . . . . . . . .  13
      8.3.  Want-Digest Header Field Registration . . . . . . . . . .  14
      8.4.  Digest Header Field Registration  . . . . . . . . . . . .  14
    9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  14
@@ -165,7 +165,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 17, 2019               [Page 3]
+Polli & Pardue          Expires November 18, 2019               [Page 3]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -179,8 +179,8 @@ Internet-Draft                   RDHTTP                         May 2019
    different digest values.
 
    To allow both parties to exchange a Digest of a representation with
-   no content codings [3] two more algorithms are added ("id-sha-256"
-   and "id-sha-512").
+   no content codings [3] two more algorithms are added ("ID-SHA-256"
+   and "ID-SHA-512").
 
 1.3.  Goals
 
@@ -221,7 +221,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 17, 2019               [Page 4]
+Polli & Pardue          Expires November 18, 2019               [Page 4]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -246,8 +246,6 @@ Internet-Draft                   RDHTTP                         May 2019
    tranformations and method impacts on the message and payload body.
 
    Here is a gzip-compressed json object
-
-   # gzip.compress(json.dumps(  {"a": "1"*100}  ).encode()))
 
    Request:
 
@@ -277,7 +275,9 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 17, 2019               [Page 5]
+
+
+Polli & Pardue          Expires November 18, 2019               [Page 5]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -325,22 +325,18 @@ Internet-Draft                   RDHTTP                         May 2019
    The Internet Assigned Numbers Authority (IANA) acts as a registry for
    digest-algorithm values.  The registry contains the following tokens.
 
-   *NB: This RFC updates* [RFC5843] *which is still delegated for all
-   algorithms updates*
-
-
-
-
-
-
-Polli & Pardue          Expires November 17, 2019               [Page 6]
-
-Internet-Draft                   RDHTTP                         May 2019
-
-
    SHA-256:  The SHA-256 algorithm [FIPS180-3].  The output of this
       algorithm is encoded using the base64 encoding [RFC4648].
       Reference: [FIPS180-3], [RFC4648], this document.
+
+
+
+
+
+Polli & Pardue          Expires November 18, 2019               [Page 6]
+
+Internet-Draft                   RDHTTP                         May 2019
+
 
    SHA-512:  The SHA-512 algorithm [FIPS180-3].  The output of this
       algorithm is encoded using the base64 encoding [RFC4648].
@@ -368,11 +364,11 @@ Internet-Draft                   RDHTTP                         May 2019
    independent from the Content-Coding, the following additional
    algorithms are defined:
 
-   id-sha-512:  The sha-512 digest of the representation-data of the
+   ID-SHA-512:  The sha-512 digest of the representation-data of the
       resource when no content coding is applied (eg.  "Content-
       Encoding: identity")
 
-   id-sha-256:  The sha-256 digest of the representation-data of the
+   ID-SHA-256:  The sha-256 digest of the representation-data of the
       resource when no content coding is applied (eg.  "Content-
       Encoding: identity")
 
@@ -386,16 +382,17 @@ Internet-Draft                   RDHTTP                         May 2019
    algorithm, together with an indication of the algorithm used (and any
    parameters).
 
+       representation-data-digest = digest-algorithm "="
+                               <encoded digest output>
 
 
 
-Polli & Pardue          Expires November 17, 2019               [Page 7]
+
+
+Polli & Pardue          Expires November 18, 2019               [Page 7]
 
 Internet-Draft                   RDHTTP                         May 2019
 
-
-       representation-data-digest = digest-algorithm "="
-                               <encoded digest output>
 
    As explained in {#resource-representations} the digest is computed on
    the entire selected "representation data" of the resource defined in
@@ -408,9 +405,10 @@ Internet-Draft                   RDHTTP                         May 2019
 
 3.1.1.  digest-algorithm encoding examples
 
-   The sha-256 digest-algorithm uses base64 encoding
+   The "sha-256" digest-algorithm uses base64 encoding.  Note that
+   digest-algoritm values are case insensitive.
 
-   sha-256=......
+   sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
    The "UNIXsum" digest-algorithm uses ASCII string of decimal digits.
 
@@ -442,15 +440,15 @@ Internet-Draft                   RDHTTP                         May 2019
 
    Examples:
 
+   Want-Digest: sha-256 Want-Digest: SHA-256;q=0.3, sha;q=1
 
 
 
-Polli & Pardue          Expires November 17, 2019               [Page 8]
+
+Polli & Pardue          Expires November 18, 2019               [Page 8]
 
 Internet-Draft                   RDHTTP                         May 2019
 
-
-   Want-Digest: sha-256 Want-Digest: SHA-256;q=0.3, sha;q=1
 
 4.2.  Digest
 
@@ -501,7 +499,9 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 17, 2019               [Page 9]
+
+
+Polli & Pardue          Expires November 18, 2019               [Page 9]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -557,7 +557,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 17, 2019              [Page 10]
+Polli & Pardue          Expires November 18, 2019              [Page 10]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -613,7 +613,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 17, 2019              [Page 11]
+Polli & Pardue          Expires November 18, 2019              [Page 11]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -669,7 +669,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 17, 2019              [Page 12]
+Polli & Pardue          Expires November 18, 2019              [Page 12]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -708,29 +708,29 @@ Internet-Draft                   RDHTTP                         May 2019
 
 8.  IANA Considerations
 
-8.1.  The "id-sha-256" Digest Algorithm
+8.1.  The "ID-SHA-256" Digest Algorithm
 
-   This memo registers the "id-sha-256" digest algorithm in the HTTP
+   This memo registers the "ID-SHA-256" digest algorithm in the HTTP
    Digest Algorithm Values [4] registry:
 
-   o  Digest Algorithm: id-sha-256
+   o  Digest Algorithm: ID-SHA-256
 
    o  Description: As specified in Section 3.
 
-8.2.  The "id-sha-512" Digest Algorithm
+8.2.  The "ID-SHA-512" Digest Algorithm
 
-   This memo registers the "id-sha-512" digest algorithm in the HTTP
+   This memo registers the "ID-SHA-512" digest algorithm in the HTTP
    Digest Algorithm Values [5] registry:
 
 
 
 
-Polli & Pardue          Expires November 17, 2019              [Page 13]
+Polli & Pardue          Expires November 18, 2019              [Page 13]
 
 Internet-Draft                   RDHTTP                         May 2019
 
 
-   o  Digest Algorithm: id-sha-512
+   o  Digest Algorithm: ID-SHA-512
 
    o  Description: As specified in Section 3.
 
@@ -781,7 +781,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 17, 2019              [Page 14]
+Polli & Pardue          Expires November 18, 2019              [Page 14]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -837,7 +837,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 17, 2019              [Page 15]
+Polli & Pardue          Expires November 18, 2019              [Page 15]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -893,7 +893,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 17, 2019              [Page 16]
+Polli & Pardue          Expires November 18, 2019              [Page 16]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -949,7 +949,7 @@ Appendix B.  FAQ
 
 
 
-Polli & Pardue          Expires November 17, 2019              [Page 17]
+Polli & Pardue          Expires November 18, 2019              [Page 17]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -969,6 +969,13 @@ Internet-Draft                   RDHTTP                         May 2019
        We allow to use the "Want-Digest" in responses to advertise the
        supported digest-algorithms and the inability to accept requests
        with unsupported digest-algorithms.
+
+   7.  Does this spec changes supported algorithms?
+
+       This RFC updates [RFC5843] which is still delegated for all
+       algorithms updates, and adds two more algorithms: ID-SHA-256 and
+       ID-SHA-512 which allows to send a checksum of a resource
+       representation with no content codings applied.
 
 Authors' Addresses
 
@@ -998,11 +1005,4 @@ Authors' Addresses
 
 
 
-
-
-
-
-
-
-
-Polli & Pardue          Expires November 17, 2019              [Page 18]
+Polli & Pardue          Expires November 18, 2019              [Page 18]

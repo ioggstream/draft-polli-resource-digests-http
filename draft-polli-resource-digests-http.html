@@ -310,8 +310,8 @@ ul.toc li {
 <link href="#rfc.section.7.2" rel="Chapter" title="7.2 Message Truncation">
 <link href="#rfc.section.7.3" rel="Chapter" title="7.3 Algorithm Agility">
 <link href="#rfc.section.8" rel="Chapter" title="8 IANA Considerations">
-<link href="#rfc.section.8.1" rel="Chapter" title="8.1 The &#8220;id-sha-256&#8221; Digest Algorithm">
-<link href="#rfc.section.8.2" rel="Chapter" title="8.2 The &#8220;id-sha-512&#8221; Digest Algorithm">
+<link href="#rfc.section.8.1" rel="Chapter" title="8.1 The &#8220;ID-SHA-256&#8221; Digest Algorithm">
+<link href="#rfc.section.8.2" rel="Chapter" title="8.2 The &#8220;ID-SHA-512&#8221; Digest Algorithm">
 <link href="#rfc.section.8.3" rel="Chapter" title="8.3 Want-Digest Header Field Registration">
 <link href="#rfc.section.8.4" rel="Chapter" title="8.4 Digest Header Field Registration">
 <link href="#rfc.references" rel="Chapter" title="9 References">
@@ -327,7 +327,7 @@ ul.toc li {
 
   <meta name="dct.creator" content="Polli, R. and L. Pardue" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-polli-resource-digests-http-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2019-05-16" />
+  <meta name="dct.issued" scheme="ISO8601" content="2019-05-17" />
   <meta name="dct.abstract" content="This document defines the Digest and Want-Digest header fields for HTTP, thus allowing client and server to negotiate an integrity checksum of the exchanged resource representation data.This document obsoletes . It replaces the term &#8220;instance&#8221; with &#8220;representation&#8221;, which makes it consistent  with the HTTP Semantic and Context defined in ." />
   <meta name="description" content="This document defines the Digest and Want-Digest header fields for HTTP, thus allowing client and server to negotiate an integrity checksum of the exchanged resource representation data.This document obsoletes . It replaces the term &#8220;instance&#8221; with &#8220;representation&#8221;, which makes it consistent  with the HTTP Semantic and Context defined in ." />
 
@@ -351,8 +351,8 @@ ul.toc li {
 <td class="right">L. Pardue</td>
 </tr>
 <tr>
-<td class="left">Expires: November 17, 2019</td>
-<td class="right">May 16, 2019</td>
+<td class="left">Expires: November 18, 2019</td>
+<td class="right">May 17, 2019</td>
 </tr>
 
     	
@@ -373,7 +373,7 @@ ul.toc li {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on November 17, 2019.</p>
+<p>This Internet-Draft will expire on November 18, 2019.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2019 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -439,9 +439,9 @@ ul.toc li {
 </li>
 </ul><li>8.   <a href="#rfc.section.8">IANA Considerations</a>
 </li>
-<ul><li>8.1.   <a href="#rfc.section.8.1">The &#8220;id-sha-256&#8221; Digest Algorithm</a>
+<ul><li>8.1.   <a href="#rfc.section.8.1">The &#8220;ID-SHA-256&#8221; Digest Algorithm</a>
 </li>
-<li>8.2.   <a href="#rfc.section.8.2">The &#8220;id-sha-512&#8221; Digest Algorithm</a>
+<li>8.2.   <a href="#rfc.section.8.2">The &#8220;ID-SHA-512&#8221; Digest Algorithm</a>
 </li>
 <li>8.3.   <a href="#rfc.section.8.3">Want-Digest Header Field Registration</a>
 </li>
@@ -483,7 +483,7 @@ ul.toc li {
 <p id="rfc.section.1.2.p.3">This approach can be easily adapted to use-cases where the transferred data does require some sort of manipulation to be considered a representation or conveys a partial representation of a resource (eg. Range Requests).</p>
 <p id="rfc.section.1.2.p.4">Changes are semantically compatible with existing implementations and better cover both the request and response cases.</p>
 <p id="rfc.section.1.2.p.5">The value of <samp>Digest</samp> is calculated on selected representation, which is tied to the value contained in any <samp>Content-Encoding</samp> or <samp>Content-Type</samp> header fields.  Therefore, a given resource may have multiple different digest values.</p>
-<p id="rfc.section.1.2.p.6">To allow both parties to exchange a Digest of a representation with <a href="https://tools.ietf.org/html/rfc7231#section-3.1.2.1">no content codings</a> two more algorithms are added (<samp>id-sha-256</samp> and <samp>id-sha-512</samp>).</p>
+<p id="rfc.section.1.2.p.6">To allow both parties to exchange a Digest of a representation with <a href="https://tools.ietf.org/html/rfc7231#section-3.1.2.1">no content codings</a> two more algorithms are added (<samp>ID-SHA-256</samp> and <samp>ID-SHA-512</samp>).</p>
 <h2 id="rfc.section.1.3">
 <a href="#rfc.section.1.3">1.3.</a> <a href="#goals" id="goals">Goals</a>
 </h2>
@@ -526,8 +526,6 @@ ul.toc li {
 <p id="rfc.section.2.p.3">The following examples shows how representation metadata, payload tranformations and method impacts on the message and payload body.</p>
 <p id="rfc.section.2.p.4">Here is a gzip-compressed json object</p>
 <pre>
-# gzip.compress(json.dumps(  {"a": "1"*100}  ).encode()))
-
 Request:
 
     PUT /entries/1234 HTTP/1.1
@@ -585,9 +583,8 @@ Response:
 <pre>
       digest-algorithm = token
 </pre>
-<p id="rfc.section.3.p.2">The BNF for &#8220;parameter&#8221; is as is used in <a href="#RFC7230" class="xref">[RFC7230]</a>.  All digest- algorithm values are case-insensitive.</p>
+<p id="rfc.section.3.p.2">The BNF for &#8220;parameter&#8221; is as is used in <a href="#RFC7230" class="xref">[RFC7230]</a>.  All digest-algorithm values are case-insensitive.</p>
 <p id="rfc.section.3.p.3">The Internet Assigned Numbers Authority (IANA) acts as a registry for digest-algorithm values.  The registry contains the following tokens.</p>
-<p><strong>NB: This RFC updates</strong> <a href="#RFC5843" class="xref">[RFC5843]</a> <strong>which is still delegated for all algorithms updates</strong></p>
 <p></p>
 
 <dl>
@@ -604,16 +601,16 @@ Response:
 <dt>UNIXcksum:</dt>
 <dd style="margin-left: 8">The algorithm computed by the UNIX &#8220;cksum&#8221; command, as defined by the Single UNIX Specification, Version 2 <a href="#UNIX" class="xref">[UNIX]</a>.  The output of this algorithm is an ASCII digit string representing the 32-bit CRC, which is the first word of the output of the UNIX &#8220;cksum&#8221; command.</dd>
 </dl>
-<p id="rfc.section.3.p.6">To allow sender and recipient to provide a checksum which is independent from the Content-Coding, the following additional algorithms are defined:</p>
+<p id="rfc.section.3.p.5">To allow sender and recipient to provide a checksum which is independent from the Content-Coding, the following additional algorithms are defined:</p>
 <p></p>
 
 <dl>
-<dt>id-sha-512:</dt>
+<dt>ID-SHA-512:</dt>
 <dd style="margin-left: 8">The sha-512 digest of the representation-data of the resource when no content coding is applied (eg. <samp>Content-Encoding: identity</samp>)</dd>
-<dt>id-sha-256:</dt>
+<dt>ID-SHA-256:</dt>
 <dd style="margin-left: 8">The sha-256 digest of the representation-data of the resource when no content coding is applied (eg. <samp>Content-Encoding: identity</samp>)</dd>
 </dl>
-<p id="rfc.section.3.p.8">If other digest-algorithm values are defined, the associated encoding MUST either be represented as a quoted string, or MUST NOT include &#8220;;&#8221; or &#8220;,&#8221; in the character sets used for the encoding.</p>
+<p id="rfc.section.3.p.7">If other digest-algorithm values are defined, the associated encoding MUST either be represented as a quoted string, or MUST NOT include &#8220;;&#8221; or &#8220;,&#8221; in the character sets used for the encoding.</p>
 <h2 id="rfc.section.3.1">
 <a href="#rfc.section.3.1">3.1.</a> <a href="#representation-digest" id="representation-digest">Representation digest</a>
 </h2>
@@ -630,9 +627,9 @@ Response:
 <h3 id="rfc.section.3.1.1">
 <a href="#rfc.section.3.1.1">3.1.1.</a> <a href="#digest-algorithm-encoding-examples" id="digest-algorithm-encoding-examples">digest-algorithm encoding examples</a>
 </h3>
-<p id="rfc.section.3.1.1.p.1">The sha-256 digest-algorithm uses base64 encoding</p>
+<p id="rfc.section.3.1.1.p.1">The <samp>sha-256</samp> digest-algorithm uses base64 encoding.  Note that digest-algoritm values are case insensitive.</p>
 <pre>
-sha-256=......
+sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 </pre>
 <p id="rfc.section.3.1.1.p.2">The &#8220;UNIXsum&#8221; digest-algorithm uses ASCII string of decimal digits.</p>
 <pre>
@@ -842,23 +839,23 @@ Response:
 <a href="#rfc.section.8">8.</a> <a href="#iana-considerations" id="iana-considerations">IANA Considerations</a>
 </h1>
 <h2 id="rfc.section.8.1">
-<a href="#rfc.section.8.1">8.1.</a> <a href="#iana-id-sha-256" id="iana-id-sha-256">The &#8220;id-sha-256&#8221; Digest Algorithm</a>
+<a href="#rfc.section.8.1">8.1.</a> <a href="#iana-ID-SHA-256" id="iana-ID-SHA-256">The &#8220;ID-SHA-256&#8221; Digest Algorithm</a>
 </h2>
-<p id="rfc.section.8.1.p.1">This memo registers the &#8220;id-sha-256&#8221; digest algorithm in the <a href="https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml">HTTP Digest Algorithm Values</a> registry:</p>
+<p id="rfc.section.8.1.p.1">This memo registers the &#8220;ID-SHA-256&#8221; digest algorithm in the <a href="https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml">HTTP Digest Algorithm Values</a> registry:</p>
 <p></p>
 
 <ul>
-<li>Digest Algorithm: id-sha-256</li>
+<li>Digest Algorithm: ID-SHA-256</li>
 <li>Description: As specified in <a href="#algorithms" class="xref">Section 3</a>.</li>
 </ul>
 <h2 id="rfc.section.8.2">
-<a href="#rfc.section.8.2">8.2.</a> <a href="#iana-id-sha-512" id="iana-id-sha-512">The &#8220;id-sha-512&#8221; Digest Algorithm</a>
+<a href="#rfc.section.8.2">8.2.</a> <a href="#iana-ID-SHA-512" id="iana-ID-SHA-512">The &#8220;ID-SHA-512&#8221; Digest Algorithm</a>
 </h2>
-<p id="rfc.section.8.2.p.1">This memo registers the &#8220;id-sha-512&#8221; digest algorithm in the <a href="https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml">HTTP Digest Algorithm Values</a> registry:</p>
+<p id="rfc.section.8.2.p.1">This memo registers the &#8220;ID-SHA-512&#8221; digest algorithm in the <a href="https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml">HTTP Digest Algorithm Values</a> registry:</p>
 <p></p>
 
 <ul>
-<li>Digest Algorithm: id-sha-512</li>
+<li>Digest Algorithm: ID-SHA-512</li>
 <li>Description: As specified in <a href="#algorithms" class="xref">Section 3</a>.</li>
 </ul>
 <h2 id="rfc.section.8.3">
@@ -1021,6 +1018,7 @@ Response:
 <li>Why remove references to delta-encoding?  <br><br> Unnecessary for a correct implementation of this spec. The revised spec can be nicely adapted to &#8220;delta encoding&#8221;, but all the references here to delta encoding don&#8217;t add anything to this RFC.  Another job would be to refresh delta encoding.</li>
 <li>Why remove references to Digest Authentication?  <br><br> This RFC seems to me completely unrelated to Digest Authentication but for the word &#8220;Digest&#8221;.</li>
 <li>What changes in <samp>Want-Digest</samp>?  <br><br> We allow to use the <samp>Want-Digest</samp> in responses to advertise the supported digest-algorithms and the inability to accept requests with unsupported digest-algorithms.</li>
+<li>Does this spec changes supported algorithms?  <br><br> This RFC updates <a href="#RFC5843" class="xref">[RFC5843]</a> which is still delegated for all algorithms updates, and adds two more algorithms: ID-SHA-256 and ID-SHA-512 which allows to send a checksum of a resource representation with no content codings applied.</li>
 </ol>
 <h1 id="rfc.authors"><a href="#rfc.authors">Authors' Addresses</a></h1>
 <div class="avoidbreak">
