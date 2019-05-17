@@ -150,7 +150,7 @@ Therefore, a given resource may have multiple different digest values.
 
 To allow both parties to exchange a Digest of a representation
 with [no content codings](https://tools.ietf.org/html/rfc7231#section-3.1.2.1)
-two more algorithms are added (`id-sha-256` and `id-sha-512`).
+two more algorithms are added (`ID-SHA-256` and `ID-SHA-512`).
 
 ## Goals
 
@@ -211,8 +211,6 @@ impacts on the message and payload body.
 Here is a gzip-compressed json object
 
 ~~~
-# gzip.compress(json.dumps(  {"a": "1"*100}  ).encode()))
-
 Request:
 
     PUT /entries/1234 HTTP/1.1
@@ -282,15 +280,14 @@ Response:
       digest-algorithm = token
 ~~~
 
-   The BNF for "parameter" is as is used in [RFC7230].  All digest-
-   algorithm values are case-insensitive.
+   The BNF for "parameter" is as is used in [RFC7230].
+   All digest-algorithm values are case-insensitive.
 
 
    The Internet Assigned Numbers Authority (IANA) acts as a registry for
    digest-algorithm values.  The registry contains the
    following tokens.
 
-   **NB: This RFC updates** [RFC5843] **which is still delegated for all algorithms updates**
 
   SHA-256:
   : The SHA-256 algorithm [FIPS180-3].  The output of
@@ -303,7 +300,6 @@ Response:
     this algorithm is encoded using the base64 encoding [RFC4648].
 
     Reference: [FIPS180-3], [RFC4648], this document.
-
 
   MD5:
   : The MD5 algorithm, as specified in [RFC1321].
@@ -333,11 +329,11 @@ Response:
 To allow sender and recipient to provide a checksum which is independent from the Content-Coding,
 the following additional algorithms are defined:
 
-   id-sha-512:
+   ID-SHA-512:
    : The sha-512 digest of the representation-data of the resource when no
      content coding is applied (eg. `Content-Encoding: identity`)
 
-   id-sha-256:
+   ID-SHA-256:
    : The sha-256 digest of the representation-data of the resource when no
      content coding is applied (eg. `Content-Encoding: identity`)
 
@@ -369,10 +365,13 @@ The encoded digest output uses the encoding format defined for the
 specific digest-algorithm.
 
 ### digest-algorithm encoding examples
-The sha-256 digest-algorithm uses base64 encoding
+
+The `sha-256` digest-algorithm uses base64 encoding.
+Note that digest-algoritm values are case insensitive.
+
 
 ~~~
-sha-256=......
+sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 ~~~
 
 The "UNIXsum" digest-algorithm uses ASCII string of decimal digits.
@@ -622,24 +621,24 @@ to tampering.
 
 # IANA Considerations
 
-## The "id-sha-256" Digest Algorithm {#iana-id-sha-256}
+## The "ID-SHA-256" Digest Algorithm {#iana-ID-SHA-256}
 
-This memo registers the "id-sha-256" digest algorithm in the [HTTP Digest
+This memo registers the "ID-SHA-256" digest algorithm in the [HTTP Digest
 Algorithm
 Values](https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml)
 registry:
 
-* Digest Algorithm: id-sha-256
+* Digest Algorithm: ID-SHA-256
 * Description: As specified in {{algorithms}}.
 
-## The "id-sha-512" Digest Algorithm {#iana-id-sha-512}
+## The "ID-SHA-512" Digest Algorithm {#iana-ID-SHA-512}
 
-This memo registers the "id-sha-512" digest algorithm in the [HTTP Digest
+This memo registers the "ID-SHA-512" digest algorithm in the [HTTP Digest
 Algorithm
 Values](https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml)
 registry:
 
-* Digest Algorithm: id-sha-512
+* Digest Algorithm: ID-SHA-512
 * Description: As specified in {{algorithms}}.
 
 ## Want-Digest Header Field Registration
@@ -721,4 +720,10 @@ the MICE Content Encoding.
 
    We allow to use the `Want-Digest` in responses to advertise the supported digest-algorithms
    and the inability to accept requests with unsupported digest-algorithms.
+
+7. Does this spec changes supported algorithms?
+
+   This RFC updates [RFC5843] which is still delegated for all algorithms updates,
+   and adds two more algorithms: ID-SHA-256 and ID-SHA-512 which allows to
+   send a checksum of a resource representation with no content codings applied.
 
