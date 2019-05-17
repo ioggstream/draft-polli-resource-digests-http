@@ -1,6 +1,108 @@
 [
 
   {
+    "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/23",
+    "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
+    "labels_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/23/labels{/name}",
+    "comments_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/23/comments",
+    "events_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/23/events",
+    "html_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/23",
+    "id": 445530854,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0Mjc5OTYzMjM5",
+    "number": 23,
+    "title": "Minor cleanups.",
+    "user": {
+      "login": "ioggstream",
+      "id": 1140844,
+      "node_id": "MDQ6VXNlcjExNDA4NDQ=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1140844?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/ioggstream",
+      "html_url": "https://github.com/ioggstream",
+      "followers_url": "https://api.github.com/users/ioggstream/followers",
+      "following_url": "https://api.github.com/users/ioggstream/following{/other_user}",
+      "gists_url": "https://api.github.com/users/ioggstream/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/ioggstream/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/ioggstream/subscriptions",
+      "organizations_url": "https://api.github.com/users/ioggstream/orgs",
+      "repos_url": "https://api.github.com/users/ioggstream/repos",
+      "events_url": "https://api.github.com/users/ioggstream/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/ioggstream/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2019-05-17T16:51:27Z",
+    "updated_at": "2019-05-17T16:51:27Z",
+    "closed_at": null,
+    "author_association": "OWNER",
+    "pull_request": {
+      "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/pulls/23",
+      "html_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/23",
+      "diff_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/23.diff",
+      "patch_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/23.patch"
+    },
+    "body": "## This PR\r\n\r\n* always use uppercase in algorithms definition, explicit\r\n  that algorithms are case-insensitive.\r\n\r\n* strip off python code from spec."
+  },
+  {
+    "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/22",
+    "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
+    "labels_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/22/labels{/name}",
+    "comments_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/22/comments",
+    "events_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/22/events",
+    "html_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/issues/22",
+    "id": 445090418,
+    "node_id": "MDU6SXNzdWU0NDUwOTA0MTg=",
+    "number": 22,
+    "title": "Define an encoding for binary payload data examples",
+    "user": {
+      "login": "ioggstream",
+      "id": 1140844,
+      "node_id": "MDQ6VXNlcjExNDA4NDQ=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1140844?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/ioggstream",
+      "html_url": "https://github.com/ioggstream",
+      "followers_url": "https://api.github.com/users/ioggstream/followers",
+      "following_url": "https://api.github.com/users/ioggstream/following{/other_user}",
+      "gists_url": "https://api.github.com/users/ioggstream/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/ioggstream/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/ioggstream/subscriptions",
+      "organizations_url": "https://api.github.com/users/ioggstream/orgs",
+      "repos_url": "https://api.github.com/users/ioggstream/repos",
+      "events_url": "https://api.github.com/users/ioggstream/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/ioggstream/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2019-05-16T18:07:35Z",
+    "updated_at": "2019-05-16T18:07:35Z",
+    "closed_at": null,
+    "author_association": "OWNER",
+    "body": "## Task\r\n\r\nHow to encode binary payload data?\r\n\r\n- base64, python repr, `<0x....>`\r\n\r\n## notes\r\n\r\n- base64 is a standard, though it may confuse the reader on whether he's required to \r\n  actually encode data\r\n\r\n- python repr (eg. `b'\\x8b\\x08\\x80{\"hello\": \"world\"}\\x03` is more clear on showing that\r\n  you are sending binary data. "
+  },
+  {
     "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/21",
     "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
     "labels_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/21/labels{/name}",
@@ -145,7 +247,7 @@
     "milestone": null,
     "comments": 0,
     "created_at": "2019-05-14T11:12:09Z",
-    "updated_at": "2019-05-14T12:10:01Z",
+    "updated_at": "2019-05-16T18:12:21Z",
     "closed_at": null,
     "author_association": "OWNER",
     "pull_request": {
@@ -154,7 +256,7 @@
       "diff_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/19.diff",
       "patch_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/19.patch"
     },
-    "body": "## This PR\r\n\r\nDeprecate broken-cryptographic algorithms\r\n\r\n## See\r\n\r\n#16"
+    "body": "## This PR\r\n\r\nDeprecate broken-cryptographic algorithms\r\n\r\n   **NB: This RFC updates** [RFC5843] **which is still delegated for all algorithms updates**\r\n\r\n\r\n## See\r\n\r\n#16"
   },
   {
     "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/18",
@@ -221,7 +323,7 @@
     "id": 442726452,
     "node_id": "MDExOlB1bGxSZXF1ZXN0Mjc3Nzc1MjIz",
     "number": 17,
-    "title": "Mention signatures in the Digest use-cases;",
+    "title": "HTTP integrity is multi-layered. ",
     "user": {
       "login": "ioggstream",
       "id": 1140844,
@@ -252,9 +354,9 @@
 
     ],
     "milestone": null,
-    "comments": 0,
+    "comments": 1,
     "created_at": "2019-05-10T13:42:37Z",
-    "updated_at": "2019-05-16T10:00:46Z",
+    "updated_at": "2019-05-16T10:03:18Z",
     "closed_at": null,
     "author_association": "OWNER",
     "pull_request": {
