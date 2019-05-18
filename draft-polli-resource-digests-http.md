@@ -122,7 +122,7 @@ The HTTP protocol does not provide means to protect the various
 message parts. Besides, it might be desirable to add additional guarantees
 to the ones provided by the transport layer (eg. HTTPS). This may be for:
 - detect programming errors and corruption of stored data;
-- the need for the representation-data remain unmodified throughout multiple hops;
+- address the need for the representation-data to remain unmodified throughout multiple hops;
 - implement signature mechanisms that cover the desired parts of an HTTP exchange;
 - additional protection against failures or attack (see [SRI]).
 
