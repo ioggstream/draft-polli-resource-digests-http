@@ -119,7 +119,7 @@ is usually achieved at across the protocol stack:
 TCP checksums and TLS record to name but some.
 
 The HTTP protocol does not provide means to protect the various
-message parts. Besides, it might be desirable to add further guarantees
+message parts. Besides, it might be desirable to add additional guarantees
 to the ones provided by the transport layer (eg. HTTPS). This may be for:
 - detect programming errors and corruption of stored data;
 - the need for the representation-data remain unmodified throughout multiple hops;
