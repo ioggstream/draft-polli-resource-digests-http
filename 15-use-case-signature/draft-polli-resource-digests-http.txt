@@ -130,8 +130,8 @@ Internet-Draft                   RDHTTP                         May 2019
 1.  Introduction
 
    Integrity protection for HTTP content is multi layered and is usually
-   achieved at transport level via TCP checksums and TCP checksums and
-   TLS record to name but some.
+   achieved at across the protocol stack: TCP checksums and TLS record
+   to name but some.
 
    The HTTP protocol does not provide a mean to protect the various
    message parts.  Besides, it might be desirable to add further
