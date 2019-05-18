@@ -115,7 +115,7 @@ The source code and issues list for this draft can be found at
 # Introduction
 
 Integrity protection for HTTP content is multi layered and
-is usually achieved at transport level via TCP checksums and
+is usually achieved at across the protocol stack:
 TCP checksums and TLS record to name but some.
 
 The HTTP protocol does not provide a mean to protect the various
