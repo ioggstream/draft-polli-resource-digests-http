@@ -77,7 +77,7 @@ Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
      1.1.  Brief history of integrity headers  . . . . . . . . . . .   3
-     1.2.  This proposal . . . . . . . . . . . . . . . . . . . . . .   3
+     1.2.  This proposal . . . . . . . . . . . . . . . . . . . . . .   4
      1.3.  Goals . . . . . . . . . . . . . . . . . . . . . . . . . .   4
      1.4.  Notational Conventions  . . . . . . . . . . . . . . . . .   5
    2.  Resource representation and representation-data . . . . . . .   5
@@ -136,11 +136,18 @@ Internet-Draft                   RDHTTP                         May 2019
    The HTTP protocol does not provide means to protect the various
    message parts.  Besides, it might be desirable to add additional
    guarantees to the ones provided by the transport layer (eg.  HTTPS).
-   This may be in order to: - detect programming errors and corruption
-   of stored data; - address the need for the representation-data to
-   remain unmodified throughout multiple hops; - implement signature
-   mechanisms that cover the desired parts of an HTTP exchange; -
-   provide additional protection against failures or attack (see [SRI]).
+   This may be in order to:
+
+   o  detect programming errors and corruption of stored data;
+
+   o  address the need for the representation-data to remain unmodified
+      throughout multiple hops;
+
+   o  implement signature mechanisms that cover the desired parts of an
+      HTTP exchange;
+
+   o  provide additional protection against failures or attack (see
+      [SRI]).
 
 1.1.  Brief history of integrity headers
 
@@ -153,14 +160,7 @@ Internet-Draft                   RDHTTP                         May 2019
    [RFC3230] provided a more flexible solution introducing the concept
    of "instance", and the headers "Digest" and "Want-Digest".
 
-1.2.  This proposal
 
-   The concept of "selected representation" defined in [RFC7231] made
-   [RFC3230] definitions inconsistent with the current standard.  A
-   refresh was then required.
-
-   This document updates the "Digest" and "Want-Digest" header field
-   definitions to align with [RFC7231] concepts.
 
 
 
@@ -169,6 +169,15 @@ Polli & Pardue          Expires November 19, 2019               [Page 3]
 
 Internet-Draft                   RDHTTP                         May 2019
 
+
+1.2.  This proposal
+
+   The concept of "selected representation" defined in [RFC7231] made
+   [RFC3230] definitions inconsistent with the current standard.  A
+   refresh was then required.
+
+   This document updates the "Digest" and "Want-Digest" header field
+   definitions to align with [RFC7231] concepts.
 
    This approach can be easily adapted to use-cases where the
    transferred data does require some sort of manipulation to be
@@ -210,21 +219,17 @@ Internet-Draft                   RDHTTP                         May 2019
       message or anything else.  These mechanisms, therefore, are not a
       sufficient defense against many kinds of malicious attacks.
 
-   Privacy:  Digest mechanisms do not provide message privacy.
-
-   Authorization:  The digest mechanisms described here are not meant to
-      support authorization or other kinds of access controls.
-
-
-
-
-
 
 
 Polli & Pardue          Expires November 19, 2019               [Page 4]
 
 Internet-Draft                   RDHTTP                         May 2019
 
+
+   Privacy:  Digest mechanisms do not provide message privacy.
+
+   Authorization:  The digest mechanisms described here are not meant to
+      support authorization or other kinds of access controls.
 
 1.4.  Notational Conventions
 
@@ -267,11 +272,6 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
    Now the same payload body conveys a malformed json object.
-
-
-
-
-
 
 
 
