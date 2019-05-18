@@ -116,7 +116,7 @@ The source code and issues list for this draft can be found at
 
 Integrity protection for HTTP content is multi layered and
 is usually achieved at transport level via TCP checksums and
-TLS records.
+TCP checksums and TLS record to name but some.
 
 The HTTP protocol does not provide a mean to protect the various
 message parts. Besides, it might be desirable to add further guarantees
