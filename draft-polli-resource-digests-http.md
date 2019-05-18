@@ -120,7 +120,7 @@ TCP checksums and TLS record to name but some.
 
 The HTTP protocol does not provide means to protect the various
 message parts. Besides, it might be desirable to add additional guarantees
-to the ones provided by the transport layer (eg. HTTPS). This may be for:
+to the ones provided by the transport layer (eg. HTTPS). This may be in order to:
 - detect programming errors and corruption of stored data;
 - address the need for the representation-data to remain unmodified throughout multiple hops;
 - implement signature mechanisms that cover the desired parts of an HTTP exchange;
