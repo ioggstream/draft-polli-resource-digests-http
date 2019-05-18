@@ -5,7 +5,7 @@
 Network Working Group                                           R. Polli
 Internet-Draft                                             Team Digitale
 Intended status: Standards Track                               L. Pardue
-Expires: November 17, 2019                                  May 16, 2019
+Expires: November 19, 2019                                  May 18, 2019
 
 
                        Resource Digests for HTTP
@@ -47,13 +47,13 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on November 17, 2019.
+   This Internet-Draft will expire on November 19, 2019.
 
 
 
 
 
-Polli & Pardue          Expires November 17, 2019               [Page 1]
+Polli & Pardue          Expires November 19, 2019               [Page 1]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Polli & Pardue          Expires November 17, 2019               [Page 2]
+Polli & Pardue          Expires November 19, 2019               [Page 2]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -130,7 +130,8 @@ Internet-Draft                   RDHTTP                         May 2019
 1.  Introduction
 
    Integrity protection for HTTP content is multi layered and is usually
-   achieved at transport level via TCP checksums and TLS records.
+   achieved at transport level via TCP checksums and TCP checksums and
+   TLS record to name but some.
 
    The HTTP protocol does not provide a mean to protect the various
    message parts.  Besides, it might be desirable to add further
@@ -164,8 +165,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-
-Polli & Pardue          Expires November 17, 2019               [Page 3]
+Polli & Pardue          Expires November 19, 2019               [Page 3]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -221,7 +221,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 17, 2019               [Page 4]
+Polli & Pardue          Expires November 19, 2019               [Page 4]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -277,7 +277,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 17, 2019               [Page 5]
+Polli & Pardue          Expires November 19, 2019               [Page 5]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -333,7 +333,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 17, 2019               [Page 6]
+Polli & Pardue          Expires November 19, 2019               [Page 6]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -389,7 +389,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 17, 2019               [Page 7]
+Polli & Pardue          Expires November 19, 2019               [Page 7]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -445,7 +445,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 17, 2019               [Page 8]
+Polli & Pardue          Expires November 19, 2019               [Page 8]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -501,7 +501,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 17, 2019               [Page 9]
+Polli & Pardue          Expires November 19, 2019               [Page 9]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -557,7 +557,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 17, 2019              [Page 10]
+Polli & Pardue          Expires November 19, 2019              [Page 10]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -613,7 +613,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 17, 2019              [Page 11]
+Polli & Pardue          Expires November 19, 2019              [Page 11]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -669,7 +669,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 17, 2019              [Page 12]
+Polli & Pardue          Expires November 19, 2019              [Page 12]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -725,7 +725,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 17, 2019              [Page 13]
+Polli & Pardue          Expires November 19, 2019              [Page 13]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -781,7 +781,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 17, 2019              [Page 14]
+Polli & Pardue          Expires November 19, 2019              [Page 14]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -837,7 +837,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 17, 2019              [Page 15]
+Polli & Pardue          Expires November 19, 2019              [Page 15]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -893,7 +893,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 17, 2019              [Page 16]
+Polli & Pardue          Expires November 19, 2019              [Page 16]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -949,7 +949,7 @@ Appendix B.  FAQ
 
 
 
-Polli & Pardue          Expires November 17, 2019              [Page 17]
+Polli & Pardue          Expires November 19, 2019              [Page 17]
 
 Internet-Draft                   RDHTTP                         May 2019
 
@@ -1005,4 +1005,4 @@ Authors' Addresses
 
 
 
-Polli & Pardue          Expires November 17, 2019              [Page 18]
+Polli & Pardue          Expires November 19, 2019              [Page 18]
