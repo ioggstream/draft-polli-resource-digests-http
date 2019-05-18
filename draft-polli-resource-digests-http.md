@@ -640,11 +640,12 @@ Response:
 
 ## Broken cryptographic algorithms
 
-Cryptographic algorithms are supposed to provide a proof of integrity
-usable eg. in signatures.
+Cryptogrphic alorithms are intended to provide a proof of integrity
+suited towards cryptographic constructions such as signatures.
 
-To discourage mistakes, broken-cryptographic algorithms
-like `MD5` and `SHA-1` are now NOT RECOMMENDED.
+However, these rely on collision-resistance for their security proofs [CMU-836068].
+The MD5 and SHA-1 algorithms are vulnerable to collisions attacks and 
+they are NOT RECOMMENDED.
 
 ## Digest for end-to-end integrity
 
