@@ -124,7 +124,7 @@ to the ones provided by the transport layer (eg. HTTPS). This may be for:
 - detect programming errors and corruption of stored data;
 - address the need for the representation-data to remain unmodified throughout multiple hops;
 - implement signature mechanisms that cover the desired parts of an HTTP exchange;
-- additional protection against failures or attack (see [SRI]).
+- provide additional protection against failures or attack (see [SRI]).
 
 ## Brief history of integrity headers
 
