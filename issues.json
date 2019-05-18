@@ -1,6 +1,60 @@
 [
 
   {
+    "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/24",
+    "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
+    "labels_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/24/labels{/name}",
+    "comments_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/24/comments",
+    "events_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/24/events",
+    "html_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/24",
+    "id": 445567392,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0Mjc5OTkyMjU4",
+    "number": 24,
+    "title": "Added IANA considerations for obsoleted algorithms. #16",
+    "user": {
+      "login": "ioggstream",
+      "id": 1140844,
+      "node_id": "MDQ6VXNlcjExNDA4NDQ=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1140844?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/ioggstream",
+      "html_url": "https://github.com/ioggstream",
+      "followers_url": "https://api.github.com/users/ioggstream/followers",
+      "following_url": "https://api.github.com/users/ioggstream/following{/other_user}",
+      "gists_url": "https://api.github.com/users/ioggstream/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/ioggstream/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/ioggstream/subscriptions",
+      "organizations_url": "https://api.github.com/users/ioggstream/orgs",
+      "repos_url": "https://api.github.com/users/ioggstream/repos",
+      "events_url": "https://api.github.com/users/ioggstream/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/ioggstream/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2019-05-17T18:36:06Z",
+    "updated_at": "2019-05-18T10:22:51Z",
+    "closed_at": null,
+    "author_association": "OWNER",
+    "pull_request": {
+      "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/pulls/24",
+      "html_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/24",
+      "diff_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/24.diff",
+      "patch_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/24.patch"
+    },
+    "body": "## This PR\r\n\r\n- specifies MD5 and SHA1 collisions\r\n- add `Status` to IANA Digest Algorithms\r\n- Set `obsoleted` status on MD5 and SHA1"
+  },
+  {
     "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/23",
     "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
     "labels_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/23/labels{/name}",
@@ -34,7 +88,7 @@
     "labels": [
 
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": null,
     "assignees": [
@@ -43,8 +97,8 @@
     "milestone": null,
     "comments": 0,
     "created_at": "2019-05-17T16:51:27Z",
-    "updated_at": "2019-05-17T16:51:27Z",
-    "closed_at": null,
+    "updated_at": "2019-05-17T16:56:15Z",
+    "closed_at": "2019-05-17T16:54:57Z",
     "author_association": "OWNER",
     "pull_request": {
       "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/pulls/23",
@@ -86,7 +140,14 @@
       "site_admin": false
     },
     "labels": [
-
+      {
+        "id": 1334069513,
+        "node_id": "MDU6TGFiZWwxMzM0MDY5NTEz",
+        "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/labels/enhancement",
+        "name": "enhancement",
+        "color": "a2eeef",
+        "default": true
+      }
     ],
     "state": "open",
     "locked": false,
@@ -97,7 +158,7 @@
     "milestone": null,
     "comments": 0,
     "created_at": "2019-05-16T18:07:35Z",
-    "updated_at": "2019-05-16T18:07:35Z",
+    "updated_at": "2019-05-17T19:14:12Z",
     "closed_at": null,
     "author_association": "OWNER",
     "body": "## Task\r\n\r\nHow to encode binary payload data?\r\n\r\n- base64, python repr, `<0x....>`\r\n\r\n## notes\r\n\r\n- base64 is a standard, though it may confuse the reader on whether he's required to \r\n  actually encode data\r\n\r\n- python repr (eg. `b'\\x8b\\x08\\x80{\"hello\": \"world\"}\\x03` is more clear on showing that\r\n  you are sending binary data. "
@@ -145,7 +206,7 @@
     "milestone": null,
     "comments": 0,
     "created_at": "2019-05-15T08:43:28Z",
-    "updated_at": "2019-05-15T08:49:16Z",
+    "updated_at": "2019-05-18T10:24:40Z",
     "closed_at": null,
     "author_association": "OWNER",
     "pull_request": {
@@ -238,17 +299,17 @@
     "labels": [
 
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": null,
     "assignees": [
 
     ],
     "milestone": null,
-    "comments": 0,
+    "comments": 1,
     "created_at": "2019-05-14T11:12:09Z",
-    "updated_at": "2019-05-16T18:12:21Z",
-    "closed_at": null,
+    "updated_at": "2019-05-17T19:48:48Z",
+    "closed_at": "2019-05-17T19:48:48Z",
     "author_association": "OWNER",
     "pull_request": {
       "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/pulls/19",
@@ -356,7 +417,7 @@
     "milestone": null,
     "comments": 1,
     "created_at": "2019-05-10T13:42:37Z",
-    "updated_at": "2019-05-16T10:03:18Z",
+    "updated_at": "2019-05-18T12:48:31Z",
     "closed_at": null,
     "author_association": "OWNER",
     "pull_request": {
@@ -408,9 +469,9 @@
 
     ],
     "milestone": null,
-    "comments": 5,
+    "comments": 6,
     "created_at": "2019-05-10T13:05:32Z",
-    "updated_at": "2019-05-16T09:46:01Z",
+    "updated_at": "2019-05-18T08:41:21Z",
     "closed_at": null,
     "author_association": "OWNER",
     "body": "## I expect\r\n\r\nNon-crypto algorithms be deprecated and removed from this draft.\r\n\r\n## Because\r\n\r\n- `UNIXsum`, `UNIXcksum` do not provide more integrity than the underlying TLS\r\n- `MD5` and `SHA-1` are subject to collision\r\n\r\n## Note\r\n\r\nWhile crc2 and adler32 are mentioned in [http-dig-alg registry](https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml) I can't find any reference in RFC3230 nor in RFC5843.\r\n\r\n@jyasskin does it sound good to you?"
