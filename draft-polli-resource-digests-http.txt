@@ -258,7 +258,7 @@ Internet-Draft                   RDHTTP                         May 2019
 
 2.  Resource representation and representation-data
 
-   To avoid inconsistencies, an integrity mechanism for http messages
+   To avoid inconsistencies, an integrity mechanism for HTTP messages
    should decouple the checksum calculation:
 
    o  from the payload body - which may be altered by mechanism like
