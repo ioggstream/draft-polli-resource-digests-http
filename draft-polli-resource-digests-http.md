@@ -677,7 +677,7 @@ to tampering.
 `Digest` SHOULD always be used over a connection which provides
 integrity at transport layer that protects HTTP headers.
 
-A `Digest` header using NOT RECOMMENDED {digest-algorithms} MUST NOT be used in signatures.
+A `Digest` header using NOT RECOMMENDED {digest-algorithms} SHOULD NOT be used in signatures.
 
 ## Message Truncation
 
