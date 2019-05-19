@@ -652,6 +652,17 @@ Response:
 
 # Security Considerations
 
+## Digest does not protect the full HTTP message
+
+This document specifies a data integrity mechanism that protects HTTP
+`representation data`, but not HTTP `representation metadata` headers,
+from certain kinds of accidental corruption.
+
+While it is not intended as general protection
+against malicious tampering with HTTP messages,
+this goal can be achieved using `Digest` together
+with a transport-layer security mechanism and digital signatures.
+
 ## Broken cryptographic algorithms
 
 Cryptogrphic alorithms are intended to provide a proof of integrity
@@ -665,7 +676,7 @@ they are NOT RECOMMENDED.
 
 `Digest` alone does not provide end-to-end integrity
 of HTTP messages over multiple hops, as it just covers
-the representation-data and not the representation metadata.
+the `representation data` and not the `representation metadata`.
 
 Besides, it allows to protect representation data from
 buggy manipulation, buggy compression, etc.
@@ -684,7 +695,7 @@ Digital signatures are widely used together with checksums to provide
 the certain identification of the origin of a message [NIST800-32].
 
 It's important to note that, being the `Digest` header an hash of a resource representation,
-signing only the `Digest` header, without all the representation metatada (eg.
+signing only the `Digest` header, without all the `representation metatada` (eg.
 the values of `Content-Type` and `Content-Encoding`) may expose the communication
 to tampering.
 
@@ -692,6 +703,7 @@ to tampering.
 integrity at transport layer that protects HTTP headers.
 
 A `Digest` header using NOT RECOMMENDED {digest-algorithms} SHOULD NOT be used in signatures.
+
 
 ## Message Truncation
 
