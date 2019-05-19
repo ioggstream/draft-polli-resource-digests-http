@@ -74,6 +74,13 @@ normative:
       ins: Carnagie Mellon University, Software Engineering Institute
     date: 2008-12-31
     target: https://www.kb.cert.org/vuls/id/836068/
+  IACR-2019-459:
+    title: From Collisions to Chosen-Prefix Collisions Application to Full SHA-1
+    author:
+      name: Leurent, G, Peyrin, T
+      ins: Inria, France; Nanyang Technological University, Singapore; Temasek Laboratories, Singapore
+    date: 2019-05-06
+    target: https://eprint.iacr.org/2019/459.pdf
 
 informative:
   RFC2818:
@@ -302,20 +309,36 @@ Response:
 
     Reference: [FIPS180-3], [RFC4648], this document.
 
+    Status: standard
+
   SHA-512:
   : The SHA-512 algorithm [FIPS180-3].  The output of
     this algorithm is encoded using the base64 encoding [RFC4648].
 
     Reference: [FIPS180-3], [RFC4648], this document.
 
+    Status: standard
+
   MD5:
   : The MD5 algorithm, as specified in [RFC1321].
     The output of this algorithm is encoded using the
     base64 encoding  [RFC4648].
+    The MD5 algorithm is NOT RECOMMENDED as it's now vulnerable
+    to collision attacks [CMU-836068].
+
+    Reference: [RFC1321], [RFC4648], this document.
+
+    Status: obsoleted
 
   SHA:
   : The SHA-1 algorithm [FIPS180-1].  The output of this
     algorithm is encoded using the base64 encoding  [RFC4648].
+    The SHA algorithm is NOT RECOMMENDED as it's now vulnerable
+    to collision attacks [IACR-2019-459].
+
+    Reference: [FIPS-180-3], [RFC4648], this document.
+
+    Status: obsoleted
 
   UNIXsum:
   : The algorithm computed by the UNIX "sum" command,
@@ -340,9 +363,18 @@ the following additional algorithms are defined:
    : The sha-512 digest of the representation-data of the resource when no
      content coding is applied (eg. `Content-Encoding: identity`)
 
+     Reference: [FIPS180-3], [RFC4648], this document.
+
+     Status: standard
+
+
    ID-SHA-256:
    : The sha-256 digest of the representation-data of the resource when no
      content coding is applied (eg. `Content-Encoding: identity`)
+
+     Reference: [FIPS180-3], [RFC4648], this document.
+
+     Status: standard
 
    If other digest-algorithm values are defined, the associated encoding
    MUST either be represented as a quoted string, or MUST NOT include
@@ -454,11 +486,17 @@ knowing that the recipient will ignore it.
 ...
 
 # Deprecate Negotiation of Content-MD5
+
 This RFC deprecates the negotiation of Content-MD5 as
 this header has been obsoleted by [RFC7231]
 
+# Broken cryptographic algorithms are NOT RECOMMENDED
+
 The MD5 algorithm is NOT RECOMMENDED as it's now vulnerable
-to collision attacks [CMU-836068]
+to collision attacks [CMU-836068].
+
+The SHA algorithm is NOT RECOMMENDED as it's now vulnerable
+to collision attacks [IACR-2019-459].
 
 # Examples
 
@@ -607,16 +645,46 @@ Response:
 
 # Security Considerations
 
+## Broken cryptographic algorithms
+
+Cryptogrphic alorithms are intended to provide a proof of integrity
+suited towards cryptographic constructions such as signatures.
+
+However, these rely on collision-resistance for their security proofs [CMU-836068].
+The MD5 and SHA-1 algorithms are vulnerable to collisions attacks and 
+they are NOT RECOMMENDED.
+
+## Digest for end-to-end integrity
+
+`Digest` alone does not provide end-to-end integrity
+of HTTP messages over multiple hops, as it just covers
+the representation-data and not the representation metadata.
+
+Besides, it allows to protect representation data from
+buggy manipulation, buggy compression, etc.
+
+Moreover identity digest algorithms (eg. ID-SHA-256 and ID-SHA-512)
+allow piecing together a resource from different sources
+(e.g. different servers that perhaps apply different content codings)
+enabling the user-agent to detect that the application-layer tasks completed properly,
+before handing off to say the HTML parser, video player etc.
+
+Even a simple mechanism for end-to-end validation is thus valuable.
+
 ## Usage in signatures
 
 Digital signatures are widely used together with checksums to provide
 the certain identification of the origin of a message [NIST800-32].
 
-It's important to note that, being the Digest header an hash of a resource representation,
+It's important to note that, being the `Digest` header an hash of a resource representation,
 signing only the `Digest` header, without all the representation metatada (eg.
 the values of `Content-Type` and `Content-Encoding`) may expose the communication
 to tampering.
 
+`Digest` SHOULD always be used over a connection which provides
+integrity at transport layer that protects HTTP headers.
+
+A `Digest` header using NOT RECOMMENDED {digest-algorithms} SHOULD NOT be used in signatures.
 
 ## Message Truncation
 
@@ -628,6 +696,49 @@ to tampering.
 
 # IANA Considerations
 
+## Establish the HTTP Digest Algorithm Values
+
+This memo sets this spec to be the establishing
+document for the [HTTP Digest
+Algorithm
+Values](https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml)
+
+## The "status" field in the HTTP Digest Algorithm Values
+
+This memo adds the field "Status" to the [HTTP Digest
+Algorithm
+Values](https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml)
+registry. The allowed values for the "Status" fields are described below.
+
+   Status
+   :  Specify "standard", "experimental", "historic",
+      "obsoleted", or "deprecated" according to the type
+      and status of the primary document in which the algorithm
+      is defined.
+
+## Obsolete "MD5" Digest Algorithm {#iana-MD5}
+
+This memo updates the "MD5" digest algorithm in the [HTTP Digest
+Algorithm
+Values](https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml)
+registry:
+
+* Digest Algorithm: MD5
+* Description: As specified in {{algorithms}}.
+* Status: As specified in {{algorithms}}.
+
+
+## Obsolete "SHA" Digest Algorithm {#iana-SHA}
+
+This memo updates the "SHA" digest algorithm in the [HTTP Digest
+Algorithm
+Values](https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml)
+registry:
+
+* Digest Algorithm: SHA
+* Description: As specified in {{algorithms}}.
+* Status: As specified in {{algorithms}}.
+
 ## The "ID-SHA-256" Digest Algorithm {#iana-ID-SHA-256}
 
 This memo registers the "ID-SHA-256" digest algorithm in the [HTTP Digest
@@ -637,6 +748,7 @@ registry:
 
 * Digest Algorithm: ID-SHA-256
 * Description: As specified in {{algorithms}}.
+* Status: As specified in {{algorithms}}.
 
 ## The "ID-SHA-512" Digest Algorithm {#iana-ID-SHA-512}
 
@@ -647,6 +759,17 @@ registry:
 
 * Digest Algorithm: ID-SHA-512
 * Description: As specified in {{algorithms}}.
+* Status: As specified in {{algorithms}}.
+
+## Changes compared to RFC5843
+
+The status has been updated to "obsoleted" for both "SHA" and "MD5",
+and their descriptions states that those algorithms are NOT RECOMMENDED.
+
+The status for all other algorithms have been updated to "standard".
+
+The "ID-SHA-256" and "ID-SHA-512" algorithms have been added to
+the registry.
 
 ## Want-Digest Header Field Registration
 
@@ -680,6 +803,11 @@ Specification document(s):  {{digest-header}} of this document
 
 --- back
 
+# Change Log
+
+RFC EDITOR PLEASE DELETE THIS SECTION.
+
+
 # Acknowledgements
 
 The vast majority of this document is inherited from [RFC3230], so thanks
@@ -712,13 +840,13 @@ the MICE Content Encoding.
    - a `200 OK` response to a PATCH request would contain the digest of the patched item, and the etag of the new object.
      This behavior - tighly coupled to the application logic - gives the client low probability of guessing the actual
      outcome of this operation (eg. concurrent changes, ...)
-     
+
 4. Why remove references to delta-encoding?
 
    Unnecessary for a correct implementation of this spec. The revised spec can be nicely adapted
    to "delta encoding", but all the references here to delta encoding don't add anything to this RFC.
    Another job would be to refresh delta encoding.
-   
+
 5. Why remove references to Digest Authentication?
 
    This RFC seems to me completely unrelated to Digest Authentication but for the word "Digest".
