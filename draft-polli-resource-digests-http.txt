@@ -228,6 +228,10 @@ Internet-Draft                   RDHTTP                         May 2019
 
    The goals do not include:
 
+   HTTP Message integrity:  The digest mechanism described here does not
+      cover the full HTTP message nor its semantic, as representation
+      metadata are not included in the checksum.
+
    Header integrity:  The digest mechanisms described here cover only
       representation and selected representation data, and do not
       protect the integrity of associated representation metadata
@@ -270,10 +274,6 @@ Internet-Draft                   RDHTTP                         May 2019
    The following examples shows how representation metadata, payload
    tranformations and method impacts on the message and payload body.
 
-   Here is a gzip-compressed json object
-
-
-
 
 
 
@@ -281,6 +281,8 @@ Polli & Pardue          Expires November 20, 2019               [Page 5]
 
 Internet-Draft                   RDHTTP                         May 2019
 
+
+   Here is a gzip-compressed json object
 
    Request:
 
@@ -319,8 +321,6 @@ Internet-Draft                   RDHTTP                         May 2019
        iwgAla3RXA==
 
    Now the method too alters the payload body.
-
-
 
 
 
