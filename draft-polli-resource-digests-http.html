@@ -307,11 +307,12 @@ ul.toc li {
 <link href="#rfc.section.7.2.2" rel="Chapter" title="7.2.2 A client requests an unsupported Digest, the server MAY reply with an unsupported digest">
 <link href="#rfc.section.7.2.3" rel="Chapter" title="7.2.3 A client requests an unsupported Digest, the server MAY reply with a 400">
 <link href="#rfc.section.8" rel="Chapter" title="8 Security Considerations">
-<link href="#rfc.section.8.1" rel="Chapter" title="8.1 Broken cryptographic algorithms">
-<link href="#rfc.section.8.2" rel="Chapter" title="8.2 Digest for end-to-end integrity">
-<link href="#rfc.section.8.3" rel="Chapter" title="8.3 Usage in signatures">
-<link href="#rfc.section.8.4" rel="Chapter" title="8.4 Message Truncation">
-<link href="#rfc.section.8.5" rel="Chapter" title="8.5 Algorithm Agility">
+<link href="#rfc.section.8.1" rel="Chapter" title="8.1 Digest does not protect the full HTTP message">
+<link href="#rfc.section.8.2" rel="Chapter" title="8.2 Broken cryptographic algorithms">
+<link href="#rfc.section.8.3" rel="Chapter" title="8.3 Digest for end-to-end integrity">
+<link href="#rfc.section.8.4" rel="Chapter" title="8.4 Usage in signatures">
+<link href="#rfc.section.8.5" rel="Chapter" title="8.5 Message Truncation">
+<link href="#rfc.section.8.6" rel="Chapter" title="8.6 Algorithm Agility">
 <link href="#rfc.section.9" rel="Chapter" title="9 IANA Considerations">
 <link href="#rfc.section.9.1" rel="Chapter" title="9.1 Establish the HTTP Digest Algorithm Values">
 <link href="#rfc.section.9.2" rel="Chapter" title="9.2 The &#8220;status&#8221; field in the HTTP Digest Algorithm Values">
@@ -442,15 +443,17 @@ ul.toc li {
 </li>
 </ul></ul><li>8.   <a href="#rfc.section.8">Security Considerations</a>
 </li>
-<ul><li>8.1.   <a href="#rfc.section.8.1">Broken cryptographic algorithms</a>
+<ul><li>8.1.   <a href="#rfc.section.8.1">Digest does not protect the full HTTP message</a>
 </li>
-<li>8.2.   <a href="#rfc.section.8.2">Digest for end-to-end integrity</a>
+<li>8.2.   <a href="#rfc.section.8.2">Broken cryptographic algorithms</a>
 </li>
-<li>8.3.   <a href="#rfc.section.8.3">Usage in signatures</a>
+<li>8.3.   <a href="#rfc.section.8.3">Digest for end-to-end integrity</a>
 </li>
-<li>8.4.   <a href="#rfc.section.8.4">Message Truncation</a>
+<li>8.4.   <a href="#rfc.section.8.4">Usage in signatures</a>
 </li>
-<li>8.5.   <a href="#rfc.section.8.5">Algorithm Agility</a>
+<li>8.5.   <a href="#rfc.section.8.5">Message Truncation</a>
+</li>
+<li>8.6.   <a href="#rfc.section.8.6">Algorithm Agility</a>
 </li>
 </ul><li>9.   <a href="#rfc.section.9">IANA Considerations</a>
 </li>
@@ -868,32 +871,37 @@ Response:
 <a href="#rfc.section.8">8.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
 </h1>
 <h2 id="rfc.section.8.1">
-<a href="#rfc.section.8.1">8.1.</a> <a href="#broken-cryptographic-algorithms" id="broken-cryptographic-algorithms">Broken cryptographic algorithms</a>
+<a href="#rfc.section.8.1">8.1.</a> <a href="#digest-does-not-protect-the-full-http-message" id="digest-does-not-protect-the-full-http-message">Digest does not protect the full HTTP message</a>
 </h2>
-<p id="rfc.section.8.1.p.1">Cryptogrphic alorithms are intended to provide a proof of integrity suited towards cryptographic constructions such as signatures.</p>
-<p id="rfc.section.8.1.p.2">However, these rely on collision-resistance for their security proofs <a href="#CMU-836068" class="xref">[CMU-836068]</a>.  The MD5 and SHA-1 algorithms are vulnerable to collisions attacks and they are NOT RECOMMENDED.</p>
+<p id="rfc.section.8.1.p.1">This document specifies a data integrity mechanism that protects HTTP <samp>representation data</samp>, but not HTTP <samp>representation metadata</samp> headers, from certain kinds of accidental corruption.</p>
+<p id="rfc.section.8.1.p.2">While it is not intended as general protection against malicious tampering with HTTP messages, this goal can be achieved using <samp>Digest</samp> together with a transport-layer security mechanism and digital signatures.</p>
 <h2 id="rfc.section.8.2">
-<a href="#rfc.section.8.2">8.2.</a> <a href="#digest-for-end-to-end-integrity" id="digest-for-end-to-end-integrity">Digest for end-to-end integrity</a>
+<a href="#rfc.section.8.2">8.2.</a> <a href="#broken-cryptographic-algorithms" id="broken-cryptographic-algorithms">Broken cryptographic algorithms</a>
 </h2>
-<p><samp>Digest</samp> alone does not provide end-to-end integrity of HTTP messages over multiple hops, as it just covers the representation-data and not the representation metadata.</p>
-<p id="rfc.section.8.2.p.2">Besides, it allows to protect representation data from buggy manipulation, buggy compression, etc.</p>
-<p id="rfc.section.8.2.p.3">Moreover identity digest algorithms (eg. ID-SHA-256 and ID-SHA-512) allow piecing together a resource from different sources (e.g. different servers that perhaps apply different content codings) enabling the user-agent to detect that the application-layer tasks completed properly, before handing off to say the HTML parser, video player etc.</p>
-<p id="rfc.section.8.2.p.4">Even a simple mechanism for end-to-end validation is thus valuable.</p>
+<p id="rfc.section.8.2.p.1">Cryptogrphic alorithms are intended to provide a proof of integrity suited towards cryptographic constructions such as signatures.</p>
+<p id="rfc.section.8.2.p.2">However, these rely on collision-resistance for their security proofs <a href="#CMU-836068" class="xref">[CMU-836068]</a>.  The MD5 and SHA-1 algorithms are vulnerable to collisions attacks and they are NOT RECOMMENDED.</p>
 <h2 id="rfc.section.8.3">
-<a href="#rfc.section.8.3">8.3.</a> <a href="#usage-in-signatures" id="usage-in-signatures">Usage in signatures</a>
+<a href="#rfc.section.8.3">8.3.</a> <a href="#digest-for-end-to-end-integrity" id="digest-for-end-to-end-integrity">Digest for end-to-end integrity</a>
 </h2>
-<p id="rfc.section.8.3.p.1">Digital signatures are widely used together with checksums to provide the certain identification of the origin of a message <a href="#NIST800-32" class="xref">[NIST800-32]</a>.</p>
-<p id="rfc.section.8.3.p.2">It&#8217;s important to note that, being the <samp>Digest</samp> header an hash of a resource representation, signing only the <samp>Digest</samp> header, without all the representation metatada (eg.  the values of <samp>Content-Type</samp> and <samp>Content-Encoding</samp>) may expose the communication to tampering.</p>
-<p><samp>Digest</samp> SHOULD always be used over a connection which provides integrity at transport layer that protects HTTP headers.</p>
-<p id="rfc.section.8.3.p.4">A <samp>Digest</samp> header using NOT RECOMMENDED {digest-algorithms} SHOULD NOT be used in signatures.</p>
+<p><samp>Digest</samp> alone does not provide end-to-end integrity of HTTP messages over multiple hops, as it just covers the <samp>representation data</samp> and not the <samp>representation metadata</samp>.</p>
+<p id="rfc.section.8.3.p.2">Besides, it allows to protect representation data from buggy manipulation, buggy compression, etc.</p>
+<p id="rfc.section.8.3.p.3">Moreover identity digest algorithms (eg. ID-SHA-256 and ID-SHA-512) allow piecing together a resource from different sources (e.g. different servers that perhaps apply different content codings) enabling the user-agent to detect that the application-layer tasks completed properly, before handing off to say the HTML parser, video player etc.</p>
+<p id="rfc.section.8.3.p.4">Even a simple mechanism for end-to-end validation is thus valuable.</p>
 <h2 id="rfc.section.8.4">
-<a href="#rfc.section.8.4">8.4.</a> <a href="#message-truncation" id="message-truncation">Message Truncation</a>
+<a href="#rfc.section.8.4">8.4.</a> <a href="#usage-in-signatures" id="usage-in-signatures">Usage in signatures</a>
 </h2>
-<p id="rfc.section.8.4.p.1">&#8230;</p>
+<p id="rfc.section.8.4.p.1">Digital signatures are widely used together with checksums to provide the certain identification of the origin of a message <a href="#NIST800-32" class="xref">[NIST800-32]</a>.</p>
+<p id="rfc.section.8.4.p.2">It&#8217;s important to note that, being the <samp>Digest</samp> header an hash of a resource representation, signing only the <samp>Digest</samp> header, without all the <samp>representation metatada</samp> (eg.  the values of <samp>Content-Type</samp> and <samp>Content-Encoding</samp>) may expose the communication to tampering.</p>
+<p><samp>Digest</samp> SHOULD always be used over a connection which provides integrity at transport layer that protects HTTP headers.</p>
+<p id="rfc.section.8.4.p.4">A <samp>Digest</samp> header using NOT RECOMMENDED {digest-algorithms} SHOULD NOT be used in signatures.</p>
 <h2 id="rfc.section.8.5">
-<a href="#rfc.section.8.5">8.5.</a> <a href="#algorithm-agility" id="algorithm-agility">Algorithm Agility</a>
+<a href="#rfc.section.8.5">8.5.</a> <a href="#message-truncation" id="message-truncation">Message Truncation</a>
 </h2>
 <p id="rfc.section.8.5.p.1">&#8230;</p>
+<h2 id="rfc.section.8.6">
+<a href="#rfc.section.8.6">8.6.</a> <a href="#algorithm-agility" id="algorithm-agility">Algorithm Agility</a>
+</h2>
+<p id="rfc.section.8.6.p.1">&#8230;</p>
 <h1 id="rfc.section.9">
 <a href="#rfc.section.9">9.</a> <a href="#iana-considerations" id="iana-considerations">IANA Considerations</a>
 </h1>
