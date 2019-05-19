@@ -433,14 +433,14 @@ Internet-Draft                   RDHTTP                         May 2019
        representation-data-digest = digest-algorithm "="
                                <encoded digest output>
 
-   As explained in {#resource-representations} the digest is computed on
-   the entire selected "representation data" of the resource defined in
-   [RFC7231]:
+   As explained in Section 2 the digest is computed on the entire
+   selected "representation data" of the resource defined in [RFC7231]:
 
      representation-data := Content-Encoding( Content-Type( bits ) )
 
    The encoded digest output uses the encoding format defined for the
    specific digest-algorithm.
+
 
 
 
