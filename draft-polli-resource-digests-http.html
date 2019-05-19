@@ -687,7 +687,10 @@ Want-Digest = "Want-Digest" ":"
 <p id="rfc.section.4.1.p.3">The sender is willing to accept a digest-algorithm if and only if it is listed in a Want-Digest header field of a message, and its qvalue is non-zero.</p>
 <p id="rfc.section.4.1.p.4">If multiple acceptable digest-algorithm values are given, the sender&#8217;s preferred digest-algorithm is the one (or ones) with the highest qvalue.</p>
 <p id="rfc.section.4.1.p.5">Examples:</p>
-<p id="rfc.section.4.1.p.6">Want-Digest: sha-256 Want-Digest: SHA-256;q=0.3, sha;q=1</p>
+<pre>
+   Want-Digest: sha-256
+   Want-Digest: SHA-256;q=0.3, sha;q=1
+</pre>
 <h2 id="rfc.section.4.2">
 <a href="#rfc.section.4.2">4.2.</a> <a href="#digest-header" id="digest-header">Digest</a>
 </h2>
