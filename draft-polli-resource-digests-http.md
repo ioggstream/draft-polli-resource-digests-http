@@ -678,7 +678,7 @@ they are NOT RECOMMENDED.
 of HTTP messages over multiple hops, as it just covers
 the `representation data` and not the `representation metadata`.
 
-Besides, it allows to protect representation data from
+Besides, it allows to protect `representation data` from
 buggy manipulation, buggy compression, etc.
 
 Moreover identity digest algorithms (eg. ID-SHA-256 and ID-SHA-512)
@@ -702,7 +702,7 @@ to tampering.
 `Digest` SHOULD always be used over a connection which provides
 integrity at transport layer that protects HTTP headers.
 
-A `Digest` header using NOT RECOMMENDED {{digest-algorithms}} SHOULD NOT be used in signatures.
+A `Digest` header using NOT RECOMMENDED digest-algorithms SHOULD NOT be used in signatures.
 
 
 ## Message Truncation
