@@ -391,7 +391,7 @@ parameters).
                             <encoded digest output>
 ~~~
 
-As explained in {#resource-representations} the digest
+As explained in {{resource-representation}} the digest
 is computed on the entire selected `representation data` of the resource
 defined in [RFC7231]:
 
