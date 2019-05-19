@@ -211,7 +211,7 @@ interpreted as described in [RFC7230] and [RFC7231].
 
 # Resource representation and representation-data {#resource-representation}
 
-To avoid inconsistencies, an integrity mechanism for http messages
+To avoid inconsistencies, an integrity mechanism for HTTP messages
 should decouple the checksum calculation:
 
 - from the payload body - which may be altered by mechanism like Range Requests or the method (eg. HEAD);
