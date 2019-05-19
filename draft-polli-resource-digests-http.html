@@ -884,7 +884,7 @@ Response:
 <a href="#rfc.section.8.3">8.3.</a> <a href="#digest-for-end-to-end-integrity" id="digest-for-end-to-end-integrity">Digest for end-to-end integrity</a>
 </h2>
 <p><samp>Digest</samp> alone does not provide end-to-end integrity of HTTP messages over multiple hops, as it just covers the <samp>representation data</samp> and not the <samp>representation metadata</samp>.</p>
-<p id="rfc.section.8.3.p.2">Besides, it allows to protect representation data from buggy manipulation, buggy compression, etc.</p>
+<p id="rfc.section.8.3.p.2">Besides, it allows to protect <samp>representation data</samp> from buggy manipulation, buggy compression, etc.</p>
 <p id="rfc.section.8.3.p.3">Moreover identity digest algorithms (eg. ID-SHA-256 and ID-SHA-512) allow piecing together a resource from different sources (e.g. different servers that perhaps apply different content codings) enabling the user-agent to detect that the application-layer tasks completed properly, before handing off to say the HTML parser, video player etc.</p>
 <p id="rfc.section.8.3.p.4">Even a simple mechanism for end-to-end validation is thus valuable.</p>
 <h2 id="rfc.section.8.4">
@@ -893,7 +893,7 @@ Response:
 <p id="rfc.section.8.4.p.1">Digital signatures are widely used together with checksums to provide the certain identification of the origin of a message <a href="#NIST800-32" class="xref">[NIST800-32]</a>.</p>
 <p id="rfc.section.8.4.p.2">It&#8217;s important to note that, being the <samp>Digest</samp> header an hash of a resource representation, signing only the <samp>Digest</samp> header, without all the <samp>representation metatada</samp> (eg.  the values of <samp>Content-Type</samp> and <samp>Content-Encoding</samp>) may expose the communication to tampering.</p>
 <p><samp>Digest</samp> SHOULD always be used over a connection which provides integrity at transport layer that protects HTTP headers.</p>
-<p id="rfc.section.8.4.p.4">A <samp>Digest</samp> header using NOT RECOMMENDED {digest-algorithms} SHOULD NOT be used in signatures.</p>
+<p id="rfc.section.8.4.p.4">A <samp>Digest</samp> header using NOT RECOMMENDED digest-algorithms SHOULD NOT be used in signatures.</p>
 <h2 id="rfc.section.8.5">
 <a href="#rfc.section.8.5">8.5.</a> <a href="#message-truncation" id="message-truncation">Message Truncation</a>
 </h2>
