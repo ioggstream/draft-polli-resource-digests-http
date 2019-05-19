@@ -413,8 +413,10 @@ highest qvalue.
 
 Examples:
 
-   Want-Digest: sha-256
+~~~
+   Want-Digest: :sha-256
    Want-Digest: SHA-256;q=0.3, sha;q=1
+~~~
 
 ## Digest {#digest-header}
 
