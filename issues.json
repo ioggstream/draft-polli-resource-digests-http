@@ -1,6 +1,108 @@
 [
 
   {
+    "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/30",
+    "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
+    "labels_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/30/labels{/name}",
+    "comments_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/30/comments",
+    "events_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/30/events",
+    "html_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/30",
+    "id": 445829459,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MjgwMTc0OTEw",
+    "number": 30,
+    "title": "Threats brainstorming. #29",
+    "user": {
+      "login": "ioggstream",
+      "id": 1140844,
+      "node_id": "MDQ6VXNlcjExNDA4NDQ=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1140844?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/ioggstream",
+      "html_url": "https://github.com/ioggstream",
+      "followers_url": "https://api.github.com/users/ioggstream/followers",
+      "following_url": "https://api.github.com/users/ioggstream/following{/other_user}",
+      "gists_url": "https://api.github.com/users/ioggstream/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/ioggstream/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/ioggstream/subscriptions",
+      "organizations_url": "https://api.github.com/users/ioggstream/orgs",
+      "repos_url": "https://api.github.com/users/ioggstream/repos",
+      "events_url": "https://api.github.com/users/ioggstream/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/ioggstream/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2019-05-19T15:03:00Z",
+    "updated_at": "2019-05-20T16:27:01Z",
+    "closed_at": null,
+    "author_association": "OWNER",
+    "pull_request": {
+      "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/pulls/30",
+      "html_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/30",
+      "diff_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/30.diff",
+      "patch_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/30.patch"
+    },
+    "body": "## This PR\r\n\r\nStubs some security issues related to digest."
+  },
+  {
+    "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/29",
+    "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
+    "labels_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/29/labels{/name}",
+    "comments_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/29/comments",
+    "events_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/29/events",
+    "html_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/issues/29",
+    "id": 445829390,
+    "node_id": "MDU6SXNzdWU0NDU4MjkzOTA=",
+    "number": 29,
+    "title": "Create a threat model",
+    "user": {
+      "login": "ioggstream",
+      "id": 1140844,
+      "node_id": "MDQ6VXNlcjExNDA4NDQ=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1140844?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/ioggstream",
+      "html_url": "https://github.com/ioggstream",
+      "followers_url": "https://api.github.com/users/ioggstream/followers",
+      "following_url": "https://api.github.com/users/ioggstream/following{/other_user}",
+      "gists_url": "https://api.github.com/users/ioggstream/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/ioggstream/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/ioggstream/subscriptions",
+      "organizations_url": "https://api.github.com/users/ioggstream/orgs",
+      "repos_url": "https://api.github.com/users/ioggstream/repos",
+      "events_url": "https://api.github.com/users/ioggstream/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/ioggstream/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2019-05-19T15:02:15Z",
+    "updated_at": "2019-05-19T15:02:15Z",
+    "closed_at": null,
+    "author_association": "OWNER",
+    "body": "## I wish\r\n\r\nA threat model for `Digest`."
+  },
+  {
     "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/28",
     "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
     "labels_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/28/labels{/name}",
@@ -34,7 +136,7 @@
     "labels": [
 
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": null,
     "assignees": [
@@ -43,8 +145,8 @@
     "milestone": null,
     "comments": 0,
     "created_at": "2019-05-19T09:20:22Z",
-    "updated_at": "2019-05-19T09:20:22Z",
-    "closed_at": null,
+    "updated_at": "2019-05-19T13:50:12Z",
+    "closed_at": "2019-05-19T13:50:12Z",
     "author_association": "CONTRIBUTOR",
     "pull_request": {
       "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/pulls/28",
@@ -88,7 +190,7 @@
     "labels": [
 
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": null,
     "assignees": [
@@ -97,8 +199,8 @@
     "milestone": null,
     "comments": 0,
     "created_at": "2019-05-19T09:17:23Z",
-    "updated_at": "2019-05-19T09:17:23Z",
-    "closed_at": null,
+    "updated_at": "2019-05-19T13:47:49Z",
+    "closed_at": "2019-05-19T13:47:49Z",
     "author_association": "CONTRIBUTOR",
     "pull_request": {
       "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/pulls/27",
@@ -142,7 +244,7 @@
     "labels": [
 
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": null,
     "assignees": [
@@ -151,8 +253,8 @@
     "milestone": null,
     "comments": 0,
     "created_at": "2019-05-19T09:12:44Z",
-    "updated_at": "2019-05-19T09:12:44Z",
-    "closed_at": null,
+    "updated_at": "2019-05-19T13:46:59Z",
+    "closed_at": "2019-05-19T13:46:59Z",
     "author_association": "CONTRIBUTOR",
     "pull_request": {
       "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/pulls/26",
@@ -250,7 +352,7 @@
     "labels": [
 
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": null,
     "assignees": [
@@ -259,8 +361,8 @@
     "milestone": null,
     "comments": 0,
     "created_at": "2019-05-17T18:36:06Z",
-    "updated_at": "2019-05-18T14:19:40Z",
-    "closed_at": null,
+    "updated_at": "2019-05-19T13:46:14Z",
+    "closed_at": "2019-05-19T13:46:14Z",
     "author_association": "OWNER",
     "pull_request": {
       "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/pulls/24",
@@ -413,17 +515,17 @@
     "labels": [
 
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": null,
     "assignees": [
 
     ],
     "milestone": null,
-    "comments": 0,
+    "comments": 1,
     "created_at": "2019-05-15T08:43:28Z",
-    "updated_at": "2019-05-18T10:24:40Z",
-    "closed_at": null,
+    "updated_at": "2019-05-20T16:16:51Z",
+    "closed_at": "2019-05-20T16:16:50Z",
     "author_association": "OWNER",
     "pull_request": {
       "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/pulls/21",
@@ -474,9 +576,9 @@
 
     ],
     "milestone": null,
-    "comments": 0,
+    "comments": 1,
     "created_at": "2019-05-14T11:31:05Z",
-    "updated_at": "2019-05-14T11:31:05Z",
+    "updated_at": "2019-05-20T16:19:17Z",
     "closed_at": null,
     "author_association": "OWNER",
     "body": "## I expect\r\n\r\nTo better detail the usage of `Digest` in signatures, including:\r\n\r\n- what should be included in signature for integrity (representation metadata)\r\n- issues with signing partial representations (eg. Range-Request, PATCH, ..)\r\n- using strong crypto algorithms\r\n\r\n## Questions\r\n\r\n- should we explicit here further requirements (eg timestamps, request-target, :method:, ..) \r\n  or that's off-topic?\r\n\r\n## Notes\r\n\r\nSplit from #15 "
@@ -781,9 +883,9 @@
 
     ],
     "milestone": null,
-    "comments": 4,
+    "comments": 5,
     "created_at": "2019-05-09T23:16:32Z",
-    "updated_at": "2019-05-13T18:35:02Z",
+    "updated_at": "2019-05-20T16:20:44Z",
     "closed_at": null,
     "author_association": "NONE",
     "body": "https://github.com/ioggstream/draft-polli-resource-digests-http/blame/master/draft-polli-resource-digests-http.md#L117 should probably say\r\n\r\n> Integrity protection for HTTP content is typically achieved via **TLS** or HTTPS [RFC2818]."
