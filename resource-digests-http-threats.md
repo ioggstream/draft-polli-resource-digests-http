@@ -17,6 +17,8 @@
 
 3. The application can erroneously or purposedly alter the message
 
+4. User can forge messages with the same checksum values
+
 ## Attacker non-capabilities
 
 # Attacks and mitigations
@@ -46,12 +48,23 @@ Use a signature mechanism that covers both `Digest` and the representation-metad
 
 ### The attack
 
-A TLS-terminator intermediary or a malicious User can replace the representation-data with another
-one having the same digest-algorithm. 
+A TLS-terminator intermediary can replace the representation-data with another
+one having the same digest-algorithm.
+
+A malicious User can forge two messages with:
+
+  - different representation-data
+  - same Digest header values
+  
+send an HTTP message with the first representation-data
+then pretend he sent the one with the second representation-data.
+
+A malicious Server could implement a similar behavior.
 
 ### Proposed mitigation
 
-Use a digest-algoritm wich is not subject to collision (eg. sha-256).
+Use a digest-algoritm wich is not subject to collision (eg. sha-256),
+or refuse to use digest-algorithms subect to collision.
 
 ## Server resources exhaustion for calculating Digest on partial representations
 
