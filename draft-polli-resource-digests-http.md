@@ -309,77 +309,77 @@ Response:
 
 
   SHA-256:
-  : The SHA-256 algorithm [FIPS180-3].  The output of
-    this algorithm is encoded using the base64 encoding [RFC4648].
-
-    Reference: [FIPS180-3], [RFC4648], this document.
-
-    Status: standard
+  :  
+    * Description: The SHA-256 algorithm [FIPS180-3].  The output of
+      this algorithm is encoded using the base64 encoding [RFC4648].
+    * Reference: [FIPS180-3], [RFC4648], this document.
+    * Status: standard
 
   SHA-512:
-  : The SHA-512 algorithm [FIPS180-3].  The output of
-    this algorithm is encoded using the base64 encoding [RFC4648].
-
-    Reference: [FIPS180-3], [RFC4648], this document.
-
-    Status: standard
+  :  
+    * Description: The SHA-512 algorithm [FIPS180-3].  The output of
+      this algorithm is encoded using the base64 encoding [RFC4648].
+    * Reference: [FIPS180-3], [RFC4648], this document.
+    * Status: standard
 
   MD5:
-  : The MD5 algorithm, as specified in [RFC1321].
-    The output of this algorithm is encoded using the
-    base64 encoding  [RFC4648].
-    The MD5 algorithm is NOT RECOMMENDED as it's now vulnerable
-    to collision attacks [CMU-836068].
-
-    Reference: [RFC1321], [RFC4648], this document.
-
-    Status: obsoleted
+  :  
+    * Description: The MD5 algorithm, as specified in [RFC1321].
+      The output of this algorithm is encoded using the
+      base64 encoding  [RFC4648].
+      The MD5 algorithm is NOT RECOMMENDED as it's now vulnerable
+      to collision attacks [CMU-836068].
+    * Reference: [RFC1321], [RFC4648], this document.
+    * Status: obsoleted
 
   SHA:
-  : The SHA-1 algorithm [FIPS180-1].  The output of this
-    algorithm is encoded using the base64 encoding  [RFC4648].
-    The SHA algorithm is NOT RECOMMENDED as it's now vulnerable
-    to collision attacks [IACR-2019-459].
-
-    Reference: [FIPS-180-3], [RFC4648], this document.
-
-    Status: obsoleted
+  :  
+    * Description:  The SHA-1 algorithm [FIPS180-1].  The output of this
+      algorithm is encoded using the base64 encoding  [RFC4648].
+      The SHA algorithm is NOT RECOMMENDED as it's now vulnerable
+      to collision attacks [IACR-2019-459].
+    * Reference: [FIPS-180-3], [RFC4648], this document.
+    * Status: obsoleted
 
   UNIXsum:
-  : The algorithm computed by the UNIX "sum" command,
-    as defined by the Single UNIX Specification,
-    Version 2 [UNIX].  The output of this algorithm is an
-    ASCII decimal-digit string representing the 16-bit
-    checksum, which is the first word of the output of
-    the UNIX "sum" command.
+  :  
+    * Description: The algorithm computed by the UNIX "sum" command,
+      as defined by the Single UNIX Specification,
+      Version 2 [UNIX].  The output of this algorithm is an
+      ASCII decimal-digit string representing the 16-bit
+      checksum, which is the first word of the output of
+      the UNIX "sum" command.
+    * Reference: [UNIX], this document.
+    * Status: standard
 
   UNIXcksum:
-  : The algorithm computed by the UNIX "cksum" command,
-    as defined by the Single UNIX Specification,
-    Version 2 [UNIX].  The output of this algorithm is an
-    ASCII digit string representing the 32-bit CRC,
-    which is the first word of the output of the UNIX
-    "cksum" command.
+  :  
+    * Description: The algorithm computed by the UNIX "cksum" command,
+      as defined by the Single UNIX Specification,
+      Version 2 [UNIX].  The output of this algorithm is an
+      ASCII digit string representing the 32-bit CRC,
+      which is the first word of the output of the UNIX
+      "cksum" command.
+    * Reference: [UNIX], this document.
+    * Status: standard
 
 To allow sender and recipient to provide a checksum which is independent from `Content-Encoding`,
 the following additional algorithms are defined:
 
-   ID-SHA-512:
-   : The sha-512 digest of the representation-data of the resource when no
-     content coding is applied (eg. `Content-Encoding: identity`)
+  ID-SHA-512:
+  :  
+    * Description: The sha-512 digest of the representation-data of the resource when no
+    content coding is applied (eg. `Content-Encoding: identity`)
+    * Reference: [FIPS180-3], [RFC4648], this document.
+    * Status: standard
 
-     Reference: [FIPS180-3], [RFC4648], this document.
 
-     Status: standard
-
-
-   ID-SHA-256:
-   : The sha-256 digest of the representation-data of the resource when no
-     content coding is applied (eg. `Content-Encoding: identity`)
-
-     Reference: [FIPS180-3], [RFC4648], this document.
-
-     Status: standard
+  ID-SHA-256:
+  :  
+    * Description: The sha-256 digest of the representation-data of the resource when no
+      content coding is applied (eg. `Content-Encoding: identity`)
+    * Reference: [FIPS180-3], [RFC4648], this document.
+    * Status: standard
 
    If other digest-algorithm values are defined, the associated encoding
    MUST either be represented as a quoted string, or MUST NOT include
