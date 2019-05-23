@@ -337,7 +337,7 @@ ul.toc li {
 
   <meta name="dct.creator" content="Polli, R. and L. Pardue" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-polli-resource-digests-http-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2019-05-19" />
+  <meta name="dct.issued" scheme="ISO8601" content="2019-05-23" />
   <meta name="dct.abstract" content="This document defines the Digest and Want-Digest header fields for HTTP, thus allowing client and server to negotiate an integrity checksum of the exchanged resource representation data.This document obsoletes . It replaces the term &#8220;instance&#8221; with &#8220;representation&#8221;, which makes it consistent  with the HTTP Semantic and Context defined in ." />
   <meta name="description" content="This document defines the Digest and Want-Digest header fields for HTTP, thus allowing client and server to negotiate an integrity checksum of the exchanged resource representation data.This document obsoletes . It replaces the term &#8220;instance&#8221; with &#8220;representation&#8221;, which makes it consistent  with the HTTP Semantic and Context defined in ." />
 
@@ -361,8 +361,8 @@ ul.toc li {
 <td class="right">L. Pardue</td>
 </tr>
 <tr>
-<td class="left">Expires: November 20, 2019</td>
-<td class="right">May 19, 2019</td>
+<td class="left">Expires: November 24, 2019</td>
+<td class="right">May 23, 2019</td>
 </tr>
 
     	
@@ -383,7 +383,7 @@ ul.toc li {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on November 20, 2019.</p>
+<p>This Internet-Draft will expire on November 24, 2019.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2019 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -564,7 +564,7 @@ ul.toc li {
 <li>from the payload body - which may be altered by mechanism like Range Requests or the method (eg. HEAD);</li>
 <li>and from the message body - which depends on <samp>Transfer-Encoding</samp> and whatever tranformations the intermediaries may apply.</li>
 </ul>
-<p id="rfc.section.2.p.3">The following examples shows how representation metadata, payload tranformations and method impacts on the message and payload body.</p>
+<p id="rfc.section.2.p.3">The following examples show how representation metadata, payload tranformations and method impacts on the message and payload body.</p>
 <p id="rfc.section.2.p.4">Here is a gzip-compressed json object</p>
 <pre>
 Request:
@@ -642,7 +642,7 @@ Response:
 <dt>UNIXcksum:</dt>
 <dd style="margin-left: 8">The algorithm computed by the UNIX &#8220;cksum&#8221; command, as defined by the Single UNIX Specification, Version 2 <a href="#UNIX" class="xref">[UNIX]</a>.  The output of this algorithm is an ASCII digit string representing the 32-bit CRC, which is the first word of the output of the UNIX &#8220;cksum&#8221; command.</dd>
 </dl>
-<p id="rfc.section.3.p.5">To allow sender and recipient to provide a checksum which is independent from the Content-Coding, the following additional algorithms are defined:</p>
+<p id="rfc.section.3.p.5">To allow sender and recipient to provide a checksum which is independent from <samp>Content-Encoding</samp>, the following additional algorithms are defined:</p>
 <p></p>
 
 <dl>
@@ -1119,7 +1119,7 @@ Response:
 <h1 id="rfc.appendix.B">
 <a href="#rfc.appendix.B">Appendix B.</a> <a href="#acknowledgements" id="acknowledgements">Acknowledgements</a>
 </h1>
-<p id="rfc.section.B.p.1">The vast majority of this document is inherited from <a href="#RFC3230" class="xref">[RFC3230]</a>, so thanks to J. Mogul and A. Van Hoff for their great work.  The original idea of refreshing this document arose from an interesting discussion with M. Nottingham, J. Yasskin and M. Thomson when reviewing the MICE Content Encoding.</p>
+<p id="rfc.section.B.p.1">The vast majority of this document is inherited from <a href="#RFC3230" class="xref">[RFC3230]</a>, so thanks to J. Mogul and A. Van Hoff for their great work.  The original idea of refreshing this document arose from an interesting discussion with M. Nottingham, J. Yasskin and M. Thomson when reviewing the MICE content coding.</p>
 <h1 id="rfc.appendix.C">
 <a href="#rfc.appendix.C">Appendix C.</a> <a href="#faq" id="faq">FAQ</a>
 </h1>
@@ -1187,3 +1187,4 @@ Response:
 
 </body>
 </html>
+
