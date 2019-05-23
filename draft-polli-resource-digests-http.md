@@ -224,7 +224,7 @@ should decouple the checksum calculation:
 - and from the message body - which depends on `Transfer-Encoding` and whatever tranformations
 the intermediaries may apply.
 
-The following examples shows how representation metadata, payload tranformations and method
+The following examples show how representation metadata, payload tranformations and method
 impacts on the message and payload body.
 
 Here is a gzip-compressed json object
@@ -361,7 +361,7 @@ Response:
     which is the first word of the output of the UNIX
     "cksum" command.
 
-To allow sender and recipient to provide a checksum which is independent from the Content-Coding,
+To allow sender and recipient to provide a checksum which is independent from `Content-Encoding`,
 the following additional algorithms are defined:
 
    ID-SHA-512:
@@ -833,7 +833,7 @@ The vast majority of this document is inherited from [RFC3230], so thanks
 to J. Mogul and A. Van Hoff for their great work.
 The original idea of refreshing this document arose from an interesting
 discussion with M. Nottingham, J. Yasskin and M. Thomson when reviewing
-the MICE Content Encoding.
+the MICE content coding.
 
 
 # FAQ
