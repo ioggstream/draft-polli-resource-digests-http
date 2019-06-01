@@ -697,7 +697,13 @@ the certain identification of the origin of a message [NIST800-32].
 It's important to note that, being the `Digest` header an hash of a resource representation,
 signing only the `Digest` header, without all the `representation metatada` (eg.
 the values of `Content-Type` and `Content-Encoding`) may expose the communication
-to tampering.
+to tampering. 
+
+For the above reasons, when signing the `Digest` header:
+
+- if `Content-Type` is not covered by the signature, the implementation MUST return an error;
+- if content codings are applied and the `Content-Encoding` is not covered by the signature,
+  the implementation MUST return an error.
 
 `Digest` SHOULD always be used over a connection which provides
 integrity at transport layer that protects HTTP headers.
