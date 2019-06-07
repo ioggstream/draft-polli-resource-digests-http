@@ -5,7 +5,7 @@
 Network Working Group                                           R. Polli
 Internet-Draft
 Intended status: Standards Track                               L. Pardue
-Expires: November 21, 2019                                  May 20, 2019
+Expires: December 9, 2019                                  June 07, 2019
 
 
                        Resource Digests for HTTP
@@ -47,15 +47,15 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on November 21, 2019.
+   This Internet-Draft will expire on December 9, 2019.
 
 
 
 
 
-Polli & Pardue          Expires November 21, 2019               [Page 1]
+Polli & Pardue          Expires December 9, 2019                [Page 1]
 
-Internet-Draft                   RDHTTP                         May 2019
+Internet-Draft                   RDHTTP                        June 2019
 
 
 Copyright Notice
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Polli & Pardue          Expires November 21, 2019               [Page 2]
+Polli & Pardue          Expires December 9, 2019                [Page 2]
 
-Internet-Draft                   RDHTTP                         May 2019
+Internet-Draft                   RDHTTP                        June 2019
 
 
      8.3.  Digest for end-to-end integrity . . . . . . . . . . . . .  14
@@ -165,9 +165,9 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 21, 2019               [Page 3]
+Polli & Pardue          Expires December 9, 2019                [Page 3]
 
-Internet-Draft                   RDHTTP                         May 2019
+Internet-Draft                   RDHTTP                        June 2019
 
 
 1.1.  Brief history of integrity headers
@@ -221,9 +221,9 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 21, 2019               [Page 4]
+Polli & Pardue          Expires December 9, 2019                [Page 4]
 
-Internet-Draft                   RDHTTP                         May 2019
+Internet-Draft                   RDHTTP                        June 2019
 
 
    The goals do not include:
@@ -277,9 +277,9 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 21, 2019               [Page 5]
+Polli & Pardue          Expires December 9, 2019                [Page 5]
 
-Internet-Draft                   RDHTTP                         May 2019
+Internet-Draft                   RDHTTP                        June 2019
 
 
    Here is a gzip-compressed json object
@@ -333,9 +333,9 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 21, 2019               [Page 6]
+Polli & Pardue          Expires December 9, 2019                [Page 6]
 
-Internet-Draft                   RDHTTP                         May 2019
+Internet-Draft                   RDHTTP                        June 2019
 
 
    Request:
@@ -389,9 +389,9 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 21, 2019               [Page 7]
+Polli & Pardue          Expires December 9, 2019                [Page 7]
 
-Internet-Draft                   RDHTTP                         May 2019
+Internet-Draft                   RDHTTP                        June 2019
 
 
    UNIXsum:  The algorithm computed by the UNIX "sum" command, as
@@ -445,9 +445,9 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 21, 2019               [Page 8]
+Polli & Pardue          Expires December 9, 2019                [Page 8]
 
-Internet-Draft                   RDHTTP                         May 2019
+Internet-Draft                   RDHTTP                        June 2019
 
 
 3.1.1.  digest-algorithm encoding examples
@@ -501,9 +501,9 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 21, 2019               [Page 9]
+Polli & Pardue          Expires December 9, 2019                [Page 9]
 
-Internet-Draft                   RDHTTP                         May 2019
+Internet-Draft                   RDHTTP                        June 2019
 
 
    o  fully contained in the message body,
@@ -557,9 +557,9 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 21, 2019              [Page 10]
+Polli & Pardue          Expires December 9, 2019               [Page 10]
 
-Internet-Draft                   RDHTTP                         May 2019
+Internet-Draft                   RDHTTP                        June 2019
 
 
 7.1.  Unsolicited Digest response
@@ -613,9 +613,9 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 21, 2019              [Page 11]
+Polli & Pardue          Expires December 9, 2019               [Page 11]
 
-Internet-Draft                   RDHTTP                         May 2019
+Internet-Draft                   RDHTTP                        June 2019
 
 
    Request:
@@ -669,9 +669,9 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 21, 2019              [Page 12]
+Polli & Pardue          Expires December 9, 2019               [Page 12]
 
-Internet-Draft                   RDHTTP                         May 2019
+Internet-Draft                   RDHTTP                        June 2019
 
 
    Request:
@@ -725,9 +725,9 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 21, 2019              [Page 13]
+Polli & Pardue          Expires December 9, 2019               [Page 13]
 
-Internet-Draft                   RDHTTP                         May 2019
+Internet-Draft                   RDHTTP                        June 2019
 
 
    Request:
@@ -781,9 +781,9 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 21, 2019              [Page 14]
+Polli & Pardue          Expires December 9, 2019               [Page 14]
 
-Internet-Draft                   RDHTTP                         May 2019
+Internet-Draft                   RDHTTP                        June 2019
 
 
    completed properly, before handing off to say the HTML parser, video
@@ -837,9 +837,9 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 21, 2019              [Page 15]
+Polli & Pardue          Expires December 9, 2019               [Page 15]
 
-Internet-Draft                   RDHTTP                         May 2019
+Internet-Draft                   RDHTTP                        June 2019
 
 
 9.3.  Obsolete "MD5" Digest Algorithm
@@ -893,9 +893,9 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 21, 2019              [Page 16]
+Polli & Pardue          Expires December 9, 2019               [Page 16]
 
-Internet-Draft                   RDHTTP                         May 2019
+Internet-Draft                   RDHTTP                        June 2019
 
 
 9.7.  Changes compared to RFC5843
@@ -949,9 +949,9 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 21, 2019              [Page 17]
+Polli & Pardue          Expires December 9, 2019               [Page 17]
 
-Internet-Draft                   RDHTTP                         May 2019
+Internet-Draft                   RDHTTP                        June 2019
 
 
    [CMU-836068]
@@ -1005,9 +1005,9 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 21, 2019              [Page 18]
+Polli & Pardue          Expires December 9, 2019               [Page 18]
 
-Internet-Draft                   RDHTTP                         May 2019
+Internet-Draft                   RDHTTP                        June 2019
 
 
    [RFC3864]  Klyne, G., Nottingham, M., and J. Mogul, "Registration
@@ -1061,9 +1061,9 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 21, 2019              [Page 19]
+Polli & Pardue          Expires December 9, 2019               [Page 19]
 
-Internet-Draft                   RDHTTP                         May 2019
+Internet-Draft                   RDHTTP                        June 2019
 
 
    [RFC6962]  Laurie, B., Langley, A., and E. Kasper, "Certificate
@@ -1117,9 +1117,9 @@ Appendix C.  FAQ
 
 
 
-Polli & Pardue          Expires November 21, 2019              [Page 20]
+Polli & Pardue          Expires December 9, 2019               [Page 20]
 
-Internet-Draft                   RDHTTP                         May 2019
+Internet-Draft                   RDHTTP                        June 2019
 
 
    2.  Why remove references to instance manipulation?
@@ -1173,9 +1173,9 @@ Internet-Draft                   RDHTTP                         May 2019
 
 
 
-Polli & Pardue          Expires November 21, 2019              [Page 21]
+Polli & Pardue          Expires December 9, 2019               [Page 21]
 
-Internet-Draft                   RDHTTP                         May 2019
+Internet-Draft                   RDHTTP                        June 2019
 
 
        ID-SHA-512 which allows to send a checksum of a resource
@@ -1229,4 +1229,4 @@ Authors' Addresses
 
 
 
-Polli & Pardue          Expires November 21, 2019              [Page 22]
+Polli & Pardue          Expires December 9, 2019               [Page 22]
