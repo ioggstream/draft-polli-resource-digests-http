@@ -72,8 +72,9 @@ or refuse to use digest-algorithms subect to collision.
 
 A malicious User could exahust server resources via:
 
-- re-construction of the complete representation
-- digest calculation of the complete representation
+1- re-construction of the complete representation
+2- digest calculation of the complete representation
+3- forcing the server to evaluate many different digest-algorithms for a given representation
 
 ### Proposed mitigation
 
@@ -81,4 +82,11 @@ If you are exposed to this kind of attack because
 re-constructing complete representations of your 
 objects is computationally intensive, avoid using
 Digest with mechanisms like Range-Requests and PATCH.
+
+If you support multiple digest-algorithms:
+
+- limit the supported digest-algorithms to the
+  ones you really care for;
+- establish a policy for validating only the digest
+  using the stronger digest-algorithm.
 
