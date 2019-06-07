@@ -1,6 +1,60 @@
 [
 
   {
+    "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/37",
+    "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
+    "labels_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/37/labels{/name}",
+    "comments_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/37/comments",
+    "events_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/37/events",
+    "html_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/37",
+    "id": 451135152,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0Mjg0MzA0NTky",
+    "number": 37,
+    "title": "signing representation metadata is mandatory",
+    "user": {
+      "login": "ioggstream",
+      "id": 1140844,
+      "node_id": "MDQ6VXNlcjExNDA4NDQ=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1140844?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/ioggstream",
+      "html_url": "https://github.com/ioggstream",
+      "followers_url": "https://api.github.com/users/ioggstream/followers",
+      "following_url": "https://api.github.com/users/ioggstream/following{/other_user}",
+      "gists_url": "https://api.github.com/users/ioggstream/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/ioggstream/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/ioggstream/subscriptions",
+      "organizations_url": "https://api.github.com/users/ioggstream/orgs",
+      "repos_url": "https://api.github.com/users/ioggstream/repos",
+      "events_url": "https://api.github.com/users/ioggstream/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/ioggstream/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 1,
+    "created_at": "2019-06-01T23:32:15Z",
+    "updated_at": "2019-06-01T23:34:54Z",
+    "closed_at": null,
+    "author_association": "OWNER",
+    "pull_request": {
+      "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/pulls/37",
+      "html_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/37",
+      "diff_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/37.diff",
+      "patch_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/37.patch"
+    },
+    "body": "## This PR\r\n\r\nStates that:\r\n\r\n - When using Digest in signatures, you must sign `content-type`.\r\n -  If content codings are applied, you must sign `content-encodings` too."
+  },
+  {
     "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/36",
     "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
     "labels_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/36/labels{/name}",
@@ -885,10 +939,10 @@
     "milestone": null,
     "comments": 1,
     "created_at": "2019-05-14T11:31:05Z",
-    "updated_at": "2019-05-20T16:19:17Z",
+    "updated_at": "2019-06-07T17:02:36Z",
     "closed_at": null,
     "author_association": "OWNER",
-    "body": "## I expect\r\n\r\nTo better detail the usage of `Digest` in signatures, including:\r\n\r\n- what should be included in signature for integrity (representation metadata)\r\n- issues with signing partial representations (eg. Range-Request, PATCH, ..)\r\n- using strong crypto algorithms\r\n\r\n## Questions\r\n\r\n- should we explicit here further requirements (eg timestamps, request-target, :method:, ..) \r\n  or that's off-topic?\r\n\r\n## Notes\r\n\r\nSplit from #15 "
+    "body": "## I expect\r\n\r\nTo better detail the usage of `Digest` in signatures, including:\r\n\r\n- what should be included in signature for integrity (representation metadata)\r\n- issues with signing partial representations (eg. Range-Request, PATCH, ..)\r\n- using strong crypto algorithms\r\n\r\n## Questions\r\n\r\n- should we explicit here further requirements (eg timestamps, request-target, :method:, ..) \r\n  or that's off-topic?\r\n\r\n- should we warn about algorithm-based attacks (eg. if `digest-algorithms` is subject to length-extension attacks, consider signing `Content-Length` too).\r\n\r\n## Notes\r\n\r\nSplit from #15 "
   },
   {
     "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/19",
@@ -1540,7 +1594,10 @@
     "closed_at": "2019-05-03T10:42:52Z",
     "author_association": "COLLABORATOR",
     "body": "> This RFC DISCOURAGES the use of MD5 algorithm for security reasons.\r\n\r\nDISCOURAGES is not a 2119 keyword and therefore has little normative affect.\r\n\r\nSuggestion would be to replace the sentence with:\r\n\r\n\"The use of the MD5 algorithm is NOT RECOMMENDED for security reasons.\"\r\n\r\nHowever, this just a stop gap because for \"security reasons\" is not qualified with discussion or citation. The final document will need to address this but I think we can live with things for the time being."
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/7",
     "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
@@ -1594,10 +1651,7 @@
       "patch_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/7.patch"
     },
     "body": "Address ambiguity of uppercase vs lowercase"
-  }
-
-,
-
+  },
   {
     "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/6",
     "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
