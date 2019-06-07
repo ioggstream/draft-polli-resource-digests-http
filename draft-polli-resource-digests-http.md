@@ -704,6 +704,8 @@ integrity at transport layer that protects HTTP headers.
 
 A `Digest` header using NOT RECOMMENDED digest-algorithms SHOULD NOT be used in signatures.
 
+When using a `digest-algorithm` subject to length-extension attacks, the signature SHOULD
+cover the `Content-Length` too.
 
 ## Message Truncation
 
