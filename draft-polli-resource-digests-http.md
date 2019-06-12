@@ -695,7 +695,7 @@ Digital signatures are widely used together with checksums to provide
 the certain identification of the origin of a message [NIST800-32].
 
 It's important to note that, being the `Digest` header an hash of a resource representation,
-signing only the `Digest` header, without all the `representation metatada` (eg.
+signing only the `Digest` header, without all the relevant `representation metatada` (eg.
 the values of `Content-Type` and `Content-Encoding`) may expose the communication
 to tampering. 
 
