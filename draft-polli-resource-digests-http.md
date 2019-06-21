@@ -435,8 +435,9 @@ The Want-Digest message header field indicates the sender's desire to
 receive a representation digest on messages associated with the Request-
 URI and representation metadata.
 
-    Want-Digest = "Want-Digest" ":"
-                     #(digest-algorithm [ ";" "q" "=" qvalue])
+    Want-Digest = "Want-Digest" ":" 1#want-digest-value
+    want-digest-value = digest-algorithm [ ";" "q" "=" qvalue]
+    qvalue = ( "0"  [ "."  0*1DIGIT ] ) /  ( "1"  [ "."  0*1( "0" ) ] )
 
 If a digest-algorithm is not accompanied by a qvalue, it is treated
 as if its associated qvalue were 1.0.
@@ -453,7 +454,7 @@ Examples:
 
 ~~~
    Want-Digest: sha-256
-   Want-Digest: SHA-256;q=0.3, sha;q=1
+   Want-Digest: SHA-512;q=0.3, sha-256;q=1, md5;q=0
 ~~~
 
 ## Digest {#digest-header}
@@ -461,7 +462,7 @@ Examples:
 The Digest header field provides a digest of the representation data
 
 ~~~
-      Digest = "Digest" ":" #(representation-data-digest)
+      Digest = "Digest" ":" 1#representation-data-digest
 ~~~
 
 `Representation data` might be:
