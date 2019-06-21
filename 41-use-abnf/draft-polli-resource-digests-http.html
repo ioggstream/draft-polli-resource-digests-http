@@ -746,7 +746,7 @@ UNIXsum=30637
 </h2>
 <p id="rfc.section.4.1.p.1">The Want-Digest message header field indicates the sender&#8217;s desire to receive a representation digest on messages associated with the Request- URI and representation metadata.</p>
 <pre>
-Want-Digest = "Want-Digest" ":" 1#want-digest-value
+Want-Digest = "Want-Digest" ":" OWS 1#want-digest-value
 want-digest-value = digest-algorithm [ ";" "q" "=" qvalue]
 qvalue = ( "0"&#8194; [ "."&#8194; 0*1DIGIT ] )&#8195;/&#8194; ( "1"&#8194; [ "."&#8194; 0*1( "0" ) ] )
 </pre>
@@ -763,7 +763,7 @@ qvalue = ( "0"&#8194; [ "."&#8194; 0*1DIGIT ] )&#8195;/&#8194; ( "1"&#8194; [ ".
 </h2>
 <p id="rfc.section.4.2.p.1">The Digest header field provides a digest of the representation data</p>
 <pre>
-      Digest = "Digest" ":" 1#representation-data-digest
+      Digest = "Digest" ":" OWS 1#representation-data-digest
 </pre>
 <p><samp>Representation data</samp> might be:</p>
 <p></p>
