@@ -1,6 +1,54 @@
 [
 
   {
+    "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/41",
+    "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
+    "labels_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/41/labels{/name}",
+    "comments_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/41/comments",
+    "events_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/41/events",
+    "html_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/issues/41",
+    "id": 459173360,
+    "node_id": "MDU6SXNzdWU0NTkxNzMzNjA=",
+    "number": 41,
+    "title": "Use ABNF for digest-header",
+    "user": {
+      "login": "ioggstream",
+      "id": 1140844,
+      "node_id": "MDQ6VXNlcjExNDA4NDQ=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1140844?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/ioggstream",
+      "html_url": "https://github.com/ioggstream",
+      "followers_url": "https://api.github.com/users/ioggstream/followers",
+      "following_url": "https://api.github.com/users/ioggstream/following{/other_user}",
+      "gists_url": "https://api.github.com/users/ioggstream/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/ioggstream/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/ioggstream/subscriptions",
+      "organizations_url": "https://api.github.com/users/ioggstream/orgs",
+      "repos_url": "https://api.github.com/users/ioggstream/repos",
+      "events_url": "https://api.github.com/users/ioggstream/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/ioggstream/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2019-06-21T12:29:30Z",
+    "updated_at": "2019-06-21T12:29:30Z",
+    "closed_at": null,
+    "author_association": "OWNER",
+    "body": "## I expect\r\n\r\n`Digest` header syntax follow ABNF"
+  },
+  {
     "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/40",
     "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
     "labels_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/40/labels{/name}",
@@ -34,7 +82,7 @@
     "labels": [
 
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": null,
     "assignees": [
@@ -43,8 +91,8 @@
     "milestone": null,
     "comments": 0,
     "created_at": "2019-06-17T18:07:03Z",
-    "updated_at": "2019-06-17T18:07:03Z",
-    "closed_at": null,
+    "updated_at": "2019-06-17T23:04:41Z",
+    "closed_at": "2019-06-17T23:04:41Z",
     "author_association": "COLLABORATOR",
     "pull_request": {
       "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/pulls/40",
@@ -180,7 +228,7 @@
     "id": 451135152,
     "node_id": "MDExOlB1bGxSZXF1ZXN0Mjg0MzA0NTky",
     "number": 37,
-    "title": "signing representation metadata is mandatory",
+    "title": "signing relevant representation metadata is mandatory",
     "user": {
       "login": "ioggstream",
       "id": 1140844,
@@ -211,9 +259,9 @@
 
     ],
     "milestone": null,
-    "comments": 1,
+    "comments": 3,
     "created_at": "2019-06-01T23:32:15Z",
-    "updated_at": "2019-06-12T16:19:33Z",
+    "updated_at": "2019-06-17T23:42:46Z",
     "closed_at": null,
     "author_association": "OWNER",
     "pull_request": {
@@ -265,9 +313,9 @@
 
     ],
     "milestone": null,
-    "comments": 0,
+    "comments": 2,
     "created_at": "2019-05-27T13:04:17Z",
-    "updated_at": "2019-05-27T13:04:17Z",
+    "updated_at": "2019-06-17T23:29:37Z",
     "closed_at": null,
     "author_association": "OWNER",
     "body": "## Reproduce\r\n\r\n1- I receive multiple digest values\r\n2- the first one validates\r\n3- the second one does not\r\n\r\n## Which behavior do we propose?\r\n\r\nConsiderations:\r\n\r\n- the receiver could ignore one or more digest (Eg. if the algo is not supported) \r\n- always checking all digest values may be computationally intensive -> add this to Security Considerations.\r\n"
@@ -313,9 +361,9 @@
 
     ],
     "milestone": null,
-    "comments": 0,
+    "comments": 2,
     "created_at": "2019-05-24T07:47:05Z",
-    "updated_at": "2019-05-24T07:47:05Z",
+    "updated_at": "2019-06-18T14:19:15Z",
     "closed_at": null,
     "author_association": "OWNER",
     "body": "## I expect\r\n\r\nAn example `Digest` of an empty representation.\r\n\r\nSee https://github.com/martinthomson/http-mice/issues/3"
@@ -368,9 +416,9 @@
 
     ],
     "milestone": null,
-    "comments": 1,
+    "comments": 3,
     "created_at": "2019-05-24T07:35:40Z",
-    "updated_at": "2019-05-24T07:45:04Z",
+    "updated_at": "2019-06-17T23:22:16Z",
     "closed_at": null,
     "author_association": "OWNER",
     "body": "## I expect\r\n\r\n- the `BNF` to be updated to the current standard (ABNF?)\r\n\r\nhttps://github.com/ioggstream/draft-polli-resource-digests-http/blame/master/draft-polli-resource-digests-http.md#L302\r\n\r\n- some examples of passing parameters to the algorithms\r\n"
@@ -626,9 +674,9 @@
 
     ],
     "milestone": null,
-    "comments": 0,
+    "comments": 1,
     "created_at": "2019-05-19T15:02:15Z",
-    "updated_at": "2019-05-19T15:02:15Z",
+    "updated_at": "2019-06-17T18:52:24Z",
     "closed_at": null,
     "author_association": "OWNER",
     "body": "## I wish\r\n\r\nA threat model for `Digest`."
@@ -1107,9 +1155,9 @@
 
     ],
     "milestone": null,
-    "comments": 1,
+    "comments": 3,
     "created_at": "2019-05-14T11:31:05Z",
-    "updated_at": "2019-06-12T07:44:19Z",
+    "updated_at": "2019-06-17T23:12:43Z",
     "closed_at": null,
     "author_association": "OWNER",
     "body": "## I expect\r\n\r\nTo better detail the usage of `Digest` in signatures, including:\r\n\r\n- what should be included in signature for integrity (representation metadata)\r\n- issues with signing partial representations (eg. Range-Request, PATCH, ..)\r\n- using strong crypto algorithms\r\n\r\n## Questions\r\n\r\n- should we explicit here further requirements (eg timestamps, request-target, :method:, ..) \r\n  or that's off-topic?\r\n\r\n- should we warn about algorithm-based attacks (eg. MAC signatures are vulnerable to Length-Extension attacks) \r\n\r\n- consider signing `Content-Length` too ([it's a representation-metadata in http-core](https://tools.ietf.org/html/draft-ietf-httpbis-semantics-04#section-6.2)), though it would eliminate the ability to do things like chunked transfer-encoding, which is quite common. @dlongley\r\n\r\n \r\n\r\n## Notes\r\n\r\nSplit from #15 "
@@ -1311,7 +1359,7 @@
     "labels": [
 
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": {
       "login": "LPardue",
@@ -1356,10 +1404,10 @@
       }
     ],
     "milestone": null,
-    "comments": 7,
+    "comments": 8,
     "created_at": "2019-05-10T13:05:32Z",
-    "updated_at": "2019-05-24T07:36:58Z",
-    "closed_at": null,
+    "updated_at": "2019-06-17T18:08:07Z",
+    "closed_at": "2019-06-17T18:08:07Z",
     "author_association": "OWNER",
     "body": "## I expect\r\n\r\nNon-crypto algorithms be deprecated and removed from this draft.\r\n\r\n## Because\r\n\r\n- `UNIXsum`, `UNIXcksum` do not provide more integrity than the underlying TLS\r\n- `MD5` and `SHA-1` are subject to collision\r\n\r\n## Note\r\n\r\nWhile crc2 and adler32 are mentioned in [http-dig-alg registry](https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml) I can't find any reference in RFC3230 nor in RFC5843.\r\n\r\n@jyasskin does it sound good to you?"
   },
@@ -1560,7 +1608,10 @@
       "patch_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/12.patch"
     },
     "body": "## This PR\r\n\r\nExplains why we need requirement for selected representation\r\n\r\n## Note\r\n\r\nI somewhat repeated part of the introduction to explicitly\r\nclarify the requirement and make this document independent\r\nfrom the reading of RFC3230"
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/11",
     "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
@@ -1614,10 +1665,7 @@
       "patch_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/11.patch"
     },
     "body": "NB: the majority of these changes are deletions of trailing whitespaces, which the I-D build tools dislike, but otherwise cause no change in the output format.\r\n\r\nsubstanstive changes: I fixed a cross reference, modified the formatting in a couple of place, and expanded the range-request example"
-  }
-
-,
-
+  },
   {
     "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/10",
     "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
@@ -2003,9 +2051,9 @@
 
     ],
     "milestone": null,
-    "comments": 0,
+    "comments": 1,
     "created_at": "2019-04-30T11:31:56Z",
-    "updated_at": "2019-04-30T11:31:56Z",
+    "updated_at": "2019-06-17T18:58:39Z",
     "closed_at": null,
     "author_association": "OWNER",
     "body": "## About PATCH\r\n\r\n1- `PATCH` is not in http 723x\r\n2- `PATCH` media type should be something like https://tools.ietf.org/html/rfc7396 because \r\nservers SHOULD NOT assume PATCH semantics for generic\r\n   media types that don't define them, such as \"application/xml\" or\r\n   \"application/json\".  Doing so will cause interoperability issues,\r\n   because the semantics of PATCH become specific to that resource,\r\n   rather than general.\r\n3- it's difficult to use patch + checksums, like @LPardue said\r\n\r\n## Hypothesis\r\n\r\n1- warn people about PATCH+Digest\r\n2- don't forbid PATCH+Digest"
