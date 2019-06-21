@@ -441,7 +441,7 @@ The Want-Digest message header field indicates the sender's desire to
 receive a representation digest on messages associated with the Request-
 URI and representation metadata.
 
-    Want-Digest = "Want-Digest" ":" 1#want-digest-value
+    Want-Digest = "Want-Digest" ":" OWS 1#want-digest-value
     want-digest-value = digest-algorithm [ ";" "q" "=" qvalue]
     qvalue = ( "0"  [ "."  0*1DIGIT ] ) /  ( "1"  [ "."  0*1( "0" ) ] )
 
@@ -468,7 +468,7 @@ Examples:
 The Digest header field provides a digest of the representation data
 
 ~~~
-      Digest = "Digest" ":" 1#representation-data-digest
+      Digest = "Digest" ":" OWS 1#representation-data-digest
 ~~~
 
 `Representation data` might be:
