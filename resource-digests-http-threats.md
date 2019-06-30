@@ -27,7 +27,7 @@
 
 ### The attack
 
-An intermediary can alter an HTTP header by change or purpose.
+An intermediary can alter an HTTP header by chance or purpose.
 
 ### Proposed mitigation
 
