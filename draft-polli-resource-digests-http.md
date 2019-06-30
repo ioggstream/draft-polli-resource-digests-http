@@ -586,7 +586,7 @@ Response:
   Content-Encoding: br
   Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
-  b'\x8b\x08\x80{"hello": "world"}\x03'
+  iwiAeyJoZWxsbyI6ICJ3b3JsZCJ9Aw==
 
 ~~~
 
