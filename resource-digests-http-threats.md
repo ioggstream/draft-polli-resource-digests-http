@@ -38,7 +38,7 @@ Use an end-to-end transport-layer security mechanism.
 
 ### The attack
 
-An TLS-terminator intermediary can alter representation-metadata by chance or purpose.
+A TLS-terminator intermediary can alter representation-metadata by chance or purpose.
 
 ### Proposed mitigation
 
