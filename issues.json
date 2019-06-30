@@ -1,6 +1,60 @@
 [
 
   {
+    "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/42",
+    "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
+    "labels_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/42/labels{/name}",
+    "comments_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/42/comments",
+    "events_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/42/events",
+    "html_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/42",
+    "id": 459186044,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MjkwNTk4NjQ1",
+    "number": 42,
+    "title": "[WIP] Use ABNF.",
+    "user": {
+      "login": "ioggstream",
+      "id": 1140844,
+      "node_id": "MDQ6VXNlcjExNDA4NDQ=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1140844?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/ioggstream",
+      "html_url": "https://github.com/ioggstream",
+      "followers_url": "https://api.github.com/users/ioggstream/followers",
+      "following_url": "https://api.github.com/users/ioggstream/following{/other_user}",
+      "gists_url": "https://api.github.com/users/ioggstream/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/ioggstream/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/ioggstream/subscriptions",
+      "organizations_url": "https://api.github.com/users/ioggstream/orgs",
+      "repos_url": "https://api.github.com/users/ioggstream/repos",
+      "events_url": "https://api.github.com/users/ioggstream/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/ioggstream/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 1,
+    "created_at": "2019-06-21T13:00:32Z",
+    "updated_at": "2019-06-21T15:39:54Z",
+    "closed_at": null,
+    "author_association": "OWNER",
+    "pull_request": {
+      "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/pulls/42",
+      "html_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/42",
+      "diff_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/42.diff",
+      "patch_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/42.patch"
+    },
+    "body": "## This WIP PR\r\n\r\nUse ABNF to define headers values.\r\n\r\nTodo:\r\n\r\n- [x] reference ABNF rfc5234\r\n- [ ] define the representation-data-digest as `digest-algoritm = value`\r\n\r\n## Further considerations\r\n\r\nHow to pass digest-algoritm parameters? eg.\r\n\r\n1.  pass parameter to an algoritm\r\n\r\n```\r\nsha-512; trim=256=fafafafa,  sha-256=babababa \r\n``` \r\n\r\n2. pass parameter to value\r\n```\r\nsha-512=fafafa; trim=fafafafa, sha-256=babababa\r\n```"
+  },
+  {
     "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/41",
     "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
     "labels_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/41/labels{/name}",
@@ -313,9 +367,9 @@
 
     ],
     "milestone": null,
-    "comments": 2,
+    "comments": 3,
     "created_at": "2019-05-27T13:04:17Z",
-    "updated_at": "2019-06-17T23:29:37Z",
+    "updated_at": "2019-06-28T14:41:34Z",
     "closed_at": null,
     "author_association": "OWNER",
     "body": "## Reproduce\r\n\r\n1- I receive multiple digest values\r\n2- the first one validates\r\n3- the second one does not\r\n\r\n## Which behavior do we propose?\r\n\r\nConsiderations:\r\n\r\n- the receiver could ignore one or more digest (Eg. if the algo is not supported) \r\n- always checking all digest values may be computationally intensive -> add this to Security Considerations.\r\n"
@@ -622,7 +676,7 @@
     "milestone": null,
     "comments": 0,
     "created_at": "2019-05-19T15:03:00Z",
-    "updated_at": "2019-06-07T17:30:40Z",
+    "updated_at": "2019-06-28T14:27:45Z",
     "closed_at": null,
     "author_association": "OWNER",
     "pull_request": {
@@ -1452,9 +1506,9 @@
 
     ],
     "milestone": null,
-    "comments": 7,
+    "comments": 8,
     "created_at": "2019-05-10T00:28:48Z",
-    "updated_at": "2019-05-15T15:13:07Z",
+    "updated_at": "2019-06-28T14:54:37Z",
     "closed_at": null,
     "author_association": "NONE",
     "body": "https://ioggstream.github.io/draft-polli-resource-digests-http/draft-polli-resource-digests-http.html#goals says a goal is \"Digest coverage for either the resource’s representation data or selected representation data communicated via HTTP.\", but it's not clear to me why a client and server would use a digest. Some options include:\r\n\r\n* To detect message corruption. This is the only reason I can think of to use the ADLER32, CRC32c, MD5, SHA, UNIXsum, or UNIXcksum algorithms, but I think it's unnecessary with modern transport protocols?\r\n* To support signatures, for example in [Signed Exchanges](https://github.com/WICG/webpackage).\r\n* To give the client a hint about which SRI hash will be used, to maybe help with https://github.com/w3c/preload/issues/127.\r\n\r\nAre there others? If those are the only ones, and message corruption isn't needed anymore, we could deprecate all the non-cryptographic digest algorithms."
@@ -1554,7 +1608,10 @@
     "closed_at": "2019-05-10T13:47:31Z",
     "author_association": "NONE",
     "body": "https://github.com/ioggstream/draft-polli-resource-digests-http/blob/master/CONTRIBUTING.md refers to https://mailarchive.ietf.org/arch/browse/resource/, which doesn't exist."
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/12",
     "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
@@ -1608,10 +1665,7 @@
       "patch_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/12.patch"
     },
     "body": "## This PR\r\n\r\nExplains why we need requirement for selected representation\r\n\r\n## Note\r\n\r\nI somewhat repeated part of the introduction to explicitly\r\nclarify the requirement and make this document independent\r\nfrom the reading of RFC3230"
-  }
-
-,
-
+  },
   {
     "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/11",
     "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
