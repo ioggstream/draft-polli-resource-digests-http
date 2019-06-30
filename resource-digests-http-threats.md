@@ -70,7 +70,7 @@ or refuse to use digest-algorithms subect to collision.
 
 ### The attack
 
-A malicious User could exahust server resources via:
+A malicious User could exhaust server resources via:
 
 1- reconstruction of the complete representation
 2- digest calculation of the complete representation
