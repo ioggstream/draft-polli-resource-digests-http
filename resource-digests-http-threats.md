@@ -90,3 +90,24 @@ If you support multiple digest-algorithms:
 - establish a policy for validating only the digest
   using the stronger digest-algorithm.
 
+## Confidence in recipient's Digest validation 
+
+### The attack
+
+The recipient may skip Digest header validation by chance or purpose
+and still be compliant to the specification: as explained in {#digest-header} 
+the recipient MAY ignore any or all the received representation-data-digests.
+
+This is because Digest was originally conceived in RFC3230 as a tool 
+for the recipient to validate the received representation, but not
+for the sender to receive an integrity proof of the communication. 
+
+You should not rely on the recipient having correctly verified the Digest value
+of the selected representation.
+
+### Proposed mitigation
+
+If you want the recipient to validate the `Digest`:
+
+- agree on `Digest` processing with your peer, like it is
+  done in [MICE](https://github.com/martinthomson/http-mice/blob/master/draft-thomson-http-mice.md)
