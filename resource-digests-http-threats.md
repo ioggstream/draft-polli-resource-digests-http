@@ -63,7 +63,7 @@ A malicious Server could implement a similar behavior.
 
 ### Proposed mitigation
 
-Use a digest-algoritm wich is not subject to collision (eg. sha-256),
+Use a digest-algorithm that is not subject to collision (eg. sha-256),
 or refuse to use digest-algorithms subect to collision.
 
 ## Server resource exhaustion for calculating Digest on partial representations
