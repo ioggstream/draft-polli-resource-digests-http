@@ -79,7 +79,7 @@ A malicious User could exahust server resources via:
 ### Proposed mitigation
 
 If you are exposed to this kind of attack because 
-re-constructing complete representations of your 
+reconstructing complete representations of your 
 objects is computationally intensive, avoid using
 Digest with mechanisms like Range-Requests and PATCH.
 
