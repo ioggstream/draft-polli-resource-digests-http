@@ -255,6 +255,10 @@ Internet-Draft                   RDHTTP                        July 2019
    14 ([RFC2119] and [RFC8174]) when, and only when, they appear in all
    capitals, as shown here.
 
+   This document uses the Augmented BNF defined in [RFC5234] and updated
+   by [RFC7405] along with the "#rule" extension defined in Section 7 of
+   [RFC7230].
+
    The definitions "representation", "selected representation",
    "representation data", "representation metadata" and "payload body"
    in this document are to be interpreted as described in [RFC7230] and
@@ -271,16 +275,15 @@ Internet-Draft                   RDHTTP                        July 2019
    o  and from the message body - which depends on "Transfer-Encoding"
       and whatever tranformations the intermediaries may apply.
 
-   The following examples show how representation metadata, payload
-   tranformations and method impacts on the message and payload body.
-
-
 
 
 Polli & Pardue           Expires January 2, 2020                [Page 5]
 
 Internet-Draft                   RDHTTP                        July 2019
 
+
+   The following examples show how representation metadata, payload
+   tranformations and method impacts on the message and payload body.
 
    Here is a gzip-compressed json object
 
@@ -321,9 +324,6 @@ Internet-Draft                   RDHTTP                        July 2019
        iwgAla3RXA==
 
    Now the method too alters the payload body.
-
-
-
 
 
 
@@ -520,8 +520,9 @@ Internet-Draft                   RDHTTP                        July 2019
    receive a representation digest on messages associated with the
    Request- URI and representation metadata.
 
-   Want-Digest = "Want-Digest" ":"
-                    #(digest-algorithm [ ";" "q" "=" qvalue])
+   Want-Digest = "Want-Digest" ":" OWS 1#want-digest-value
+   want-digest-value = digest-algorithm [ ";" "q" "=" qvalue]
+   qvalue = ( "0"  [ "."  0*1DIGIT ] ) /  ( "1"  [ "."  0*1( "0" ) ] )
 
    If a digest-algorithm is not accompanied by a qvalue, it is treated
    as if its associated qvalue were 1.0.
@@ -537,13 +538,13 @@ Internet-Draft                   RDHTTP                        July 2019
    Examples:
 
       Want-Digest: sha-256
-      Want-Digest: SHA-256;q=0.3, sha;q=1
+      Want-Digest: SHA-512;q=0.3, sha-256;q=1, md5;q=0
 
 4.2.  Digest
 
    The Digest header field provides a digest of the representation data
 
-         Digest = "Digest" ":" #(representation-data-digest)
+         Digest = "Digest" ":" OWS 1#representation-data-digest
 
    "Representation data" might be:
 
@@ -552,7 +553,6 @@ Internet-Draft                   RDHTTP                        July 2019
    o  partially-contained in the message body,
 
    o  or not at all contained in the message body.
-
 
 
 
@@ -1039,6 +1039,11 @@ Internet-Draft                   RDHTTP                        July 2019
               Encodings", RFC 4648, DOI 10.17487/RFC4648, October 2006,
               <https://www.rfc-editor.org/info/rfc4648>.
 
+   [RFC5234]  Crocker, D., Ed. and P. Overell, "Augmented BNF for Syntax
+              Specifications: ABNF", STD 68, RFC 5234,
+              DOI 10.17487/RFC5234, January 2008,
+              <https://www.rfc-editor.org/info/rfc5234>.
+
    [RFC5789]  Dusseault, L. and J. Snell, "PATCH Method for HTTP",
               RFC 5789, DOI 10.17487/RFC5789, March 2010,
               <https://www.rfc-editor.org/info/rfc5789>.
@@ -1052,11 +1057,6 @@ Internet-Draft                   RDHTTP                        July 2019
               RFC 7230, DOI 10.17487/RFC7230, June 2014,
               <https://www.rfc-editor.org/info/rfc7230>.
 
-   [RFC7231]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
-              Protocol (HTTP/1.1): Semantics and Content", RFC 7231,
-              DOI 10.17487/RFC7231, June 2014,
-              <https://www.rfc-editor.org/info/rfc7231>.
-
 
 
 
@@ -1066,10 +1066,19 @@ Polli & Pardue           Expires January 2, 2020               [Page 19]
 Internet-Draft                   RDHTTP                        July 2019
 
 
+   [RFC7231]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
+              Protocol (HTTP/1.1): Semantics and Content", RFC 7231,
+              DOI 10.17487/RFC7231, June 2014,
+              <https://www.rfc-editor.org/info/rfc7231>.
+
    [RFC7233]  Fielding, R., Ed., Lafon, Y., Ed., and J. Reschke, Ed.,
               "Hypertext Transfer Protocol (HTTP/1.1): Range Requests",
               RFC 7233, DOI 10.17487/RFC7233, June 2014,
               <https://www.rfc-editor.org/info/rfc7233>.
+
+   [RFC7405]  Kyzivat, P., "Case-Sensitive String Support in ABNF",
+              RFC 7405, DOI 10.17487/RFC7405, December 2014,
+              <https://www.rfc-editor.org/info/rfc7405>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
@@ -1105,6 +1114,14 @@ Internet-Draft                   RDHTTP                        July 2019
 
    [2] https://github.com/ioggstream/draft-polli-resource-digests-http
 
+
+
+
+Polli & Pardue           Expires January 2, 2020               [Page 20]
+
+Internet-Draft                   RDHTTP                        July 2019
+
+
    [3] https://tools.ietf.org/html/rfc7231#section-3.1.2.1
 
    [4] https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml
@@ -1114,13 +1131,6 @@ Internet-Draft                   RDHTTP                        July 2019
    [6] https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml
 
    [7] https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml
-
-
-
-Polli & Pardue           Expires January 2, 2020               [Page 20]
-
-Internet-Draft                   RDHTTP                        July 2019
-
 
    [8] https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml
 
@@ -1159,6 +1169,15 @@ Appendix C.  FAQ
        *  PATCH entity-headers apply to the patch document and MUST NOT
           be applied to the target resource, see [RFC5789], Section 2.
 
+
+
+
+
+Polli & Pardue           Expires January 2, 2020               [Page 21]
+
+Internet-Draft                   RDHTTP                        July 2019
+
+
        *  servers shouldn't assume PATCH semantics for generic media
           types like "application/json" but should instead use a proper
           content-type, eg [RFC7396]
@@ -1170,13 +1189,6 @@ Appendix C.  FAQ
           outcome of this operation (eg. concurrent changes, ...)
 
    4.  Why remove references to delta-encoding?
-
-
-
-Polli & Pardue           Expires January 2, 2020               [Page 21]
-
-Internet-Draft                   RDHTTP                        July 2019
-
 
        Unnecessary for a correct implementation of this spec.  The
        revised spec can be nicely adapted to "delta encoding", but all
@@ -1212,18 +1224,6 @@ Authors' Addresses
    Cloudflare
 
    Email: lucaspardue.24.7@gmail.com
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

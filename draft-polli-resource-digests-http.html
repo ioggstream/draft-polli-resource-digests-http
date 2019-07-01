@@ -557,7 +557,8 @@ ul.toc li {
 <a href="#rfc.section.1.4">1.4.</a> <a href="#notational-conventions" id="notational-conventions">Notational Conventions</a>
 </h2>
 <p id="rfc.section.1.4.p.1">The key words &#8220;MUST&#8221;, &#8220;MUST NOT&#8221;, &#8220;REQUIRED&#8221;, &#8220;SHALL&#8221;, &#8220;SHALL NOT&#8221;, &#8220;SHOULD&#8221;, &#8220;SHOULD NOT&#8221;, &#8220;RECOMMENDED&#8221;, &#8220;NOT RECOMMENDED&#8221;, &#8220;MAY&#8221;, and &#8220;OPTIONAL&#8221; in this document are to be interpreted as described in BCP 14 (<a href="#RFC2119" class="xref">[RFC2119]</a> and <a href="#RFC8174" class="xref">[RFC8174]</a>) when, and only when, they appear in all capitals, as shown here.</p>
-<p id="rfc.section.1.4.p.2">The definitions &#8220;representation&#8221;, &#8220;selected representation&#8221;, &#8220;representation data&#8221;, &#8220;representation metadata&#8221; and &#8220;payload body&#8221; in this document are to be interpreted as described in <a href="#RFC7230" class="xref">[RFC7230]</a> and <a href="#RFC7231" class="xref">[RFC7231]</a>.</p>
+<p id="rfc.section.1.4.p.2">This document uses the Augmented BNF defined in <a href="#RFC5234" class="xref">[RFC5234]</a> and updated by <a href="#RFC7405" class="xref">[RFC7405]</a> along with the &#8220;#rule&#8221; extension defined in Section 7 of <a href="#RFC7230" class="xref">[RFC7230]</a>.</p>
+<p id="rfc.section.1.4.p.3">The definitions &#8220;representation&#8221;, &#8220;selected representation&#8221;, &#8220;representation data&#8221;, &#8220;representation metadata&#8221; and &#8220;payload body&#8221; in this document are to be interpreted as described in <a href="#RFC7230" class="xref">[RFC7230]</a> and <a href="#RFC7231" class="xref">[RFC7231]</a>.</p>
 <h1 id="rfc.section.2">
 <a href="#rfc.section.2">2.</a> <a href="#resource-representation" id="resource-representation">Resource representation and representation-data</a>
 </h1>
@@ -745,8 +746,9 @@ UNIXsum=30637
 </h2>
 <p id="rfc.section.4.1.p.1">The Want-Digest message header field indicates the sender&#8217;s desire to receive a representation digest on messages associated with the Request- URI and representation metadata.</p>
 <pre>
-Want-Digest = "Want-Digest" ":"
-                 #(digest-algorithm [ ";" "q" "=" qvalue])
+Want-Digest = "Want-Digest" ":" OWS 1#want-digest-value
+want-digest-value = digest-algorithm [ ";" "q" "=" qvalue]
+qvalue = ( "0"&#8194; [ "."&#8194; 0*1DIGIT ] )&#8195;/&#8194; ( "1"&#8194; [ "."&#8194; 0*1( "0" ) ] )
 </pre>
 <p id="rfc.section.4.1.p.2">If a digest-algorithm is not accompanied by a qvalue, it is treated as if its associated qvalue were 1.0.</p>
 <p id="rfc.section.4.1.p.3">The sender is willing to accept a digest-algorithm if and only if it is listed in a Want-Digest header field of a message, and its qvalue is non-zero.</p>
@@ -754,14 +756,14 @@ Want-Digest = "Want-Digest" ":"
 <p id="rfc.section.4.1.p.5">Examples:</p>
 <pre>
    Want-Digest: sha-256
-   Want-Digest: SHA-256;q=0.3, sha;q=1
+   Want-Digest: SHA-512;q=0.3, sha-256;q=1, md5;q=0
 </pre>
 <h2 id="rfc.section.4.2">
 <a href="#rfc.section.4.2">4.2.</a> <a href="#digest-header" id="digest-header">Digest</a>
 </h2>
 <p id="rfc.section.4.2.p.1">The Digest header field provides a digest of the representation data</p>
 <pre>
-      Digest = "Digest" ":" #(representation-data-digest)
+      Digest = "Digest" ":" OWS 1#representation-data-digest
 </pre>
 <p><samp>Representation data</samp> might be:</p>
 <p></p>
@@ -1108,6 +1110,11 @@ Response:
 <a>Josefsson, S.</a>, "<a href="https://tools.ietf.org/html/rfc4648">The Base16, Base32, and Base64 Data Encodings</a>", RFC 4648, DOI 10.17487/RFC4648, October 2006.</td>
 </tr>
 <tr>
+<td class="reference"><b id="RFC5234">[RFC5234]</b></td>
+<td class="top">
+<a>Crocker, D.</a> and <a>P. Overell</a>, "<a href="https://tools.ietf.org/html/rfc5234">Augmented BNF for Syntax Specifications: ABNF</a>", STD 68, RFC 5234, DOI 10.17487/RFC5234, January 2008.</td>
+</tr>
+<tr>
 <td class="reference"><b id="RFC5789">[RFC5789]</b></td>
 <td class="top">
 <a>Dusseault, L.</a> and <a>J. Snell</a>, "<a href="https://tools.ietf.org/html/rfc5789">PATCH Method for HTTP</a>", RFC 5789, DOI 10.17487/RFC5789, March 2010.</td>
@@ -1131,6 +1138,11 @@ Response:
 <td class="reference"><b id="RFC7233">[RFC7233]</b></td>
 <td class="top">
 <a>Fielding, R.</a>, <a>Lafon, Y.</a> and <a>J. Reschke</a>, "<a href="https://tools.ietf.org/html/rfc7233">Hypertext Transfer Protocol (HTTP/1.1): Range Requests</a>", RFC 7233, DOI 10.17487/RFC7233, June 2014.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC7405">[RFC7405]</b></td>
+<td class="top">
+<a>Kyzivat, P.</a>, "<a href="https://tools.ietf.org/html/rfc7405">Case-Sensitive String Support in ABNF</a>", RFC 7405, DOI 10.17487/RFC7405, December 2014.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC8174">[RFC8174]</b></td>
