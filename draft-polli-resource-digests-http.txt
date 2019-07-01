@@ -5,8 +5,8 @@
 Network Working Group                                           R. Polli
 Internet-Draft
 Intended status: Standards Track                               L. Pardue
-Expires: January 1, 2020                                      Cloudflare
-                                                           June 30, 2019
+Expires: January 2, 2020                                      Cloudflare
+                                                           July 01, 2019
 
 
                        Resource Digests for HTTP
@@ -48,14 +48,14 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on January 1, 2020.
+   This Internet-Draft will expire on January 2, 2020.
 
 
 
 
-Polli & Pardue           Expires January 1, 2020                [Page 1]
+Polli & Pardue           Expires January 2, 2020                [Page 1]
 
-Internet-Draft                   RDHTTP                        June 2019
+Internet-Draft                   RDHTTP                        July 2019
 
 
 Copyright Notice
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Polli & Pardue           Expires January 1, 2020                [Page 2]
+Polli & Pardue           Expires January 2, 2020                [Page 2]
 
-Internet-Draft                   RDHTTP                        June 2019
+Internet-Draft                   RDHTTP                        July 2019
 
 
      8.3.  Digest for end-to-end integrity . . . . . . . . . . . . .  15
@@ -165,9 +165,9 @@ Internet-Draft                   RDHTTP                        June 2019
 
 
 
-Polli & Pardue           Expires January 1, 2020                [Page 3]
+Polli & Pardue           Expires January 2, 2020                [Page 3]
 
-Internet-Draft                   RDHTTP                        June 2019
+Internet-Draft                   RDHTTP                        July 2019
 
 
 1.1.  Brief history of integrity headers
@@ -221,9 +221,9 @@ Internet-Draft                   RDHTTP                        June 2019
 
 
 
-Polli & Pardue           Expires January 1, 2020                [Page 4]
+Polli & Pardue           Expires January 2, 2020                [Page 4]
 
-Internet-Draft                   RDHTTP                        June 2019
+Internet-Draft                   RDHTTP                        July 2019
 
 
    The goals do not include:
@@ -277,9 +277,9 @@ Internet-Draft                   RDHTTP                        June 2019
 
 
 
-Polli & Pardue           Expires January 1, 2020                [Page 5]
+Polli & Pardue           Expires January 2, 2020                [Page 5]
 
-Internet-Draft                   RDHTTP                        June 2019
+Internet-Draft                   RDHTTP                        July 2019
 
 
    Here is a gzip-compressed json object
@@ -333,9 +333,9 @@ Internet-Draft                   RDHTTP                        June 2019
 
 
 
-Polli & Pardue           Expires January 1, 2020                [Page 6]
+Polli & Pardue           Expires January 2, 2020                [Page 6]
 
-Internet-Draft                   RDHTTP                        June 2019
+Internet-Draft                   RDHTTP                        July 2019
 
 
    Request:
@@ -389,9 +389,9 @@ Internet-Draft                   RDHTTP                        June 2019
 
 
 
-Polli & Pardue           Expires January 1, 2020                [Page 7]
+Polli & Pardue           Expires January 2, 2020                [Page 7]
 
-Internet-Draft                   RDHTTP                        June 2019
+Internet-Draft                   RDHTTP                        July 2019
 
 
       *  Description: The MD5 algorithm, as specified in [RFC1321].  The
@@ -445,9 +445,9 @@ Internet-Draft                   RDHTTP                        June 2019
 
 
 
-Polli & Pardue           Expires January 1, 2020                [Page 8]
+Polli & Pardue           Expires January 2, 2020                [Page 8]
 
-Internet-Draft                   RDHTTP                        June 2019
+Internet-Draft                   RDHTTP                        July 2019
 
 
    ID-SHA-512:
@@ -501,9 +501,9 @@ Internet-Draft                   RDHTTP                        June 2019
 
 
 
-Polli & Pardue           Expires January 1, 2020                [Page 9]
+Polli & Pardue           Expires January 2, 2020                [Page 9]
 
-Internet-Draft                   RDHTTP                        June 2019
+Internet-Draft                   RDHTTP                        July 2019
 
 
    The "UNIXsum" digest-algorithm uses ASCII string of decimal digits.
@@ -557,9 +557,9 @@ Internet-Draft                   RDHTTP                        June 2019
 
 
 
-Polli & Pardue           Expires January 1, 2020               [Page 10]
+Polli & Pardue           Expires January 2, 2020               [Page 10]
 
-Internet-Draft                   RDHTTP                        June 2019
+Internet-Draft                   RDHTTP                        July 2019
 
 
    The resource is specified by the effective Request-URI and any cache-
@@ -577,7 +577,9 @@ Internet-Draft                   RDHTTP                        June 2019
    caches shared by users with different browsers, for example.
 
    A recipient MAY ignore any or all of the representation-data-digests
-   in a Digest header field.
+   in a Digest header field.  This allows the recipient to chose which
+   digest-algorithm(s) to use for validation instead of verifying every
+   received representation-data-digest.
 
    A sender MAY send a representation-data-digest using a digest-
    algorithm without knowing whether the recipient supports the digest-
@@ -611,11 +613,9 @@ Internet-Draft                   RDHTTP                        June 2019
 
 
 
-
-
-Polli & Pardue           Expires January 1, 2020               [Page 11]
+Polli & Pardue           Expires January 2, 2020               [Page 11]
 
-Internet-Draft                   RDHTTP                        June 2019
+Internet-Draft                   RDHTTP                        July 2019
 
 
    Request:
@@ -669,9 +669,9 @@ Internet-Draft                   RDHTTP                        June 2019
 
 
 
-Polli & Pardue           Expires January 1, 2020               [Page 12]
+Polli & Pardue           Expires January 2, 2020               [Page 12]
 
-Internet-Draft                   RDHTTP                        June 2019
+Internet-Draft                   RDHTTP                        July 2019
 
 
 7.1.4.  Digest in both Request and Response.  Returned value depends on
@@ -725,9 +725,9 @@ Internet-Draft                   RDHTTP                        June 2019
 
 
 
-Polli & Pardue           Expires January 1, 2020               [Page 13]
+Polli & Pardue           Expires January 2, 2020               [Page 13]
 
-Internet-Draft                   RDHTTP                        June 2019
+Internet-Draft                   RDHTTP                        July 2019
 
 
 7.2.2.  A client requests an unsupported Digest, the server MAY reply
@@ -781,9 +781,9 @@ Internet-Draft                   RDHTTP                        June 2019
 
 
 
-Polli & Pardue           Expires January 1, 2020               [Page 14]
+Polli & Pardue           Expires January 2, 2020               [Page 14]
 
-Internet-Draft                   RDHTTP                        June 2019
+Internet-Draft                   RDHTTP                        July 2019
 
 
    "Digest" together with a transport-layer security mechanism and
@@ -837,9 +837,9 @@ Internet-Draft                   RDHTTP                        June 2019
 
 
 
-Polli & Pardue           Expires January 1, 2020               [Page 15]
+Polli & Pardue           Expires January 2, 2020               [Page 15]
 
-Internet-Draft                   RDHTTP                        June 2019
+Internet-Draft                   RDHTTP                        July 2019
 
 
 8.5.  Message Truncation
@@ -893,9 +893,9 @@ Internet-Draft                   RDHTTP                        June 2019
 
 
 
-Polli & Pardue           Expires January 1, 2020               [Page 16]
+Polli & Pardue           Expires January 2, 2020               [Page 16]
 
-Internet-Draft                   RDHTTP                        June 2019
+Internet-Draft                   RDHTTP                        July 2019
 
 
 9.5.  The "ID-SHA-256" Digest Algorithm
@@ -949,9 +949,9 @@ Internet-Draft                   RDHTTP                        June 2019
 
 
 
-Polli & Pardue           Expires January 1, 2020               [Page 17]
+Polli & Pardue           Expires January 2, 2020               [Page 17]
 
-Internet-Draft                   RDHTTP                        June 2019
+Internet-Draft                   RDHTTP                        July 2019
 
 
 9.9.  Digest Header Field Registration
@@ -1005,9 +1005,9 @@ Internet-Draft                   RDHTTP                        June 2019
 
 
 
-Polli & Pardue           Expires January 1, 2020               [Page 18]
+Polli & Pardue           Expires January 2, 2020               [Page 18]
 
-Internet-Draft                   RDHTTP                        June 2019
+Internet-Draft                   RDHTTP                        July 2019
 
 
    [NIST800-32]
@@ -1061,9 +1061,9 @@ Internet-Draft                   RDHTTP                        June 2019
 
 
 
-Polli & Pardue           Expires January 1, 2020               [Page 19]
+Polli & Pardue           Expires January 2, 2020               [Page 19]
 
-Internet-Draft                   RDHTTP                        June 2019
+Internet-Draft                   RDHTTP                        July 2019
 
 
    [RFC7233]  Fielding, R., Ed., Lafon, Y., Ed., and J. Reschke, Ed.,
@@ -1117,9 +1117,9 @@ Internet-Draft                   RDHTTP                        June 2019
 
 
 
-Polli & Pardue           Expires January 1, 2020               [Page 20]
+Polli & Pardue           Expires January 2, 2020               [Page 20]
 
-Internet-Draft                   RDHTTP                        June 2019
+Internet-Draft                   RDHTTP                        July 2019
 
 
    [8] https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml
@@ -1173,9 +1173,9 @@ Appendix C.  FAQ
 
 
 
-Polli & Pardue           Expires January 1, 2020               [Page 21]
+Polli & Pardue           Expires January 2, 2020               [Page 21]
 
-Internet-Draft                   RDHTTP                        June 2019
+Internet-Draft                   RDHTTP                        July 2019
 
 
        Unnecessary for a correct implementation of this spec.  The
@@ -1229,4 +1229,4 @@ Authors' Addresses
 
 
 
-Polli & Pardue           Expires January 1, 2020               [Page 22]
+Polli & Pardue           Expires January 2, 2020               [Page 22]
