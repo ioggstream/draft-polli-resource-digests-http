@@ -485,7 +485,8 @@ This could be useful for responses expected to reside in caches
 shared by users with different browsers, for example.
 
 A recipient MAY ignore any or all of the representation-data-digests in a Digest
-header field.
+header field. This allows the recipient to chose which digest-algorithm(s) to use for 
+validation instead of verifying every received representation-data-digest.
 
 A sender MAY send a representation-data-digest using a digest-algorithm without
 knowing whether the recipient supports the digest-algorithm, or even
