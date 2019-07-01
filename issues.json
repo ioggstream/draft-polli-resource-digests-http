@@ -1,6 +1,114 @@
 [
 
   {
+    "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/44",
+    "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
+    "labels_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/44/labels{/name}",
+    "comments_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/44/comments",
+    "events_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/44/events",
+    "html_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/44",
+    "id": 462455244,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MjkzMTM4MzU5",
+    "number": 44,
+    "title": "Fix: #22. Use base64 to represent binary payloads",
+    "user": {
+      "login": "ioggstream",
+      "id": 1140844,
+      "node_id": "MDQ6VXNlcjExNDA4NDQ=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1140844?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/ioggstream",
+      "html_url": "https://github.com/ioggstream",
+      "followers_url": "https://api.github.com/users/ioggstream/followers",
+      "following_url": "https://api.github.com/users/ioggstream/following{/other_user}",
+      "gists_url": "https://api.github.com/users/ioggstream/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/ioggstream/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/ioggstream/subscriptions",
+      "organizations_url": "https://api.github.com/users/ioggstream/orgs",
+      "repos_url": "https://api.github.com/users/ioggstream/repos",
+      "events_url": "https://api.github.com/users/ioggstream/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/ioggstream/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "closed",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2019-06-30T22:50:26Z",
+    "updated_at": "2019-06-30T22:52:02Z",
+    "closed_at": "2019-06-30T22:52:02Z",
+    "author_association": "OWNER",
+    "pull_request": {
+      "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/pulls/44",
+      "html_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/44",
+      "diff_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/44.diff",
+      "patch_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/44.patch"
+    },
+    "body": "## This PR\r\n\r\nRepresents binary payloads with base64"
+  },
+  {
+    "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/43",
+    "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
+    "labels_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/43/labels{/name}",
+    "comments_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/43/comments",
+    "events_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/43/events",
+    "html_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/43",
+    "id": 462454450,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MjkzMTM3ODA0",
+    "number": 43,
+    "title": "Fix: #36. Clarification on multiple digests values",
+    "user": {
+      "login": "ioggstream",
+      "id": 1140844,
+      "node_id": "MDQ6VXNlcjExNDA4NDQ=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1140844?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/ioggstream",
+      "html_url": "https://github.com/ioggstream",
+      "followers_url": "https://api.github.com/users/ioggstream/followers",
+      "following_url": "https://api.github.com/users/ioggstream/following{/other_user}",
+      "gists_url": "https://api.github.com/users/ioggstream/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/ioggstream/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/ioggstream/subscriptions",
+      "organizations_url": "https://api.github.com/users/ioggstream/orgs",
+      "repos_url": "https://api.github.com/users/ioggstream/repos",
+      "events_url": "https://api.github.com/users/ioggstream/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/ioggstream/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "closed",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2019-06-30T22:39:37Z",
+    "updated_at": "2019-07-01T09:55:21Z",
+    "closed_at": "2019-07-01T09:55:20Z",
+    "author_association": "OWNER",
+    "pull_request": {
+      "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/pulls/43",
+      "html_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/43",
+      "diff_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/43.diff",
+      "patch_url": "https://github.com/ioggstream/draft-polli-resource-digests-http/pull/43.patch"
+    },
+    "body": "## This PR \r\n\r\nclarifies the reasons behind the actual behavior.\r\n\r\nSee #36 "
+  },
+  {
     "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/42",
     "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
     "labels_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/42/labels{/name}",
@@ -86,7 +194,14 @@
       "site_admin": false
     },
     "labels": [
-
+      {
+        "id": 1334069514,
+        "node_id": "MDU6TGFiZWwxMzM0MDY5NTE0",
+        "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/labels/help%20wanted",
+        "name": "help wanted",
+        "color": "008672",
+        "default": true
+      }
     ],
     "state": "open",
     "locked": false,
@@ -97,7 +212,7 @@
     "milestone": null,
     "comments": 0,
     "created_at": "2019-06-21T12:29:30Z",
-    "updated_at": "2019-06-21T12:29:30Z",
+    "updated_at": "2019-06-30T23:03:19Z",
     "closed_at": null,
     "author_association": "OWNER",
     "body": "## I expect\r\n\r\n`Digest` header syntax follow ABNF"
@@ -358,9 +473,16 @@
       "site_admin": false
     },
     "labels": [
-
+      {
+        "id": 1334069514,
+        "node_id": "MDU6TGFiZWwxMzM0MDY5NTE0",
+        "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/labels/help%20wanted",
+        "name": "help wanted",
+        "color": "008672",
+        "default": true
+      }
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": null,
     "assignees": [
@@ -369,8 +491,8 @@
     "milestone": null,
     "comments": 3,
     "created_at": "2019-05-27T13:04:17Z",
-    "updated_at": "2019-06-28T14:41:34Z",
-    "closed_at": null,
+    "updated_at": "2019-07-01T09:55:22Z",
+    "closed_at": "2019-07-01T09:55:22Z",
     "author_association": "OWNER",
     "body": "## Reproduce\r\n\r\n1- I receive multiple digest values\r\n2- the first one validates\r\n3- the second one does not\r\n\r\n## Which behavior do we propose?\r\n\r\nConsiderations:\r\n\r\n- the receiver could ignore one or more digest (Eg. if the algo is not supported) \r\n- always checking all digest values may be computationally intensive -> add this to Security Considerations.\r\n"
   },
@@ -406,7 +528,14 @@
       "site_admin": false
     },
     "labels": [
-
+      {
+        "id": 1430045908,
+        "node_id": "MDU6TGFiZWwxNDMwMDQ1OTA4",
+        "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/labels/carry",
+        "name": "carry",
+        "color": "7fe08c",
+        "default": false
+      }
     ],
     "state": "open",
     "locked": false,
@@ -417,7 +546,7 @@
     "milestone": null,
     "comments": 2,
     "created_at": "2019-05-24T07:47:05Z",
-    "updated_at": "2019-06-18T14:19:15Z",
+    "updated_at": "2019-06-30T23:03:44Z",
     "closed_at": null,
     "author_association": "OWNER",
     "body": "## I expect\r\n\r\nAn example `Digest` of an empty representation.\r\n\r\nSee https://github.com/martinthomson/http-mice/issues/3"
@@ -509,7 +638,14 @@
       "site_admin": false
     },
     "labels": [
-
+      {
+        "id": 1334069513,
+        "node_id": "MDU6TGFiZWwxMzM0MDY5NTEz",
+        "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/labels/enhancement",
+        "name": "enhancement",
+        "color": "a2eeef",
+        "default": true
+      }
     ],
     "state": "open",
     "locked": false,
@@ -520,7 +656,7 @@
     "milestone": null,
     "comments": 0,
     "created_at": "2019-05-24T07:32:39Z",
-    "updated_at": "2019-05-24T07:32:39Z",
+    "updated_at": "2019-06-30T23:04:25Z",
     "closed_at": null,
     "author_association": "OWNER",
     "body": "## Hypothesis\r\nConsidering that:\r\n\r\n1- every digest-algorithm define his own serialization method (eg. you don't need to use just b64)\r\n\r\n2- Structured headers allow to serialize byte-sequences like the following:\r\n\r\n```\r\nsh-binary = \"*\" *(base64) \"*\"\r\nbase64    = ALPHA / DIGIT / \"+\" / \"/\" / \"=\"\r\n``` \r\n\r\n\r\nWe could:\r\n\r\n- use for `id-sha-256|512` the `sh-binary` serialization\r\n\r\n## Notes\r\n\r\nPro:\r\n- compatibility with structured headers\r\n\r\nCons:\r\n- syntax will be different from the (previous) sha-xxx"
@@ -676,7 +812,7 @@
     "milestone": null,
     "comments": 0,
     "created_at": "2019-05-19T15:03:00Z",
-    "updated_at": "2019-06-28T14:27:45Z",
+    "updated_at": "2019-06-30T23:33:44Z",
     "closed_at": null,
     "author_association": "OWNER",
     "pull_request": {
@@ -719,7 +855,14 @@
       "site_admin": false
     },
     "labels": [
-
+      {
+        "id": 1430045908,
+        "node_id": "MDU6TGFiZWwxNDMwMDQ1OTA4",
+        "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/labels/carry",
+        "name": "carry",
+        "color": "7fe08c",
+        "default": false
+      }
     ],
     "state": "open",
     "locked": false,
@@ -730,7 +873,7 @@
     "milestone": null,
     "comments": 1,
     "created_at": "2019-05-19T15:02:15Z",
-    "updated_at": "2019-06-17T18:52:24Z",
+    "updated_at": "2019-06-30T23:03:44Z",
     "closed_at": null,
     "author_association": "OWNER",
     "body": "## I wish\r\n\r\nA threat model for `Digest`."
@@ -1100,17 +1243,17 @@
         "default": true
       }
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": null,
     "assignees": [
 
     ],
     "milestone": null,
-    "comments": 0,
+    "comments": 1,
     "created_at": "2019-05-16T18:07:35Z",
-    "updated_at": "2019-05-17T19:14:12Z",
-    "closed_at": null,
+    "updated_at": "2019-06-30T22:53:06Z",
+    "closed_at": "2019-06-30T22:52:04Z",
     "author_association": "OWNER",
     "body": "## Task\r\n\r\nHow to encode binary payload data?\r\n\r\n- base64, python repr, `<0x....>`\r\n\r\n## notes\r\n\r\n- base64 is a standard, though it may confuse the reader on whether he's required to \r\n  actually encode data\r\n\r\n- python repr (eg. `b'\\x8b\\x08\\x80{\"hello\": \"world\"}\\x03` is more clear on showing that\r\n  you are sending binary data. "
   },
@@ -1200,7 +1343,14 @@
       "site_admin": false
     },
     "labels": [
-
+      {
+        "id": 1430045908,
+        "node_id": "MDU6TGFiZWwxNDMwMDQ1OTA4",
+        "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/labels/carry",
+        "name": "carry",
+        "color": "7fe08c",
+        "default": false
+      }
     ],
     "state": "open",
     "locked": false,
@@ -1211,7 +1361,7 @@
     "milestone": null,
     "comments": 3,
     "created_at": "2019-05-14T11:31:05Z",
-    "updated_at": "2019-06-17T23:12:43Z",
+    "updated_at": "2019-06-30T23:03:43Z",
     "closed_at": null,
     "author_association": "OWNER",
     "body": "## I expect\r\n\r\nTo better detail the usage of `Digest` in signatures, including:\r\n\r\n- what should be included in signature for integrity (representation metadata)\r\n- issues with signing partial representations (eg. Range-Request, PATCH, ..)\r\n- using strong crypto algorithms\r\n\r\n## Questions\r\n\r\n- should we explicit here further requirements (eg timestamps, request-target, :method:, ..) \r\n  or that's off-topic?\r\n\r\n- should we warn about algorithm-based attacks (eg. MAC signatures are vulnerable to Length-Extension attacks) \r\n\r\n- consider signing `Content-Length` too ([it's a representation-metadata in http-core](https://tools.ietf.org/html/draft-ietf-httpbis-semantics-04#section-6.2)), though it would eliminate the ability to do things like chunked transfer-encoding, which is quite common. @dlongley\r\n\r\n \r\n\r\n## Notes\r\n\r\nSplit from #15 "
@@ -1309,6 +1459,14 @@
         "name": "question",
         "color": "d876e3",
         "default": true
+      },
+      {
+        "id": 1430047294,
+        "node_id": "MDU6TGFiZWwxNDMwMDQ3Mjk0",
+        "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/labels/seek-guidance",
+        "name": "seek-guidance",
+        "color": "ffaa00",
+        "default": false
       }
     ],
     "state": "open",
@@ -1320,7 +1478,7 @@
     "milestone": null,
     "comments": 1,
     "created_at": "2019-05-10T16:08:19Z",
-    "updated_at": "2019-05-12T22:36:10Z",
+    "updated_at": "2019-06-30T23:04:14Z",
     "closed_at": null,
     "author_association": "OWNER",
     "body": "## Task\r\n\r\nShould we base on 723x or [http-core](https://github.com/httpwg/http-core) ?\r\n\r\n"
@@ -1497,7 +1655,14 @@
       "site_admin": false
     },
     "labels": [
-
+      {
+        "id": 1430047294,
+        "node_id": "MDU6TGFiZWwxNDMwMDQ3Mjk0",
+        "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/labels/seek-guidance",
+        "name": "seek-guidance",
+        "color": "ffaa00",
+        "default": false
+      }
     ],
     "state": "open",
     "locked": false,
@@ -1508,11 +1673,14 @@
     "milestone": null,
     "comments": 8,
     "created_at": "2019-05-10T00:28:48Z",
-    "updated_at": "2019-06-28T14:54:37Z",
+    "updated_at": "2019-06-30T23:04:05Z",
     "closed_at": null,
     "author_association": "NONE",
     "body": "https://ioggstream.github.io/draft-polli-resource-digests-http/draft-polli-resource-digests-http.html#goals says a goal is \"Digest coverage for either the resource’s representation data or selected representation data communicated via HTTP.\", but it's not clear to me why a client and server would use a digest. Some options include:\r\n\r\n* To detect message corruption. This is the only reason I can think of to use the ADLER32, CRC32c, MD5, SHA, UNIXsum, or UNIXcksum algorithms, but I think it's unnecessary with modern transport protocols?\r\n* To support signatures, for example in [Signed Exchanges](https://github.com/WICG/webpackage).\r\n* To give the client a hint about which SRI hash will be used, to maybe help with https://github.com/w3c/preload/issues/127.\r\n\r\nAre there others? If those are the only ones, and message corruption isn't needed anymore, we could deprecate all the non-cryptographic digest algorithms."
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/14",
     "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
@@ -1608,10 +1776,7 @@
     "closed_at": "2019-05-10T13:47:31Z",
     "author_association": "NONE",
     "body": "https://github.com/ioggstream/draft-polli-resource-digests-http/blob/master/CONTRIBUTING.md refers to https://mailarchive.ietf.org/arch/browse/resource/, which doesn't exist."
-  }
-
-,
-
+  },
   {
     "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/issues/12",
     "repository_url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http",
@@ -2096,7 +2261,14 @@
       "site_admin": false
     },
     "labels": [
-
+      {
+        "id": 1430045908,
+        "node_id": "MDU6TGFiZWwxNDMwMDQ1OTA4",
+        "url": "https://api.github.com/repos/ioggstream/draft-polli-resource-digests-http/labels/carry",
+        "name": "carry",
+        "color": "7fe08c",
+        "default": false
+      }
     ],
     "state": "open",
     "locked": false,
@@ -2107,7 +2279,7 @@
     "milestone": null,
     "comments": 1,
     "created_at": "2019-04-30T11:31:56Z",
-    "updated_at": "2019-06-17T18:58:39Z",
+    "updated_at": "2019-06-30T23:03:51Z",
     "closed_at": null,
     "author_association": "OWNER",
     "body": "## About PATCH\r\n\r\n1- `PATCH` is not in http 723x\r\n2- `PATCH` media type should be something like https://tools.ietf.org/html/rfc7396 because \r\nservers SHOULD NOT assume PATCH semantics for generic\r\n   media types that don't define them, such as \"application/xml\" or\r\n   \"application/json\".  Doing so will cause interoperability issues,\r\n   because the semantics of PATCH become specific to that resource,\r\n   rather than general.\r\n3- it's difficult to use patch + checksums, like @LPardue said\r\n\r\n## Hypothesis\r\n\r\n1- warn people about PATCH+Digest\r\n2- don't forbid PATCH+Digest"
