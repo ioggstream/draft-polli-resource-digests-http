@@ -30,9 +30,11 @@ normative:
   RFC5789:
   RFC5843:
   RFC4648:
+  RFC5234:
   RFC7230:
   RFC7231:
   RFC7233:
+  RFC7405:
   RFC8174:
   FIPS180-1:
     title: NIST FIPS 180-1, Secure Hash Standard
@@ -209,6 +211,10 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this
 document are to be interpreted as described in BCP 14 ([RFC2119] and [RFC8174])
 when, and only when, they appear in all capitals, as shown here.
+
+This document uses the Augmented BNF defined in [RFC5234] and updated
+by [RFC7405] along with the "#rule" extension defined in Section 7 of
+[RFC7230].
 
 The definitions "representation", "selected representation", "representation data",
 "representation metadata" and "payload body" in this document are to be
@@ -435,8 +441,9 @@ The Want-Digest message header field indicates the sender's desire to
 receive a representation digest on messages associated with the Request-
 URI and representation metadata.
 
-    Want-Digest = "Want-Digest" ":"
-                     #(digest-algorithm [ ";" "q" "=" qvalue])
+    Want-Digest = "Want-Digest" ":" OWS 1#want-digest-value
+    want-digest-value = digest-algorithm [ ";" "q" "=" qvalue]
+    qvalue = ( "0"  [ "."  0*1DIGIT ] ) /  ( "1"  [ "."  0*1( "0" ) ] )
 
 If a digest-algorithm is not accompanied by a qvalue, it is treated
 as if its associated qvalue were 1.0.
@@ -453,7 +460,7 @@ Examples:
 
 ~~~
    Want-Digest: sha-256
-   Want-Digest: SHA-256;q=0.3, sha;q=1
+   Want-Digest: SHA-512;q=0.3, sha-256;q=1, md5;q=0
 ~~~
 
 ## Digest {#digest-header}
@@ -461,7 +468,7 @@ Examples:
 The Digest header field provides a digest of the representation data
 
 ~~~
-      Digest = "Digest" ":" #(representation-data-digest)
+      Digest = "Digest" ":" OWS 1#representation-data-digest
 ~~~
 
 `Representation data` might be:
